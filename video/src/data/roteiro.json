@@ -1,0 +1,169 @@
+{
+  "_comentario": "src = texto do bloco. [tela|fala] = um token de legenda (tela) falado como 'fala' (pode ter várias palavras). beats.at = índice do token de legenda (0-based) onde a tela começa.",
+  "blocks": [
+    {
+      "id": "gancho",
+      "src": "Uma das línguas escritas mais antigas do mundo não tem nenhum parente vivo.",
+      "beats": [
+        {
+          "at": 0,
+          "type": "hook"
+        },
+        {
+          "at": 8,
+          "type": "hookOrphan"
+        }
+      ]
+    },
+    {
+      "id": "onde",
+      "src": "É o sumério, falado no sul da Mesopotâmia, onde hoje fica o Iraque. Em [Uruk,|Úruk,] por volta de [3300|três mil e trezentos] a [3200|três mil e duzentos] antes de Cristo, surge a escrita. E não foi para poesia. Foi para fazer contas.",
+      "beats": [
+        {
+          "at": 0,
+          "type": "map"
+        },
+        {
+          "at": 15,
+          "type": "date"
+        },
+        {
+          "at": 27,
+          "type": "accounting"
+        }
+      ]
+    },
+    {
+      "id": "isolada",
+      "src": "O sumério é uma língua isolada. Não é semítica, como o acadiano. Não é indo-europeia, como o português. Nenhum parente foi demonstrado até hoje.",
+      "beats": [
+        {
+          "at": 0,
+          "type": "isolate"
+        },
+        {
+          "at": 6,
+          "type": "familySemitic"
+        },
+        {
+          "at": 12,
+          "type": "familyIE"
+        },
+        {
+          "at": 18,
+          "type": "isolateAlone"
+        }
+      ]
+    },
+    {
+      "id": "aglutinante",
+      "src": "Ela é aglutinante: junta pedaços para formar palavras. [lu₂,|Lú,] homem. [gal,|Gál,] grande. [lugal,|Lúgal,] o grande homem: o rei. [e₂,|É,] casa. [e₂-gal,|É-gal,] casa grande: o palácio.",
+      "beats": [
+        {
+          "at": 0,
+          "type": "agglutinative"
+        },
+        {
+          "at": 8,
+          "type": "lugalBuild"
+        },
+        {
+          "at": 18,
+          "type": "egalBuild"
+        }
+      ]
+    },
+    {
+      "id": "ergativa",
+      "src": "E é ergativa. Em [“o|o] rei construiu o [templo”,|templo,] o rei leva uma marca: [lugal-e.|lúgal-ê.] Em [“o|o] rei [veio”,|veio,] sem objeto, não leva nada. Quem age sobre algo ganha marca própria.",
+      "beats": [
+        {
+          "at": 0,
+          "type": "ergativeTitle"
+        },
+        {
+          "at": 3,
+          "type": "ergTransitive"
+        },
+        {
+          "at": 15,
+          "type": "ergIntransitive"
+        },
+        {
+          "at": 24,
+          "type": "ergRule"
+        }
+      ]
+    },
+    {
+      "id": "cuneiforme",
+      "src": "Com o tempo, a escrita virou cunhas: um cálamo pressionado na argila úmida. Cada toque, uma cunha. Daí o nome: cuneiforme. E um sinal podia ser palavra ou som. Este é [dingir,|dínguir,] deus. Mas também se lê [an,|án,] céu. E, antes de um nome, avisa: é um deus.",
+      "beats": [
+        {
+          "at": 0,
+          "type": "stylus"
+        },
+        {
+          "at": 13,
+          "type": "wedgeName"
+        },
+        {
+          "at": 21,
+          "type": "signRoles"
+        },
+        {
+          "at": 29,
+          "type": "dingirAn"
+        },
+        {
+          "at": 39,
+          "type": "determinative"
+        }
+      ]
+    },
+    {
+      "id": "acadiano",
+      "src": "Ao lado dele vivia o acadiano, uma língua semítica. Por volta de [2000|dois mil] a [1800|mil e oitocentos] antes de Cristo, o sumério deixou de ser falado. Mas seguiu por quase dois mil anos como língua do culto e da escola. Como o latim na Europa.",
+      "beats": [
+        {
+          "at": 0,
+          "type": "akkadian"
+        },
+        {
+          "at": 9,
+          "type": "timelineSpoken"
+        },
+        {
+          "at": 24,
+          "type": "timelineScholarly"
+        },
+        {
+          "at": 38,
+          "type": "latin"
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "src": "Hoje lemos o sumério graças, em grande parte, às listas bilíngues, sumério e acadiano, feitas pelos próprios escribas. Qual palavra suméria você quer ver gravada na argila? Comente e siga para a próxima tabuinha.",
+      "beats": [
+        {
+          "at": 0,
+          "type": "lexicalList"
+        },
+        {
+          "at": 14,
+          "type": "scribes"
+        },
+        {
+          "at": 18,
+          "type": "cta"
+        },
+        {
+          "at": 27,
+          "type": "ctaFollow"
+        }
+      ]
+    }
+  ]
+}
