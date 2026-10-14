@@ -50,5 +50,12 @@ Nenhum gerador de imagem ou vídeo por IA foi usado. Tudo o que aparece na tela 
   - havia um espaço solto em "e₂ -gal";
   - a legenda subiu para y = 1110 para ficar no terço do meio.
 
+## Render e medições (versão sem voz)
+- Render: `npx remotion render TikTokSumerio out/video-mudo.mp4 --codec=h264 --crf=18 --muted` (~5 min com 4 núcleos). Depois `node scripts/mix.mjs out/video-mudo.mp4 ../out/tiktok-lingua-sumeria.mp4`.
+- **ffprobe:** vídeo H.264 1080×1920, 30/1 fps, 3600 quadros, 120,000 s; áudio AAC 48 kHz estéreo, 120,000 s.
+- **ebur128:** -14,0 LUFS integrado, pico real -1,5 dBTP, LRA 3,9 LU.
+- **Legendas:** 57 páginas, no máximo 7 palavras e 2 linhas cada. Duração mínima de uma página: 0,98 s (média 1,91 s). A página mais rápida tem 15 caracteres/s, abaixo do teto usual de ~17 caracteres/s para legendas.
+- Folha de quadros do arquivo final (1 a cada 5 s) conferida: nada cortado e nada nas faixas de 250 px de baixo e 150 px da direita.
+
 ## Pendências
 - [ ] Narração: rodar `node scripts/narrar.mjs` numa sessão com a chave, depois `build-timeline` → `stills` → render → `mix`. Ouvir os trechos sumérios e checar a sincronia.
