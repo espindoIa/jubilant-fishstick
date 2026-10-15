@@ -15,7 +15,9 @@ const VOICE = arg("voice", "Brian");
 const SPEED = Number(arg("speed", "0.95"));
 const ONLY = arg("only", "").split(",").filter(Boolean);
 const MODEL = "eleven_multilingual_v2";
-const PRESET = { stability: 0.65, similarity_boost: 0.8, style: 0.15, use_speaker_boost: true };
+// Preset "narrator" da skill (0.65/0.8/0.15) na 1ª versão; na 2ª, voz mais dinâmica
+// (testada em frase curta: mais variação de f0 e 2,95 pal/s): --stability=0.35 --style=0.5 --speed=1.05
+const PRESET = { stability: Number(arg("stability", "0.65")), similarity_boost: 0.8, style: Number(arg("style", "0.15")), use_speaker_boost: true };
 
 if (!process.env.ELEVENLABS_API_KEY && fs.existsSync(".env.local")) {
   for (const l of fs.readFileSync(".env.local", "utf8").split("\n")) {
@@ -69,7 +71,7 @@ fs.mkdirSync("public/audio/voz", { recursive: true });
 const prevIds = [];
 for (const [i, b] of blocks.entries()) {
   const jsonPath = `public/audio/voz/${b.id}.json`;
-  const hash = crypto.createHash("sha1").update(`${b.text}|${voice.voice_id}|${SPEED}`).digest("hex");
+  const hash = crypto.createHash("sha1").update(`${b.text}|${voice.voice_id}|${SPEED}|${PRESET.stability}|${PRESET.style}`).digest("hex");
   if (!todo.includes(b) || (!FORCE && fs.existsSync(jsonPath) && JSON.parse(fs.readFileSync(jsonPath, "utf8")).hash === hash)) {
     const old = fs.existsSync(jsonPath) ? JSON.parse(fs.readFileSync(jsonPath, "utf8")) : null;
     if (old?.requestId) prevIds.push(old.requestId);
@@ -95,7 +97,7 @@ for (const [i, b] of blocks.entries()) {
   );
   fs.writeFileSync(
     jsonPath,
-    JSON.stringify({ id: b.id, text: b.text, voice: voice.name, voiceId: voice.voice_id, speed: SPEED, model: MODEL, hash, requestId, durationS, alignment: data.alignment }, null, 1),
+    JSON.stringify({ id: b.id, text: b.text, voice: voice.name, voiceId: voice.voice_id, speed: SPEED, stability: PRESET.stability, style: PRESET.style, model: MODEL, hash, requestId, durationS, alignment: data.alignment }, null, 1),
   );
   if (requestId) prevIds.push(requestId);
   console.log(`✓ ${b.id}: ${durationS.toFixed(2)} s (${b.text.length} caracteres)`);

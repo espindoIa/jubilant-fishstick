@@ -100,6 +100,72 @@ Nenhum gerador de imagem ou vídeo por IA foi usado. Tudo o que aparece na tela 
 - Quadros das 29 telas refeitos com a nova temporização (2 por tela, área segura marcada): nada fora da área segura e nada cortado.
 - O texto do roteiro não mudou na fase 2 (só as grafias fonéticas enviadas à voz). A releitura contra o `fontes.md` continua válida.
 
+## Fase 3: mapas reais, cuneiforme real, roteiro com curiosidades, voz mais dinâmica (2026-10-15)
+
+### O que mudou e por quê, iteração por iteração
+1. **Pesquisa antes de escrever.**
+   - Um agente checou 8 curiosidades contra fontes baixadas: 5 entram, 3 caem (Kushim, Ea-nasir e o incêndio de Nínive; ver `fontes.md`, itens 17–25).
+   - Também tirou 4 linhas reais do CDLI (item 26).
+   - Outro agente baixou o Natural Earth, as coordenadas do Pleiades e 4 fotos CC0 do Met (itens 27–28).
+   - O ORACC/ePSD2 continua fora do ar; a lista de sinais do ORACC (OSL) veio do GitHub.
+2. **Voz.**
+   - Testei 4 configurações com a mesma frase curta e medi velocidade, variação de f0 e faixa de energia.
+   - Escolhida: `multilingual_v2`, stability 0,35, style 0,5, speed 1,05–1,2. Comparada à voz anterior (stability 0,65), tem mais variação de entonação (5,5 contra 4,2 semitons), entonação de pergunta reconhecida e ~2,9 palavras/s.
+   - O `eleven_v3` devolve tempos por caractere, mas não aceita *request stitching*. Ficou de fora.
+3. **Roteiro novo, com um fio:** "como a gente consegue ler uma língua sem parentes?". Cada bloco responde uma parte (escrita, isolamento, gramática, sinais, escola, tradução) até a resposta, as listas bilíngues, e a virada final (Halévy e o emesal).
+   - A 1ª versão tinha 297 palavras e dava 120,3 s de fala, sem espaço para pausas.
+   - Cortei 16 palavras em frases que não carregam o fio e subi a velocidade para 1,08.
+4. **Pronúncia** (faster-whisper `medium`):
+   - "Enlil" saía "Enleu" → "Ên-líl".
+   - "decifrá-lo" virava "decifrar" → "ajudaram na decifração", que também fica mais fiel à fonte ("contributed").
+   - "an, céu" grudava ("Ancel", "Anyarm") → "an, que significa céu".
+   - O bloco do cuneiforme oscilava a cada tomada, então dividi em 3 blocos curtos para refazer só o que falhasse.
+   - "dingir" saiu "Djingir" numa tomada → refeito.
+5. **Primeira rodada de quadros:**
+   - mapa, cones, linha de Gudea e selo encostavam nos 150 px da direita (somados ao zoom de câmera) → larguras ≤ 800 px;
+   - a tabuinha bilíngue ficava vazia por 3 s → os sinais começam na fala;
+   - o título do gancho estava na faixa das abas do TikTok → desceu.
+6. **Ritmo:** "gramatica", "resposta" e "dingir" estavam a ~2,0 palavras/s, com pausas de 0,5–0,7 s em cada vírgula das listas.
+   - Tirar a pontuação da fala acelerou, mas grudou as palavras ("galo grande", "desfração"). **Revertido:** a pausa depois de cada palavra suméria é o que a torna compreensível.
+   - Velocidade 1,2 só em "gramatica" e "dingir" funcionou (2,65 e 2,85 palavras/s, pronúncia limpa).
+   - Em "resposta", 1,2 estragou "šarru" ("Shahu"), então ficou a tomada a 1,12.
+7. **Trocas visuais:** 5 trechos ficavam mais de 4 s sem mudança na tela. Prendi uma revelação à fala em cada um: "antes de Cristo", "d = deus, não se lê", a data da linha do tempo, os cabeçalhos e a gravação da lista bilíngue, e "e siga".
+
+### Como cada elemento novo foi feito
+- **Mapa** (`src/components/MapaReal.tsx`):
+  - vetores do Natural Earth + relevo do Natural Earth, numa projeção cilíndrica equidistante (31,5°N) aplicada igualmente ao raster e aos vetores;
+  - rios traçados em animação e câmera com zoom logarítmico;
+  - sítios do Pleiades;
+  - rótulo "Iraque, hoje": sem costa antiga, porque não há dado traçável (`fontes.md`, item 27).
+- **Fotos** (`src/components/ObjetoMuseu.tsx`): os 4 objetos do Met, recortados do fundo (`scripts/recortar-fotos.py`), com câmera lenta e etiqueta de museu (objeto, data, nº de acesso).
+- **Linhas reais** (`src/components/LinhaCuneiforme.tsx`): gravação sinal a sinal com glifos da Noto, transliteração alinhada sob cada grupo, destaque (ensi₂-ke₄, ᵈ) e etiqueta de procedência.
+
+### Verificação externa (critérios)
+| Critério | Como | Resultado |
+|---|---|---|
+| Fatos | Cada frase da narração e da tela tem item em `fontes.md`; a tabela frase × fonte está no item 31 | ✅ |
+| Pronúncia | `scripts/verificar-pronuncia.py` (Whisper medium) → `public/audio/voz/pronuncia-whisper.json` | ✅ todas as palavras reconhecidas, incluindo lugal, gal, dingir, an, Enlil, Gudea, šarru e emesal |
+| Tempos ElevenLabs × alinhador independente | `scripts/alinhar-mms.py` (MMS_FA) | ✅ 574 bordas, mediana 14 ms, máximo 139 ms; nenhuma correção |
+| Sincronia de ponta a ponta (MP4) | `scripts/verificar-final.py` | ✅ **páginas**: 60, máximo 132 ms. Palavras: 276/277 ≤ 150 ms (mediana 14 ms). ⚠️ 1 exceção explicada abaixo |
+| Mapa | `scripts/verificar-mapa.py` (Pleiades × Wikidata) | ✅ 8 sítios, erro máximo 0,011° (limite 0,1°); rios e costa vêm do arquivo do Natural Earth |
+| Cuneiforme | `scripts/verificar-cuneiforme.py` (OSL do ORACC + ATF do CDLI) | ✅ 19/19 sinais; sequências = ATF. `1(N01)` sem Unicode, declarado |
+| Licenças | API do Met (`isPublicDomain`), Natural Earth (domínio público), Noto/Fraunces/Archivo (OFL) | ✅ |
+| Ritmo | `scripts/medir-ritmo.mjs` → `src/data/ritmo.json` | ✅ global 2,82 palavras/s; 9 de 10 blocos entre 2,65 e 3,37. ⚠️ "resposta" com 2,33 |
+| Trocas visuais | idem (cortes + eventos declarados em `roteiro.json`) | ✅ 60 mudanças, média 2,0 s, maior intervalo 4,04 s |
+| Legendas | idem | ✅ 60 páginas, no máximo 7 palavras |
+| Voz × trilha | `scripts/voz-acima.py` | ✅ voz acima em todas as 866 janelas com fala (mínimo +1,8 dB); trilha 17,4 dB abaixo |
+| Formato e loudness | ffprobe e ebur128 | ✅ H.264 1080×1920, 30 fps, 3600 quadros, 120,000 s, AAC; -14,1 LUFS, pico -1,2 dBTP |
+| Quadros | `scripts/stills.mjs --debug`, 2 por tela | ✅ nada fora da área segura; todo texto ≥ 44 px (corrigi um texto de 42 px na tela final) |
+
+**Exceções, com motivo:**
+- **"resposta" a 2,33 palavras/s** (alvo ~2,6). Acelerar a 1,2 estragou "šarru" e cortar as pausas grudou as palavras. Entre ritmo e pronúncia, fiquei com a pronúncia.
+- **Uma palavra, "lugal," no bloco "resposta"**: a 3ª medição (MMS sobre o trecho longo) dá o fim 223 ms antes. As outras duas, ElevenLabs e MMS no bloco limpo, concordam em 20 ms (6,803 × 6,823 s). É fala contínua ("Lúgall em acadiano"), sem fronteira acústica entre as palavras. A página da legenda que contém a palavra está dentro do limite.
+
+### Voz usada (por bloco) e consumo
+- Brian, `eleven_multilingual_v2`, stability 0,35, style 0,5.
+- Velocidade 1,08 em gancho, onde, isolada, cunhas, determinativo, escola e final; 1,2 em gramatica e dingir; 1,12 em resposta.
+- Consumo da fase 3 ≈ 6.300 caracteres. O plano está em 6.934 de 10.000 neste ciclo.
+
 ## Pendências
 - [x] Narração gerada, pronúncia conferida, sincronia medida, mix refeito.
-- [ ] Conferir no app do TikTok de verdade (aparência na interface, compressão da plataforma) e ouvir a voz: não dá para fazer daqui.
+- [ ] Conferir no app do TikTok de verdade (aparência na interface, compressão da plataforma) e ouvir a voz (qualidade subjetiva, sotaque): não dá para fazer daqui.

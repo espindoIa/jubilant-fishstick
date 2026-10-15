@@ -7,11 +7,20 @@ from fontTools.pens.boundsPen import BoundsPen
 
 font_path, out_path = sys.argv[1], sys.argv[2]
 SIGNS = {"LUGAL": 0x12217, "LU2": 0x121FD, "GAL": 0x120F2, "E2": 0x1208D, "AN": 0x1202D, "EN": 0x12097, "KID": 0x121A4}
+# + todos os sinais das linhas reais (src/data/linhas-cuneiformes.json), pelo código Unicode
+import os
+_lin = os.path.join(os.path.dirname(out_path), "linhas-cuneiformes.json")
+if os.path.exists(_lin):
+    for l in json.load(open(_lin))["linhas"]:
+        for sg in l["sinais"]:
+            for cp in (sg.get("codepoint") or "").split():
+                c = int(cp[2:], 16)
+                SIGNS[unicodedata.name(chr(c)).replace("CUNEIFORM SIGN ", "").replace(" ", "_")] = c
 f = TTFont(font_path)
 gs = f.getGlyphSet(); cmap = f.getBestCmap(); upm = f["head"].unitsPerEm
 out = {"unitsPerEm": upm, "signs": {}}
 for name, cp in SIGNS.items():
-    assert unicodedata.name(chr(cp)) == f"CUNEIFORM SIGN {name}", name
+    assert unicodedata.name(chr(cp)).replace(" ", "_") == f"CUNEIFORM_SIGN_{name}", name
     g = gs[cmap[cp]]
     rec = DecomposingRecordingPen(gs); g.draw(rec)
     contours, cur = [], []

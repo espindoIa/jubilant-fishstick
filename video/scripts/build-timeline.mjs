@@ -6,9 +6,9 @@ import fs from "node:fs";
 
 const FPS = 30;
 const TOTAL_S = 120;
-const LEAD_S = 0.35; // respiro antes da primeira fala
-const TAIL_S = 2.6; // tela final sem narração
-const MIN_GAP_S = 0.45;
+const LEAD_S = 0.2; // respiro antes da primeira fala
+const TAIL_S = 1.8; // tela final sem narração (chamada para comentar/seguir)
+const MIN_GAP_S = 0.4;
 const roteiro = JSON.parse(fs.readFileSync("src/data/roteiro.json", "utf8"));
 
 // Tokeniza "src" em tokens de legenda {display, spoken}

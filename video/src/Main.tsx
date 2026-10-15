@@ -5,56 +5,65 @@ import { ClayBackground, Dust, SlowCamera } from "./components/Atmosphere";
 import { Captions } from "./components/Captions";
 import timeline from "./data/timeline.json";
 import { SceneProps } from "./scenes/helpers";
-import { Accounting, DateScene, Hook, HookOrphan, MapScene } from "./scenes/Part1";
-import { Agglutinative, EgalBuild, FamilyIE, FamilySemitic, Isolate, IsolateAlone, LugalBuild } from "./scenes/Part2";
+import { DateScene } from "./scenes/Part1";
+import { FamilyIE, FamilySemitic, Isolate, IsolateAlone, LugalBuild } from "./scenes/Part2";
+import { DingirAn, SignRoles, StylusScene } from "./scenes/Part3";
+import { CtaFollow, Latin, TimelineSpoken } from "./scenes/Part4";
 import {
-  DingirAn,
-  Determinative,
-  ErgativeTitle,
-  ErgIntransitive,
-  ErgRule,
-  ErgTransitive,
-  SignRoles,
-  StylusScene,
-  WedgeName,
-} from "./scenes/Part3";
-import { Akkadian, Cta, CtaFollow, LexicalList, Latin, Scribes, TimelineScholarly, TimelineSpoken } from "./scenes/Part4";
+  BilingueLinha,
+  ConeEnmetena,
+  ContasFoto,
+  CtaSelo,
+  Emesal,
+  EnlilLinha,
+  GudeaLinha,
+  Halevy,
+  HookFoto,
+  HookPergunta,
+  ListaArcaica,
+  MapaNinive,
+  MapaUruk,
+  MarcaQuemAge,
+  Pronuncia,
+  Proverbio,
+  RespostaTitulo,
+} from "./scenes/Part5";
 import { C, SAFE } from "./theme";
 
 const SCENES: Record<string, React.FC<SceneProps>> = {
-  hook: Hook,
-  hookOrphan: HookOrphan,
-  map: MapScene,
+  hookFoto: HookFoto,
+  hookPergunta: HookPergunta,
+  mapaUruk: MapaUruk,
   date: DateScene,
-  accounting: Accounting,
+  contasFoto: ContasFoto,
+  listaArcaica: ListaArcaica,
   isolate: Isolate,
   familySemitic: FamilySemitic,
   familyIE: FamilyIE,
   isolateAlone: IsolateAlone,
-  agglutinative: Agglutinative,
   lugalBuild: LugalBuild,
-  egalBuild: EgalBuild,
-  ergativeTitle: ErgativeTitle,
-  ergTransitive: ErgTransitive,
-  ergIntransitive: ErgIntransitive,
-  ergRule: ErgRule,
+  marcaQuemAge: MarcaQuemAge,
+  gudeaLinha: GudeaLinha,
   stylus: StylusScene,
-  wedgeName: WedgeName,
   signRoles: SignRoles,
   dingirAn: DingirAn,
-  determinative: Determinative,
-  akkadian: Akkadian,
+  coneEnmetena: ConeEnmetena,
+  enlilLinha: EnlilLinha,
   timelineSpoken: TimelineSpoken,
-  timelineScholarly: TimelineScholarly,
   latin: Latin,
-  lexicalList: LexicalList,
-  scribes: Scribes,
-  cta: Cta,
+  proverbio: Proverbio,
+  respostaTitulo: RespostaTitulo,
+  bilingueLinha: BilingueLinha,
+  pronuncia: Pronuncia,
+  mapaNinive: MapaNinive,
+  halevy: Halevy,
+  emesal: Emesal,
+  ctaSelo: CtaSelo,
   ctaFollow: CtaFollow,
 };
 
 // Blocos com fundo de lápis-lazúli (telas-chave de gramática e do sinal)
-const LAPIS_BLOCKS = new Set(["ergativa", "final"]);
+const LAPIS_BLOCKS = new Set(["gramatica", "determinativo", "resposta"]);
 
 const SceneFrame: React.FC<{ children: React.ReactNode; dur: number }> = ({ children, dur }) => {
   const f = useCurrentFrame();

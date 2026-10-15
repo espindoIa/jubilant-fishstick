@@ -1,0 +1,62 @@
+[
+ {
+  "arquivo": "img/protocuneiforme.jpg",
+  "objectID": 329081,
+  "titulo": "Proto-Cuneiform tablet with seal impressions: administrative account of barley distribution with cylinder seal impression of a male figure, hunting dogs, and boars",
+  "data": "ca. 3100–2900 BCE",
+  "periodo": "Jemdet Nasr",
+  "cultura": "Sumerian",
+  "numero_acesso": "1988.433.1",
+  "credito": "Purchase, Raymond and Beverly Sackler Gift, 1988",
+  "licenca": "CC0 (Met Open Access)",
+  "isPublicDomain": true,
+  "url_objeto": "https://www.metmuseum.org/art/collection/search/329081",
+  "largura": 3000,
+  "altura": 4000
+ },
+ {
+  "arquivo": "img/cone-enmetena.jpg",
+  "objectID": 327592,
+  "titulo": "Foundation cone with cuneiform inscription of Enmetena of Lagash",
+  "data": "ca. 2500–2350 BCE",
+  "periodo": "Early Dynastic IIIb",
+  "cultura": "Sumerian",
+  "numero_acesso": "1999.190.1",
+  "credito": "Purchase, Friends of Inanna Gifts, 1999",
+  "licenca": "CC0 (Met Open Access)",
+  "isPublicDomain": true,
+  "url_objeto": "https://www.metmuseum.org/art/collection/search/327592",
+  "largura": 4000,
+  "altura": 2784
+ },
+ {
+  "arquivo": "img/cone-gudea.jpg",
+  "objectID": 324015,
+  "titulo": "Votive cone with cuneiform inscription of Gudea: dedicated when Gudea built the Eninnu temple for the god Ningirsu",
+  "data": "ca. 2090 BCE",
+  "periodo": "Neo-Sumerian",
+  "cultura": "Neo-Sumerian",
+  "numero_acesso": "45.90",
+  "credito": "Gift of Mrs. E. Parmalee Prentice, 1945",
+  "licenca": "CC0 (Met Open Access)",
+  "isPublicDomain": true,
+  "url_objeto": "https://www.metmuseum.org/art/collection/search/324015",
+  "largura": 4000,
+  "altura": 2912
+ },
+ {
+  "arquivo": "img/selo-cilindrico.jpg",
+  "objectID": 325479,
+  "titulo": "Cylinder seal and modern impression: seated \"pigtailed ladies\" and pots",
+  "data": "ca. 3300–2900 BCE",
+  "periodo": "Late Uruk–Jemdet Nasr",
+  "cultura": "",
+  "numero_acesso": "62.70.74",
+  "credito": "Rogers Fund, 1962",
+  "licenca": "CC0 (Met Open Access)",
+  "isPublicDomain": true,
+  "url_objeto": "https://www.metmuseum.org/art/collection/search/325479",
+  "largura": 3893,
+  "altura": 2921
+ }
+]

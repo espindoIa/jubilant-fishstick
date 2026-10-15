@@ -140,52 +140,12 @@ export const IsolateAlone: React.FC<SceneProps> = () => {
       <Node label="sumério" x={CONTENT_CX} y={600} at={0} color={C.ouro} size={60} strong />
       <Center top={230}>
         <Rise at={2}>
-          <Title size={96}>nenhum parente demonstrado</Title>
+          <Title size={96}>sem parentes, sem comparação</Title>
         </Rise>
       </Center>
       <Center top={800}>
         <Rise at={24}>
           <Body size={42}>até hoje</Body>
-        </Rise>
-      </Center>
-    </AbsoluteFill>
-  );
-};
-
-// 10. Aglutinante: pedaços de argila que se juntam.
-export const Agglutinative: React.FC<SceneProps> = () => {
-  const f = useCurrentFrame();
-  const join = interpolate(f, [30, 70], [1, 0], { ...clamp, easing: Easing.inOut(Easing.cubic) });
-  const piece = (label: string, i: number) => (
-    <div
-      key={label}
-      style={{
-        translate: `${(i - 1) * 90 * join}px ${Math.abs(i - 1) * 40 * join}px`,
-        rotate: `${(i - 1) * 6 * join}deg`,
-      }}
-    >
-      <Tablet w={230} h={170} seed={30 + i}>
-        <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: FONT_BODY, fontWeight: 700, fontSize: 44, color: C.betume }}>
-          {label}
-        </div>
-      </Tablet>
-    </div>
-  );
-  return (
-    <AbsoluteFill>
-      <Center top={220}>
-        <Rise at={0}>
-          <Title size={124}>aglutinante</Title>
-        </Rise>
-      </Center>
-      <Center top={560}>
-        <div style={{ display: "flex", gap: 10 * (1 + join * 3) }}>{["pedaço", "+", "pedaço"].map((l, i) => (l === "+" ? <div key={i} style={{ alignSelf: "center", fontSize: 70, color: C.ouro, fontFamily: FONT_TITLE, opacity: join }}>+</div> : piece(l, i)))}</div>
-      </Center>
-      <Center top={800}>
-        <Rise at={60}>
-          <Body size={46} color={C.ouro} style={{ fontWeight: 650 }}>
-            = uma palavra
-          </Body>
         </Rise>
       </Center>
     </AbsoluteFill>
@@ -223,8 +183,8 @@ const WordCard: React.FC<{
 // 11. lu₂ + gal → lugal
 export const LugalBuild: React.FC<SceneProps> = ({ from }) => {
   const f = useCurrentFrame();
-  const galAt = wordFrame("aglutinante", 10, from);
-  const lugalAt = wordFrame("aglutinante", 12, from);
+  const galAt = wordFrame("gramatica", 7, from);
+  const lugalAt = wordFrame("gramatica", 9, from);
   const merge = interpolate(f, [lugalAt - 8, lugalAt + 6], [1, 0], clamp);
   return (
     <AbsoluteFill>
@@ -242,38 +202,3 @@ export const LugalBuild: React.FC<SceneProps> = ({ from }) => {
   );
 };
 
-// 12. e₂ + gal → e₂-gal
-export const EgalBuild: React.FC<SceneProps> = ({ from }) => {
-  const f = useCurrentFrame();
-  const egalAt = wordFrame("aglutinante", 20, from);
-  const show2 = interpolate(f, [egalAt - 6, egalAt + 6], [0, 1], { ...clamp, easing: easeOut });
-  return (
-    <AbsoluteFill>
-      <Center top={200}>
-        <Tablet w={760} h={330} seed={44}>
-          <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", gap: 36 }}>
-            <GlyphSign name="E2" height={190} start={2} perWedge={5} />
-            <div style={{ opacity: show2, width: show2 * 300, overflow: "hidden" }}>
-              <GlyphSign name="GAL" height={190} start={egalAt - 4} perWedge={6} />
-            </div>
-          </div>
-        </Tablet>
-      </Center>
-      <Center top={600}>
-        <div style={{ display: "flex", alignItems: "baseline" }}>
-          <Sux size={116}>
-            e₂<span style={{ opacity: show2 }}>-gal</span>
-          </Sux>
-        </div>
-        <div style={{ position: "relative", height: 130, width: 800 }}>
-          <Body size={52} color={C.osso} style={{ position: "absolute", width: "100%", opacity: 1 - show2, fontWeight: 650 }}>
-            casa
-          </Body>
-          <Body size={52} color={C.osso} style={{ position: "absolute", width: "100%", opacity: show2, fontWeight: 650 }}>
-            palácio · lit. “casa grande”
-          </Body>
-        </div>
-      </Center>
-    </AbsoluteFill>
-  );
-};
