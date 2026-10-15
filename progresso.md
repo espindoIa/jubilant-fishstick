@@ -10,7 +10,7 @@ Registro do que foi feito, do que funcionou e do que falhou. Data: 2026-10-14.
 | Remotion Agent Skills (`npx skills add remotion-dev/skills`) | 12 skills em `.agents/skills` (link simbólico em `.claude/skills`) | ✅ | Li `remotion-best-practices` (roteador), `remotion-captions` (+ `display-captions.md`), `remotion-create`, `video-layout.md`, `remotion-markup` (REFERENCE, `multi-scene-video.md`, `local-fonts.md`). Regras seguidas: animação só com `useCurrentFrame`/`interpolate` (sem CSS animation), `premountFor={fps}`, fontes locais com `@remotion/fonts`, legendas no tipo `Caption` (startMs/endMs) com espaço antes de cada palavra, texto mínimo de 44 px e título de 84 px. |
 | Plugin `frontend-design` (Anthropic, `anthropic-plugin-directory`) | `claude plugin install frontend-design@anthropic-plugin-directory` | ✅ | Segui o método de duas passadas (plano → revisão contra os clichês listados na skill → construção → autocrítica por quadros). O resultado está em `design.md`. |
 | Skill `svg-character-animation` (`calesthio/openmontage`) | `npx skills add calesthio/openmontage --skill svg-character-animation` | ✅ instalada e lida | É voltada a rigs de personagem com GSAP. Apliquei as regras que servem aqui: animar só transformações, pivôs estáveis e linha do tempo guiada pelo frame do Remotion (nada de rAF). Não usei GSAP: as cunhas são SVG próprio guiado por `interpolate`. |
-| Skill `elevenlabs-remotion` | `npx skills add elevenlabs-remotion` **falhou** (nome sem dono). `npx skills find` achou `maartenlouis/elevenlabs-remotion-skill`; instalada com `--skill elevenlabs-remotion` | ⚠️ instalada, **não executada** | **`ELEVENLABS_API_KEY` não existe nesta sessão.** O usuário vai cadastrar a chave nas configurações do ambiente, e ela só chega a uma sessão nova. O `generate.js` da skill não devolve tempos por palavra, então escrevi `video/scripts/narrar.mjs`: reaproveita o preset "narrator" da skill (0.65 / 0.8 / 0.15), o modelo `eleven_multilingual_v2` e o *request stitching*, e chama o endpoint `with-timestamps`. Antes de gerar, ele confere o limite do plano (`/v1/user/subscription`). |
+| Skill `elevenlabs-remotion` | `npx skills add elevenlabs-remotion` **falhou** (nome sem dono). `npx skills find` achou `maartenlouis/elevenlabs-remotion-skill`; instalada com `--skill elevenlabs-remotion` | ✅ usada na 2ª sessão (preset "narrator", stitching) via `narrar.mjs` | **`ELEVENLABS_API_KEY` não existe nesta sessão.** O usuário vai cadastrar a chave nas configurações do ambiente, e ela só chega a uma sessão nova. O `generate.js` da skill não devolve tempos por palavra, então escrevi `video/scripts/narrar.mjs`: reaproveita o preset "narrator" da skill (0.65 / 0.8 / 0.15), o modelo `eleven_multilingual_v2` e o *request stitching*, e chama o endpoint `with-timestamps`. Antes de gerar, ele confere o limite do plano (`/v1/user/subscription`). |
 | Fonte Noto Sans Cuneiform (OFL) | baixada de `notofonts.github.io` | ✅ | Sinais conferidos por código (Python `unicodedata` + cmap da fonte). Contornos extraídos com fontTools (`scripts/extract-glyphs.py`). |
 | Fraunces e Archivo (OFL, Google Fonts) | baixadas do repositório `google/fonts` | ✅ | Títulos serifados com acentos completos; corpo e legendas sem serifa. |
 | ffmpeg / ffprobe | já instalados (6.1.1) | ✅ | Mixagem, loudness (ebur128/loudnorm) e medição final. |
@@ -57,5 +57,49 @@ Nenhum gerador de imagem ou vídeo por IA foi usado. Tudo o que aparece na tela 
 - **Legendas:** 57 páginas, no máximo 7 palavras e 2 linhas cada. Duração mínima de uma página: 0,98 s (média 1,91 s). A página mais rápida tem 15 caracteres/s, abaixo do teto usual de ~17 caracteres/s para legendas.
 - Folha de quadros do arquivo final (1 a cada 5 s) conferida: nada cortado e nada nas faixas de 250 px de baixo e 150 px da direita.
 
+## Fase 2: narração (2ª sessão, já com a `ELEVENLABS_API_KEY`)
+
+### Voz
+- Plano gratuito (limite de 10.000 caracteres). Foram usados ~2.974 caracteres: testes de voz e de grafia, 1 rodada completa e refações por bloco. O contador do plano zerou no meio da sessão (virada de ciclo): marcava 2.727, depois passou a 247.
+- Comparei 3 vozes pré-definidas com a mesma frase: Brian (f0 ≈ 103 Hz), George (≈ 133 Hz) e Daniel (≈ 132 Hz). Escolhi **Brian, "Deep, Resonant and Comforting"**: a mais grave e calma, como pedido. Modelo `eleven_multilingual_v2`, preset "narrator" (0.65/0.8/0.15), velocidade 0,95, *request stitching* entre blocos.
+
+### Pronúncia (conferida com faster-whisper `medium` em pt; transcrições em `video/public/audio/voz/pronuncia-whisper.json`)
+- "dínguir" saía como "Jinger" (g mole). Testei 7 grafias; "**Dín-guir**" é transcrita "dingir"/"Dhingir" (d e g duros).
+- "gal" saía "gau" (l final vocalizado do pt-BR). "**Gáll / Lúgall / É-gall**" é transcrita "Gal", "Lugal", "É, gal". Como a voz varia de uma tomada para outra, refiz o bloco *aglutinante* até as palavras saírem certas.
+- "lugal-e" → "**Lúgall-ê**", transcrito "Lugalê".
+- "an, céu" grudava ("Ancel"). Com ponto entre as duas ("Án. Céu."), sai "an, céu".
+- Úruk → "Uruk"; os números por extenso saem certos ("3.300 a 3.200 antes de Cristo", "2.000 a 1.800").
+- Transcrição final: todas as palavras do roteiro reconhecidas. As diferenças são só de forma (números em algarismos, "indo -europeia", as grafias fonéticas).
+- **Não verificado:** a qualidade subjetiva da voz e o sotaque. A voz é um modelo de língua inglesa falando pt-BR pelo modelo multilíngue, e eu não consigo ouvir; o Whisper só confirma que as palavras são reconhecíveis.
+
+### Sincronia legenda × áudio (limite pedido: 150 ms)
+- As legendas usam os tempos por caractere devolvidos pela ElevenLabs (`with-timestamps`) → tempos por palavra (`build-timeline.mjs`).
+- **Medição independente:** alinhamento forçado com outro modelo, torchaudio **MMS_FA** (wav2vec2 multilíngue), em `scripts/alinhar-mms.py`.
+  - ElevenLabs × MMS: 526 bordas de palavra, mediana 14 ms, p95 92 ms, máximo 148 ms.
+  - Nenhuma passou de 150 ms, então não houve correção.
+- **De ponta a ponta no MP4 final** (`scripts/verificar-final.py`: MMS sobre o áudio já mixado com a trilha × legendas do `timeline.json`):
+  - palavras: 254 tokens, mediana 19 ms, p95 97 ms, máximo 133 ms;
+  - **páginas de legenda** (entrada × início da 1ª palavra; saída × fim da última): 57 páginas, mediana 60 ms, p95 114 ms, máximo 133 ms.
+  - Nenhuma acima de 150 ms (`video/public/audio/voz/sincronia-final.json`).
+- **Ajuste feito por causa da medição:** as páginas ficavam 150 ms na tela depois da última palavra e saíam até 283 ms atrasadas. Agora saem quando a última palavra termina.
+- **Tentativas descartadas:**
+  - Os tempos por palavra do Whisper erram 100–300 ms, então serviram só para a pronúncia.
+  - Uma checagem por envoltória de energia confundia pausas e oclusivas e gerou falsos alarmes; foi removida.
+
+### Mixagem (`scripts/mix.mjs`)
+- A voz é posicionada pelos tempos do timeline (pausas de 0,63 s entre blocos).
+- A trilha tem ganho fixo + *ducking* (sidechain) guiado pela voz, com 80 ms de antecipação, razão 3 e release de 900 ms.
+- **Trilha 19,4 dB abaixo da voz** (loudness integrada: voz -24,4 LUFS, trilha no mix -43,8 LUFS).
+- **Voz sempre acima da trilha:** em todas as 882 janelas de 100 ms com fala (ponderação K), a voz fica acima; menor diferença +0,4 dB, mediana +23,5 dB (`scripts/voz-acima.py`).
+  - Sem o ducking, finais de palavra que coincidiam com batidas do tambor ficavam até 3–5 dB abaixo da trilha.
+  - Com 18,0 dB exatos, uma janela no início de "Foi" ficava 0,6 dB abaixo. Por isso a trilha ficou 19,4 dB abaixo, em vez de 18,0.
+
+### Medições finais (`out/tiktok-lingua-sumeria.mp4`)
+- **ffprobe:** H.264 1080×1920, 30/1 fps, 3600 quadros, 120,000 s; AAC 48 kHz estéreo, 120,000 s.
+- **ebur128:** -14,2 LUFS integrado, pico real -1,3 dBTP (abaixo de -1).
+- Quadros das 29 telas refeitos com a nova temporização (2 por tela, área segura marcada): nada fora da área segura e nada cortado.
+- O texto do roteiro não mudou na fase 2 (só as grafias fonéticas enviadas à voz). A releitura contra o `fontes.md` continua válida.
+
 ## Pendências
-- [ ] Narração: rodar `node scripts/narrar.mjs` numa sessão com a chave, depois `build-timeline` → `stills` → render → `mix`. Ouvir os trechos sumérios e checar a sincronia.
+- [x] Narração gerada, pronúncia conferida, sincronia medida, mix refeito.
+- [ ] Conferir no app do TikTok de verdade (aparência na interface, compressão da plataforma) e ouvir a voz: não dá para fazer daqui.

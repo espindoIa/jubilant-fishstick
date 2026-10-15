@@ -57,7 +57,7 @@
     },
     {
       "id": "aglutinante",
-      "src": "Ela é aglutinante: junta pedaços para formar palavras. [lu₂,|Lú,] homem. [gal,|Gál,] grande. [lugal,|Lúgal,] o grande homem: o rei. [e₂,|É,] casa. [e₂-gal,|É-gal,] casa grande: o palácio.",
+      "src": "Ela é aglutinante: junta pedaços para formar palavras. [lu₂,|Lú,] homem. [gal,|Gáll,] grande. [lugal,|Lúgall,] o grande homem: o rei. [e₂,|É,] casa. [e₂-gal,|É-gall,] casa grande: o palácio.",
       "beats": [
         {
           "at": 0,
@@ -75,7 +75,7 @@
     },
     {
       "id": "ergativa",
-      "src": "E é ergativa. Em [“o|o] rei construiu o [templo”,|templo,] o rei leva uma marca: [lugal-e.|lúgal-ê.] Em [“o|o] rei [veio”,|veio,] sem objeto, não leva nada. Quem age sobre algo ganha marca própria.",
+      "src": "E é ergativa. Em [“o|o] rei construiu o [templo”,|templo,] o rei leva uma marca: [lugal-e.|Lúgall-ê.] Em [“o|o] rei [veio”,|veio,] sem objeto, não leva nada. Quem age sobre algo ganha marca própria.",
       "beats": [
         {
           "at": 0,
@@ -97,7 +97,7 @@
     },
     {
       "id": "cuneiforme",
-      "src": "Com o tempo, a escrita virou cunhas: um cálamo pressionado na argila úmida. Cada toque, uma cunha. Daí o nome: cuneiforme. E um sinal podia ser palavra ou som. Este é [dingir,|dínguir,] deus. Mas também se lê [an,|án,] céu. E, antes de um nome, avisa: é um deus.",
+      "src": "Com o tempo, a escrita virou cunhas: um cálamo pressionado na argila úmida. Cada toque, uma cunha. Daí o nome: cuneiforme. E um sinal podia ser palavra ou som. Este é [dingir,|Dín-guir,] deus. Mas também se lê [an,|Án.] [céu.|Céu.] E, antes de um nome, avisa: é um deus.",
       "beats": [
         {
           "at": 0,

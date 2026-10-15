@@ -240,3 +240,7 @@ Não funcionaram ou não foram consultados:
 - lu₂, gal, lugal, e₂, e₂-gal, lugal-e, e₂, mu-du₃, i₃-im-ĝen, dingir, an, ᵈen-lil₂: ver itens 4, 5 e 11.
 - Acadiano na lista bilíngue: šarrum, ekallum, ilum (com mimação, as três coerentes): ver item 10.
 - "dingir" é a transliteração tradicional; as fontes atuais escrevem diŋir/diĝir (item 4). Mantive "dingir" porque é a forma pedida e a mais reconhecível.
+
+### 16. Grafias fonéticas usadas na narração (2ª sessão)
+- Grafias enviadas à voz (convenção, ver item 9; a tela mostra a transliteração correta): Lú (lu₂), Gáll (gal), Lúgall (lugal), É (e₂), É-gall (e₂-gal), Lúgall-ê (lugal-e), Dín-guir (dingir), Án (an), Úruk (Uruk).
+- O "ll" duplo serve para impedir a vocalização do l final do pt-BR ("gal" → "gau"). "Dín-guir" com hífen e maiúscula garante g duro ("dinguir", e não "jinguir"). As duas coisas foram conferidas com transcrição automática (faster-whisper `medium`): `video/public/audio/voz/pronuncia-whisper.json`.

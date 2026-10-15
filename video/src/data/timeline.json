@@ -1,2036 +1,2036 @@
 {
  "fps": 30,
  "durationInFrames": 3600,
- "hasVoice": false,
+ "hasVoice": true,
  "words": [
   {
    "text": "Uma",
    "startMs": 350,
-   "endMs": 584,
+   "endMs": 594,
    "block": "gancho",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "das",
-   "startMs": 624,
-   "endMs": 858,
+   "startMs": 640,
+   "endMs": 791,
    "block": "gancho",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "línguas",
-   "startMs": 898,
-   "endMs": 1364,
+   "startMs": 861,
+   "endMs": 1163,
    "block": "gancho",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "escritas",
-   "startMs": 1404,
-   "endMs": 1928,
+   "startMs": 1232,
+   "endMs": 1662,
    "block": "gancho",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "mais",
-   "startMs": 1968,
-   "endMs": 2260,
+   "startMs": 1755,
+   "endMs": 1999,
    "block": "gancho",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "antigas",
-   "startMs": 2300,
-   "endMs": 2766,
+   "startMs": 2057,
+   "endMs": 2533,
    "block": "gancho",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "do",
-   "startMs": 2806,
-   "endMs": 2982,
+   "startMs": 2579,
+   "endMs": 2649,
    "block": "gancho",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "mundo",
-   "startMs": 3022,
-   "endMs": 3372,
+   "startMs": 2707,
+   "endMs": 3113,
    "block": "gancho",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "não",
-   "startMs": 3412,
-   "endMs": 3646,
+   "startMs": 3369,
+   "endMs": 3543,
    "block": "gancho",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "tem",
-   "startMs": 3686,
-   "endMs": 3920,
+   "startMs": 3589,
+   "endMs": 3729,
    "block": "gancho",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "nenhum",
-   "startMs": 3960,
-   "endMs": 4368,
+   "startMs": 3763,
+   "endMs": 4077,
    "block": "gancho",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "parente",
-   "startMs": 4408,
-   "endMs": 4874,
+   "startMs": 4123,
+   "endMs": 4472,
    "block": "gancho",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "vivo.",
-   "startMs": 4914,
-   "endMs": 5206,
+   "startMs": 4530,
+   "endMs": 4866,
    "block": "gancho",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "É",
-   "startMs": 7073,
-   "endMs": 7191,
+   "startMs": 6070,
+   "endMs": 6140,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "o",
-   "startMs": 7231,
-   "endMs": 7349,
+   "startMs": 6221,
+   "endMs": 6244,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "sumério,",
-   "startMs": 7389,
-   "endMs": 7855,
+   "startMs": 6314,
+   "endMs": 6964,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "falado",
-   "startMs": 8055,
-   "endMs": 8463,
+   "startMs": 7057,
+   "endMs": 7452,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "no",
-   "startMs": 8503,
-   "endMs": 8679,
+   "startMs": 7498,
+   "endMs": 7579,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "sul",
-   "startMs": 8719,
-   "endMs": 8953,
+   "startMs": 7649,
+   "endMs": 7881,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "da",
-   "startMs": 8993,
-   "endMs": 9169,
+   "startMs": 7916,
+   "endMs": 7986,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "Mesopotâmia,",
-   "startMs": 9209,
-   "endMs": 9907,
+   "startMs": 8032,
+   "endMs": 8798,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "onde",
-   "startMs": 10107,
-   "endMs": 10399,
+   "startMs": 9147,
+   "endMs": 9414,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "hoje",
-   "startMs": 10439,
-   "endMs": 10731,
+   "startMs": 9449,
+   "endMs": 9657,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "fica",
-   "startMs": 10771,
-   "endMs": 11063,
+   "startMs": 9716,
+   "endMs": 9913,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "o",
-   "startMs": 11103,
-   "endMs": 11221,
+   "startMs": 9936,
+   "endMs": 9959,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "Iraque.",
-   "startMs": 11261,
-   "endMs": 11669,
+   "startMs": 10006,
+   "endMs": 10470,
    "block": "onde",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Em",
-   "startMs": 12089,
-   "endMs": 12265,
+   "startMs": 11004,
+   "endMs": 11155,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "Uruk,",
-   "startMs": 12305,
-   "endMs": 12597,
+   "startMs": 11236,
+   "endMs": 11608,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "por",
-   "startMs": 12797,
-   "endMs": 13031,
+   "startMs": 11898,
+   "endMs": 12049,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "volta",
-   "startMs": 13071,
-   "endMs": 13421,
+   "startMs": 12107,
+   "endMs": 12397,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "de",
-   "startMs": 13461,
-   "endMs": 13637,
+   "startMs": 12444,
+   "endMs": 12514,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "3300",
-   "startMs": 13677,
-   "endMs": 14723,
+   "startMs": 12606,
+   "endMs": 13965,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "a",
-   "startMs": 14763,
-   "endMs": 14881,
+   "startMs": 14127,
+   "endMs": 14209,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "3200",
-   "startMs": 14921,
-   "endMs": 15909,
+   "startMs": 14290,
+   "endMs": 15451,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "antes",
-   "startMs": 15949,
-   "endMs": 16299,
+   "startMs": 15509,
+   "endMs": 15695,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "de",
-   "startMs": 16339,
-   "endMs": 16515,
+   "startMs": 15718,
+   "endMs": 15788,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "Cristo,",
-   "startMs": 16555,
-   "endMs": 16963,
+   "startMs": 15846,
+   "endMs": 16298,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "surge",
-   "startMs": 17163,
-   "endMs": 17513,
+   "startMs": 16647,
+   "endMs": 16983,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "a",
-   "startMs": 17553,
-   "endMs": 17671,
+   "startMs": 17007,
+   "endMs": 17030,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "escrita.",
-   "startMs": 17711,
-   "endMs": 18177,
+   "startMs": 17076,
+   "endMs": 17622,
    "block": "onde",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "E",
-   "startMs": 18597,
-   "endMs": 18715,
+   "startMs": 18110,
+   "endMs": 18202,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "não",
-   "startMs": 18755,
-   "endMs": 18989,
+   "startMs": 18284,
+   "endMs": 18435,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "foi",
-   "startMs": 19029,
-   "endMs": 19263,
+   "startMs": 18504,
+   "endMs": 18702,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "para",
-   "startMs": 19303,
-   "endMs": 19595,
+   "startMs": 18748,
+   "endMs": 18922,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "poesia.",
-   "startMs": 19635,
-   "endMs": 20043,
+   "startMs": 18969,
+   "endMs": 19584,
    "block": "onde",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Foi",
-   "startMs": 20463,
-   "endMs": 20697,
+   "startMs": 20072,
+   "endMs": 20257,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "para",
-   "startMs": 20737,
-   "endMs": 21029,
+   "startMs": 20292,
+   "endMs": 20443,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "fazer",
-   "startMs": 21069,
-   "endMs": 21419,
+   "startMs": 20490,
+   "endMs": 20757,
    "block": "onde",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "contas.",
-   "startMs": 21459,
-   "endMs": 21867,
+   "startMs": 20838,
+   "endMs": 21360,
    "block": "onde",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "O",
-   "startMs": 23733,
-   "endMs": 23851,
+   "startMs": 22579,
+   "endMs": 22637,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "sumério",
-   "startMs": 23891,
-   "endMs": 24357,
+   "startMs": 22730,
+   "endMs": 23276,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "é",
-   "startMs": 24397,
-   "endMs": 24515,
+   "startMs": 23357,
+   "endMs": 23415,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "uma",
-   "startMs": 24555,
-   "endMs": 24789,
+   "startMs": 23450,
+   "endMs": 23589,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "língua",
-   "startMs": 24829,
-   "endMs": 25237,
+   "startMs": 23636,
+   "endMs": 23891,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "isolada.",
-   "startMs": 25277,
-   "endMs": 25743,
+   "startMs": 23914,
+   "endMs": 24657,
    "block": "isolada",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Não",
-   "startMs": 26163,
-   "endMs": 26397,
+   "startMs": 25087,
+   "endMs": 25273,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "é",
-   "startMs": 26437,
-   "endMs": 26555,
+   "startMs": 25319,
+   "endMs": 25342,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "semítica,",
-   "startMs": 26595,
-   "endMs": 27119,
+   "startMs": 25412,
+   "endMs": 26074,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "como",
-   "startMs": 27319,
-   "endMs": 27611,
+   "startMs": 26120,
+   "endMs": 26294,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "o",
-   "startMs": 27651,
-   "endMs": 27769,
+   "startMs": 26317,
+   "endMs": 26341,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "acadiano.",
-   "startMs": 27809,
-   "endMs": 28333,
+   "startMs": 26399,
+   "endMs": 27119,
    "block": "isolada",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Não",
-   "startMs": 28753,
-   "endMs": 28987,
+   "startMs": 27653,
+   "endMs": 27850,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "é",
-   "startMs": 29027,
-   "endMs": 29145,
+   "startMs": 27908,
+   "endMs": 27966,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "indo-europeia,",
-   "startMs": 29185,
-   "endMs": 29941,
+   "startMs": 28047,
+   "endMs": 29023,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "como",
-   "startMs": 30141,
-   "endMs": 30433,
+   "startMs": 29069,
+   "endMs": 29243,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "o",
-   "startMs": 30473,
-   "endMs": 30591,
+   "startMs": 29266,
+   "endMs": 29290,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "português.",
-   "startMs": 30631,
-   "endMs": 31213,
+   "startMs": 29348,
+   "endMs": 30033,
    "block": "isolada",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Nenhum",
-   "startMs": 31633,
-   "endMs": 32041,
+   "startMs": 30729,
+   "endMs": 31054,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "parente",
-   "startMs": 32081,
-   "endMs": 32547,
+   "startMs": 31101,
+   "endMs": 31449,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "foi",
-   "startMs": 32587,
-   "endMs": 32821,
+   "startMs": 31484,
+   "endMs": 31600,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "demonstrado",
-   "startMs": 32861,
-   "endMs": 33559,
+   "startMs": 31635,
+   "endMs": 32227,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "até",
-   "startMs": 33599,
-   "endMs": 33833,
+   "startMs": 32250,
+   "endMs": 32413,
    "block": "isolada",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "hoje.",
-   "startMs": 33873,
-   "endMs": 34165,
+   "startMs": 32471,
+   "endMs": 32854,
    "block": "isolada",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Ela",
-   "startMs": 36032,
-   "endMs": 36266,
+   "startMs": 34020,
+   "endMs": 34217,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "é",
-   "startMs": 36306,
-   "endMs": 36424,
+   "startMs": 34252,
+   "endMs": 34275,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "aglutinante:",
-   "startMs": 36464,
-   "endMs": 37162,
+   "startMs": 34310,
+   "endMs": 35158,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "junta",
-   "startMs": 37362,
-   "endMs": 37712,
+   "startMs": 35553,
+   "endMs": 35854,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "pedaços",
-   "startMs": 37752,
-   "endMs": 38218,
+   "startMs": 35901,
+   "endMs": 36412,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "para",
-   "startMs": 38258,
-   "endMs": 38550,
+   "startMs": 36458,
+   "endMs": 36597,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "formar",
-   "startMs": 38590,
-   "endMs": 38998,
+   "startMs": 36644,
+   "endMs": 36934,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "palavras.",
-   "startMs": 39038,
-   "endMs": 39562,
+   "startMs": 36969,
+   "endMs": 37584,
    "block": "aglutinante",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "lu₂,",
-   "startMs": 39982,
-   "endMs": 40158,
+   "startMs": 38037,
+   "endMs": 38374,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "homem.",
-   "startMs": 40358,
-   "endMs": 40708,
+   "startMs": 38710,
+   "endMs": 39221,
    "block": "aglutinante",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "gal,",
-   "startMs": 41128,
-   "endMs": 41362,
+   "startMs": 39837,
+   "endMs": 40289,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "grande.",
-   "startMs": 41562,
-   "endMs": 41970,
+   "startMs": 40673,
+   "endMs": 41241,
    "block": "aglutinante",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "lugal,",
-   "startMs": 42390,
-   "endMs": 42740,
+   "startMs": 41671,
+   "endMs": 42356,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "o",
-   "startMs": 42940,
-   "endMs": 43058,
+   "startMs": 42704,
+   "endMs": 42786,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "grande",
-   "startMs": 43098,
-   "endMs": 43506,
+   "startMs": 42867,
+   "endMs": 43180,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "homem:",
-   "startMs": 43546,
-   "endMs": 43896,
+   "startMs": 43215,
+   "endMs": 43552,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "o",
-   "startMs": 44096,
-   "endMs": 44214,
+   "startMs": 43912,
+   "endMs": 44039,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "rei.",
-   "startMs": 44254,
-   "endMs": 44488,
+   "startMs": 44132,
+   "endMs": 44492,
    "block": "aglutinante",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "e₂,",
-   "startMs": 44908,
-   "endMs": 45026,
+   "startMs": 44991,
+   "endMs": 45200,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "casa.",
-   "startMs": 45226,
-   "endMs": 45518,
+   "startMs": 45595,
+   "endMs": 46164,
    "block": "aglutinante",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "e₂-gal,",
-   "startMs": 45938,
-   "endMs": 46230,
+   "startMs": 46640,
+   "endMs": 47406,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "casa",
-   "startMs": 46430,
-   "endMs": 46722,
+   "startMs": 47789,
+   "endMs": 48161,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "grande:",
-   "startMs": 46762,
-   "endMs": 47170,
+   "startMs": 48219,
+   "endMs": 48707,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "o",
-   "startMs": 47370,
-   "endMs": 47488,
+   "startMs": 48834,
+   "endMs": 48927,
    "block": "aglutinante",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "palácio.",
-   "startMs": 47528,
-   "endMs": 47994,
+   "startMs": 48985,
+   "endMs": 49612,
    "block": "aglutinante",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "E",
-   "startMs": 49860,
-   "endMs": 49978,
+   "startMs": 50711,
+   "endMs": 50874,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "é",
-   "startMs": 50018,
-   "endMs": 50136,
+   "startMs": 50966,
+   "endMs": 51024,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "ergativa.",
-   "startMs": 50176,
-   "endMs": 50700,
+   "startMs": 51106,
+   "endMs": 51965,
    "block": "ergativa",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Em",
-   "startMs": 51120,
-   "endMs": 51296,
+   "startMs": 52429,
+   "endMs": 52638,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "“o",
-   "startMs": 51336,
-   "endMs": 51454,
+   "startMs": 52720,
+   "endMs": 52743,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "rei",
-   "startMs": 51494,
-   "endMs": 51728,
+   "startMs": 52812,
+   "endMs": 52998,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "construiu",
-   "startMs": 51768,
-   "endMs": 52350,
+   "startMs": 53045,
+   "endMs": 53532,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "o",
-   "startMs": 52390,
-   "endMs": 52508,
+   "startMs": 53555,
+   "endMs": 53579,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "templo”,",
-   "startMs": 52548,
-   "endMs": 52956,
+   "startMs": 53637,
+   "endMs": 54113,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "o",
-   "startMs": 53156,
-   "endMs": 53274,
+   "startMs": 54426,
+   "endMs": 54519,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "rei",
-   "startMs": 53314,
-   "endMs": 53548,
+   "startMs": 54589,
+   "endMs": 54763,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "leva",
-   "startMs": 53588,
-   "endMs": 53880,
+   "startMs": 54833,
+   "endMs": 55146,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "uma",
-   "startMs": 53920,
-   "endMs": 54154,
+   "startMs": 55169,
+   "endMs": 55320,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "marca:",
-   "startMs": 54194,
-   "endMs": 54544,
+   "startMs": 55378,
+   "endMs": 55866,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "lugal-e.",
-   "startMs": 54744,
-   "endMs": 55152,
+   "startMs": 56284,
+   "endMs": 56922,
    "block": "ergativa",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Em",
-   "startMs": 55572,
-   "endMs": 55748,
+   "startMs": 57422,
+   "endMs": 57642,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "“o",
-   "startMs": 55788,
-   "endMs": 55906,
+   "startMs": 57735,
+   "endMs": 57758,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "rei",
-   "startMs": 55946,
-   "endMs": 56180,
+   "startMs": 57828,
+   "endMs": 58025,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "veio”,",
-   "startMs": 56220,
-   "endMs": 56512,
+   "startMs": 58107,
+   "endMs": 58548,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "sem",
-   "startMs": 56712,
-   "endMs": 56946,
+   "startMs": 58675,
+   "endMs": 58931,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "objeto,",
-   "startMs": 56986,
-   "endMs": 57394,
+   "startMs": 58977,
+   "endMs": 59627,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "não",
-   "startMs": 57594,
-   "endMs": 57828,
+   "startMs": 59802,
+   "endMs": 59953,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "leva",
-   "startMs": 57868,
-   "endMs": 58160,
+   "startMs": 59999,
+   "endMs": 60220,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "nada.",
-   "startMs": 58200,
-   "endMs": 58492,
+   "startMs": 60266,
+   "endMs": 60649,
    "block": "ergativa",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Quem",
-   "startMs": 58912,
-   "endMs": 59204,
+   "startMs": 61067,
+   "endMs": 61311,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "age",
-   "startMs": 59244,
-   "endMs": 59478,
+   "startMs": 61439,
+   "endMs": 61764,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "sobre",
-   "startMs": 59518,
-   "endMs": 59868,
+   "startMs": 61822,
+   "endMs": 62147,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "algo",
-   "startMs": 59908,
-   "endMs": 60200,
+   "startMs": 62205,
+   "endMs": 62518,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "ganha",
-   "startMs": 60240,
-   "endMs": 60590,
+   "startMs": 62588,
+   "endMs": 62843,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "marca",
-   "startMs": 60630,
-   "endMs": 60980,
+   "startMs": 62901,
+   "endMs": 63215,
    "block": "ergativa",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "própria.",
-   "startMs": 61020,
-   "endMs": 61486,
+   "startMs": 63273,
+   "endMs": 63772,
    "block": "ergativa",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Com",
-   "startMs": 63353,
-   "endMs": 63587,
+   "startMs": 64947,
+   "endMs": 65121,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "o",
-   "startMs": 63627,
-   "endMs": 63745,
+   "startMs": 65156,
+   "endMs": 65179,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "tempo,",
-   "startMs": 63785,
-   "endMs": 64135,
+   "startMs": 65237,
+   "endMs": 65539,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "a",
-   "startMs": 64335,
-   "endMs": 64453,
+   "startMs": 65574,
+   "endMs": 65597,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "escrita",
-   "startMs": 64493,
-   "endMs": 64959,
+   "startMs": 65632,
+   "endMs": 65980,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "virou",
-   "startMs": 64999,
-   "endMs": 65349,
+   "startMs": 66027,
+   "endMs": 66247,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "cunhas:",
-   "startMs": 65389,
-   "endMs": 65797,
+   "startMs": 66294,
+   "endMs": 66747,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "um",
-   "startMs": 65997,
-   "endMs": 66173,
+   "startMs": 67176,
+   "endMs": 67269,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "cálamo",
-   "startMs": 66213,
-   "endMs": 66621,
+   "startMs": 67350,
+   "endMs": 67733,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "pressionado",
-   "startMs": 66661,
-   "endMs": 67359,
+   "startMs": 67780,
+   "endMs": 68337,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "na",
-   "startMs": 67399,
-   "endMs": 67575,
+   "startMs": 68384,
+   "endMs": 68430,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "argila",
-   "startMs": 67615,
-   "endMs": 68023,
+   "startMs": 68453,
+   "endMs": 68743,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "úmida.",
-   "startMs": 68063,
-   "endMs": 68413,
+   "startMs": 68802,
+   "endMs": 69138,
    "block": "cuneiforme",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Cada",
-   "startMs": 68833,
-   "endMs": 69125,
+   "startMs": 69487,
+   "endMs": 69754,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "toque,",
-   "startMs": 69165,
-   "endMs": 69515,
+   "startMs": 69812,
+   "endMs": 70195,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "uma",
-   "startMs": 69715,
-   "endMs": 69949,
+   "startMs": 70299,
+   "endMs": 70473,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "cunha.",
-   "startMs": 69989,
-   "endMs": 70339,
+   "startMs": 70531,
+   "endMs": 70926,
    "block": "cuneiforme",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Daí",
-   "startMs": 70759,
-   "endMs": 70993,
+   "startMs": 71309,
+   "endMs": 71553,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "o",
-   "startMs": 71033,
-   "endMs": 71151,
+   "startMs": 71600,
+   "endMs": 71623,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "nome:",
-   "startMs": 71191,
-   "endMs": 71483,
+   "startMs": 71669,
+   "endMs": 72006,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "cuneiforme.",
-   "startMs": 71683,
-   "endMs": 72323,
+   "startMs": 72215,
+   "endMs": 73028,
    "block": "cuneiforme",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "E",
-   "startMs": 72743,
-   "endMs": 72861,
+   "startMs": 73376,
+   "endMs": 73480,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "um",
-   "startMs": 72901,
-   "endMs": 73077,
+   "startMs": 73585,
+   "endMs": 73643,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "sinal",
-   "startMs": 73117,
-   "endMs": 73467,
+   "startMs": 73689,
+   "endMs": 74049,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "podia",
-   "startMs": 73507,
-   "endMs": 73857,
+   "startMs": 74096,
+   "endMs": 74339,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "ser",
-   "startMs": 73897,
-   "endMs": 74131,
+   "startMs": 74398,
+   "endMs": 74537,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "palavra",
-   "startMs": 74171,
-   "endMs": 74637,
+   "startMs": 74595,
+   "endMs": 75059,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "ou",
-   "startMs": 74677,
-   "endMs": 74853,
+   "startMs": 75083,
+   "endMs": 75129,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "som.",
-   "startMs": 74893,
-   "endMs": 75127,
+   "startMs": 75187,
+   "endMs": 75454,
    "block": "cuneiforme",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Este",
-   "startMs": 75547,
-   "endMs": 75839,
+   "startMs": 75837,
+   "endMs": 76244,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "é",
-   "startMs": 75879,
-   "endMs": 75997,
+   "startMs": 76348,
+   "endMs": 76406,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "dingir,",
-   "startMs": 76037,
-   "endMs": 76503,
+   "startMs": 76511,
+   "endMs": 77103,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "deus.",
-   "startMs": 76703,
-   "endMs": 76995,
+   "startMs": 77416,
+   "endMs": 77834,
    "block": "cuneiforme",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Mas",
-   "startMs": 77415,
-   "endMs": 77649,
+   "startMs": 78264,
+   "endMs": 78415,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "também",
-   "startMs": 77689,
-   "endMs": 78097,
+   "startMs": 78461,
+   "endMs": 78740,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "se",
-   "startMs": 78137,
-   "endMs": 78313,
+   "startMs": 78810,
+   "endMs": 78903,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "lê",
-   "startMs": 78353,
-   "endMs": 78529,
+   "startMs": 78961,
+   "endMs": 79170,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "an,",
-   "startMs": 78569,
-   "endMs": 78745,
+   "startMs": 79321,
+   "endMs": 79599,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "céu.",
-   "startMs": 78945,
-   "endMs": 79179,
+   "startMs": 80122,
+   "endMs": 80493,
    "block": "cuneiforme",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "E,",
-   "startMs": 79599,
-   "endMs": 79717,
+   "startMs": 80923,
+   "endMs": 81027,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "antes",
-   "startMs": 79917,
-   "endMs": 80267,
+   "startMs": 81085,
+   "endMs": 81317,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "de",
-   "startMs": 80307,
-   "endMs": 80483,
+   "startMs": 81341,
+   "endMs": 81387,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "um",
-   "startMs": 80523,
-   "endMs": 80699,
+   "startMs": 81434,
+   "endMs": 81492,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "nome,",
-   "startMs": 80739,
-   "endMs": 81031,
+   "startMs": 81538,
+   "endMs": 81898,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "avisa:",
-   "startMs": 81231,
-   "endMs": 81581,
+   "startMs": 81979,
+   "endMs": 82548,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "é",
-   "startMs": 81781,
-   "endMs": 81899,
+   "startMs": 82966,
+   "endMs": 83036,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "um",
-   "startMs": 81939,
-   "endMs": 82115,
+   "startMs": 83105,
+   "endMs": 83163,
    "block": "cuneiforme",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "deus.",
-   "startMs": 82155,
-   "endMs": 82447,
+   "startMs": 83233,
+   "endMs": 83628,
    "block": "cuneiforme",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Ao",
-   "startMs": 84313,
-   "endMs": 84489,
+   "startMs": 84878,
+   "endMs": 85041,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "lado",
-   "startMs": 84529,
-   "endMs": 84821,
+   "startMs": 85075,
+   "endMs": 85273,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "dele",
-   "startMs": 84861,
-   "endMs": 85153,
+   "startMs": 85331,
+   "endMs": 85528,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "vivia",
-   "startMs": 85193,
-   "endMs": 85543,
+   "startMs": 85575,
+   "endMs": 85923,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "o",
-   "startMs": 85583,
-   "endMs": 85701,
+   "startMs": 85946,
+   "endMs": 86016,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "acadiano,",
-   "startMs": 85741,
-   "endMs": 86265,
+   "startMs": 86062,
+   "endMs": 86828,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "uma",
-   "startMs": 86465,
-   "endMs": 86699,
+   "startMs": 87142,
+   "endMs": 87328,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "língua",
-   "startMs": 86739,
-   "endMs": 87147,
+   "startMs": 87374,
+   "endMs": 87618,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "semítica.",
-   "startMs": 87187,
-   "endMs": 87711,
+   "startMs": 87676,
+   "endMs": 88361,
    "block": "acadiano",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Por",
-   "startMs": 88131,
-   "endMs": 88365,
+   "startMs": 88791,
+   "endMs": 88953,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "volta",
-   "startMs": 88405,
-   "endMs": 88755,
+   "startMs": 89000,
+   "endMs": 89278,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "de",
-   "startMs": 88795,
-   "endMs": 88971,
+   "startMs": 89325,
+   "endMs": 89394,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "2000",
-   "startMs": 89011,
-   "endMs": 89477,
+   "startMs": 89487,
+   "endMs": 90044,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "a",
-   "startMs": 89517,
-   "endMs": 89635,
+   "startMs": 90102,
+   "endMs": 90126,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "1800",
-   "startMs": 89675,
-   "endMs": 90547,
+   "startMs": 90184,
+   "endMs": 91113,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "antes",
-   "startMs": 90587,
-   "endMs": 90937,
+   "startMs": 91171,
+   "endMs": 91356,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "de",
-   "startMs": 90977,
-   "endMs": 91153,
+   "startMs": 91380,
+   "endMs": 91449,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "Cristo,",
-   "startMs": 91193,
-   "endMs": 91601,
+   "startMs": 91507,
+   "endMs": 91960,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "o",
-   "startMs": 91801,
-   "endMs": 91919,
+   "startMs": 92320,
+   "endMs": 92390,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "sumério",
-   "startMs": 91959,
-   "endMs": 92425,
+   "startMs": 92459,
+   "endMs": 92924,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "deixou",
-   "startMs": 92465,
-   "endMs": 92873,
+   "startMs": 92970,
+   "endMs": 93272,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "de",
-   "startMs": 92913,
-   "endMs": 93089,
+   "startMs": 93330,
+   "endMs": 93388,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "ser",
-   "startMs": 93129,
-   "endMs": 93363,
+   "startMs": 93446,
+   "endMs": 93574,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "falado.",
-   "startMs": 93403,
-   "endMs": 93811,
+   "startMs": 93632,
+   "endMs": 94166,
    "block": "acadiano",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Mas",
-   "startMs": 94231,
-   "endMs": 94465,
+   "startMs": 94654,
+   "endMs": 94839,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "seguiu",
-   "startMs": 94505,
-   "endMs": 94913,
+   "startMs": 94863,
+   "endMs": 95199,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "por",
-   "startMs": 94953,
-   "endMs": 95187,
+   "startMs": 95257,
+   "endMs": 95385,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "quase",
-   "startMs": 95227,
-   "endMs": 95577,
+   "startMs": 95431,
+   "endMs": 95710,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "dois",
-   "startMs": 95617,
-   "endMs": 95909,
+   "startMs": 95803,
+   "endMs": 96093,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "mil",
-   "startMs": 95949,
-   "endMs": 96183,
+   "startMs": 96163,
+   "endMs": 96325,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "anos",
-   "startMs": 96223,
-   "endMs": 96515,
+   "startMs": 96383,
+   "endMs": 96616,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "como",
-   "startMs": 96555,
-   "endMs": 96847,
+   "startMs": 96662,
+   "endMs": 96859,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "língua",
-   "startMs": 96887,
-   "endMs": 97295,
+   "startMs": 96905,
+   "endMs": 97138,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "do",
-   "startMs": 97335,
-   "endMs": 97511,
+   "startMs": 97184,
+   "endMs": 97254,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "culto",
-   "startMs": 97551,
-   "endMs": 97901,
+   "startMs": 97312,
+   "endMs": 97614,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "e",
-   "startMs": 97941,
-   "endMs": 98059,
+   "startMs": 97637,
+   "endMs": 97660,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "da",
-   "startMs": 98099,
-   "endMs": 98275,
+   "startMs": 97707,
+   "endMs": 97776,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "escola.",
-   "startMs": 98315,
-   "endMs": 98723,
+   "startMs": 97811,
+   "endMs": 98322,
    "block": "acadiano",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Como",
-   "startMs": 99143,
-   "endMs": 99435,
+   "startMs": 98786,
+   "endMs": 99030,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "o",
-   "startMs": 99475,
-   "endMs": 99593,
+   "startMs": 99053,
+   "endMs": 99077,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "latim",
-   "startMs": 99633,
-   "endMs": 99983,
+   "startMs": 99123,
+   "endMs": 99541,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "na",
-   "startMs": 100023,
-   "endMs": 100199,
+   "startMs": 99564,
+   "endMs": 99622,
    "block": "acadiano",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "Europa.",
-   "startMs": 100239,
-   "endMs": 100647,
+   "startMs": 99645,
+   "endMs": 100179,
    "block": "acadiano",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Hoje",
-   "startMs": 102514,
-   "endMs": 102806,
+   "startMs": 101152,
+   "endMs": 101489,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "lemos",
-   "startMs": 102846,
-   "endMs": 103196,
+   "startMs": 101535,
+   "endMs": 101791,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "o",
-   "startMs": 103236,
-   "endMs": 103354,
+   "startMs": 101860,
+   "endMs": 101883,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "sumério",
-   "startMs": 103394,
-   "endMs": 103860,
+   "startMs": 101930,
+   "endMs": 102441,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "graças,",
-   "startMs": 103900,
-   "endMs": 104308,
+   "startMs": 102487,
+   "endMs": 103137,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "em",
-   "startMs": 104508,
-   "endMs": 104684,
+   "startMs": 103439,
+   "endMs": 103602,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "grande",
-   "startMs": 104724,
-   "endMs": 105132,
+   "startMs": 103660,
+   "endMs": 103985,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "parte,",
-   "startMs": 105172,
-   "endMs": 105522,
+   "startMs": 104054,
+   "endMs": 104542,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "às",
-   "startMs": 105722,
-   "endMs": 105898,
+   "startMs": 104832,
+   "endMs": 105030,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "listas",
-   "startMs": 105938,
-   "endMs": 106346,
+   "startMs": 105111,
+   "endMs": 105506,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "bilíngues,",
-   "startMs": 106386,
-   "endMs": 106968,
+   "startMs": 105587,
+   "endMs": 106307,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "sumério",
-   "startMs": 107168,
-   "endMs": 107634,
+   "startMs": 106516,
+   "endMs": 107282,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "e",
-   "startMs": 107674,
-   "endMs": 107792,
+   "startMs": 107340,
+   "endMs": 107468,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "acadiano,",
-   "startMs": 107832,
-   "endMs": 108356,
+   "startMs": 107514,
+   "endMs": 108269,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": true
   },
   {
    "text": "feitas",
-   "startMs": 108556,
-   "endMs": 108964,
+   "startMs": 108617,
+   "endMs": 108989,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "pelos",
-   "startMs": 109004,
-   "endMs": 109354,
+   "startMs": 109047,
+   "endMs": 109302,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "próprios",
-   "startMs": 109394,
-   "endMs": 109918,
+   "startMs": 109395,
+   "endMs": 109767,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "escribas.",
-   "startMs": 109958,
-   "endMs": 110482,
+   "startMs": 109836,
+   "endMs": 110440,
    "block": "final",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Qual",
-   "startMs": 110902,
-   "endMs": 111194,
+   "startMs": 111009,
+   "endMs": 111195,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "palavra",
-   "startMs": 111234,
-   "endMs": 111700,
+   "startMs": 111241,
+   "endMs": 111566,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "suméria",
-   "startMs": 111740,
-   "endMs": 112206,
+   "startMs": 111624,
+   "endMs": 112077,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "você",
-   "startMs": 112246,
-   "endMs": 112538,
+   "startMs": 112112,
+   "endMs": 112298,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "quer",
-   "startMs": 112578,
-   "endMs": 112870,
+   "startMs": 112379,
+   "endMs": 112530,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "ver",
-   "startMs": 112910,
-   "endMs": 113144,
+   "startMs": 112623,
+   "endMs": 112820,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "gravada",
-   "startMs": 113184,
-   "endMs": 113650,
+   "startMs": 112890,
+   "endMs": 113401,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "na",
-   "startMs": 113690,
-   "endMs": 113866,
+   "startMs": 113447,
+   "endMs": 113505,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "argila?",
-   "startMs": 113906,
-   "endMs": 114314,
+   "startMs": 113528,
+   "endMs": 114086,
    "block": "final",
    "sentenceEnd": true,
    "clauseEnd": false
   },
   {
    "text": "Comente",
-   "startMs": 114734,
-   "endMs": 115200,
+   "startMs": 114550,
+   "endMs": 115247,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "e",
-   "startMs": 115240,
-   "endMs": 115358,
+   "startMs": 115316,
+   "endMs": 115363,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "siga",
-   "startMs": 115398,
-   "endMs": 115690,
+   "startMs": 115444,
+   "endMs": 115757,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "para",
-   "startMs": 115730,
-   "endMs": 116022,
+   "startMs": 115804,
+   "endMs": 115966,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "a",
-   "startMs": 116062,
-   "endMs": 116180,
+   "startMs": 115990,
+   "endMs": 116013,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "próxima",
-   "startMs": 116220,
-   "endMs": 116686,
+   "startMs": 116071,
+   "endMs": 116489,
    "block": "final",
    "sentenceEnd": false,
    "clauseEnd": false
   },
   {
    "text": "tabuinha.",
-   "startMs": 116726,
-   "endMs": 117250,
+   "startMs": 116535,
+   "endMs": 117046,
    "block": "final",
    "sentenceEnd": true,
    "clauseEnd": false
@@ -2042,317 +2042,358 @@
    "block": "gancho",
    "word": "Uma",
    "startMs": 0,
-   "endMs": 3292,
+   "endMs": 3249,
    "from": 0,
-   "durationInFrames": 99
+   "durationInFrames": 97
   },
   {
    "type": "hookOrphan",
    "block": "gancho",
    "word": "não",
-   "startMs": 3292,
-   "endMs": 6953,
-   "from": 99,
-   "durationInFrames": 110
+   "startMs": 3249,
+   "endMs": 5950,
+   "from": 97,
+   "durationInFrames": 82
   },
   {
    "type": "map",
    "block": "onde",
    "word": "É",
-   "startMs": 6953,
-   "endMs": 12677,
-   "from": 209,
-   "durationInFrames": 171
+   "startMs": 5950,
+   "endMs": 11778,
+   "from": 179,
+   "durationInFrames": 174
   },
   {
    "type": "date",
    "block": "onde",
    "word": "por",
-   "startMs": 12677,
-   "endMs": 18477,
-   "from": 380,
-   "durationInFrames": 174
+   "startMs": 11778,
+   "endMs": 17990,
+   "from": 353,
+   "durationInFrames": 187
   },
   {
    "type": "accounting",
    "block": "onde",
    "word": "E",
-   "startMs": 18477,
-   "endMs": 23613,
-   "from": 554,
-   "durationInFrames": 154
+   "startMs": 17990,
+   "endMs": 22459,
+   "from": 540,
+   "durationInFrames": 134
   },
   {
    "type": "isolate",
    "block": "isolada",
    "word": "O",
-   "startMs": 23613,
-   "endMs": 26043,
-   "from": 708,
-   "durationInFrames": 73
+   "startMs": 22459,
+   "endMs": 24967,
+   "from": 674,
+   "durationInFrames": 75
   },
   {
    "type": "familySemitic",
    "block": "isolada",
    "word": "Não",
-   "startMs": 26043,
-   "endMs": 28633,
-   "from": 781,
-   "durationInFrames": 78
+   "startMs": 24967,
+   "endMs": 27533,
+   "from": 749,
+   "durationInFrames": 77
   },
   {
    "type": "familyIE",
    "block": "isolada",
    "word": "Não",
-   "startMs": 28633,
-   "endMs": 31513,
-   "from": 859,
-   "durationInFrames": 86
+   "startMs": 27533,
+   "endMs": 30609,
+   "from": 826,
+   "durationInFrames": 92
   },
   {
    "type": "isolateAlone",
    "block": "isolada",
    "word": "Nenhum",
-   "startMs": 31513,
-   "endMs": 35912,
-   "from": 945,
-   "durationInFrames": 132
+   "startMs": 30609,
+   "endMs": 33900,
+   "from": 918,
+   "durationInFrames": 99
   },
   {
    "type": "agglutinative",
    "block": "aglutinante",
    "word": "Ela",
-   "startMs": 35912,
-   "endMs": 39862,
-   "from": 1077,
-   "durationInFrames": 119
+   "startMs": 33900,
+   "endMs": 37917,
+   "from": 1017,
+   "durationInFrames": 121
   },
   {
    "type": "lugalBuild",
    "block": "aglutinante",
    "word": "lu₂,",
-   "startMs": 39862,
-   "endMs": 44788,
-   "from": 1196,
-   "durationInFrames": 148
+   "startMs": 37917,
+   "endMs": 44871,
+   "from": 1138,
+   "durationInFrames": 208
   },
   {
    "type": "egalBuild",
    "block": "aglutinante",
    "word": "e₂,",
-   "startMs": 44788,
-   "endMs": 49740,
-   "from": 1344,
-   "durationInFrames": 148
+   "startMs": 44871,
+   "endMs": 50591,
+   "from": 1346,
+   "durationInFrames": 172
   },
   {
    "type": "ergativeTitle",
    "block": "ergativa",
    "word": "E",
-   "startMs": 49740,
-   "endMs": 51000,
-   "from": 1492,
-   "durationInFrames": 38
+   "startMs": 50591,
+   "endMs": 52309,
+   "from": 1518,
+   "durationInFrames": 51
   },
   {
    "type": "ergTransitive",
    "block": "ergativa",
    "word": "Em",
-   "startMs": 51000,
-   "endMs": 55452,
-   "from": 1530,
-   "durationInFrames": 134
+   "startMs": 52309,
+   "endMs": 57302,
+   "from": 1569,
+   "durationInFrames": 150
   },
   {
    "type": "ergIntransitive",
    "block": "ergativa",
    "word": "Em",
-   "startMs": 55452,
-   "endMs": 58792,
-   "from": 1664,
-   "durationInFrames": 100
+   "startMs": 57302,
+   "endMs": 60947,
+   "from": 1719,
+   "durationInFrames": 109
   },
   {
    "type": "ergRule",
    "block": "ergativa",
    "word": "Quem",
-   "startMs": 58792,
-   "endMs": 63233,
-   "from": 1764,
-   "durationInFrames": 133
+   "startMs": 60947,
+   "endMs": 64827,
+   "from": 1828,
+   "durationInFrames": 117
   },
   {
    "type": "stylus",
    "block": "cuneiforme",
    "word": "Com",
-   "startMs": 63233,
-   "endMs": 68713,
-   "from": 1897,
-   "durationInFrames": 164
+   "startMs": 64827,
+   "endMs": 69367,
+   "from": 1945,
+   "durationInFrames": 136
   },
   {
    "type": "wedgeName",
    "block": "cuneiforme",
    "word": "Cada",
-   "startMs": 68713,
-   "endMs": 72623,
-   "from": 2061,
-   "durationInFrames": 118
+   "startMs": 69367,
+   "endMs": 73256,
+   "from": 2081,
+   "durationInFrames": 117
   },
   {
    "type": "signRoles",
    "block": "cuneiforme",
    "word": "E",
-   "startMs": 72623,
-   "endMs": 75427,
-   "from": 2179,
-   "durationInFrames": 84
+   "startMs": 73256,
+   "endMs": 75717,
+   "from": 2198,
+   "durationInFrames": 74
   },
   {
    "type": "dingirAn",
    "block": "cuneiforme",
    "word": "Este",
-   "startMs": 75427,
-   "endMs": 79479,
-   "from": 2263,
-   "durationInFrames": 121
+   "startMs": 75717,
+   "endMs": 80803,
+   "from": 2272,
+   "durationInFrames": 152
   },
   {
    "type": "determinative",
    "block": "cuneiforme",
    "word": "E,",
-   "startMs": 79479,
-   "endMs": 84193,
-   "from": 2384,
-   "durationInFrames": 142
+   "startMs": 80803,
+   "endMs": 84758,
+   "from": 2424,
+   "durationInFrames": 119
   },
   {
    "type": "akkadian",
    "block": "acadiano",
    "word": "Ao",
-   "startMs": 84193,
-   "endMs": 88011,
-   "from": 2526,
-   "durationInFrames": 114
+   "startMs": 84758,
+   "endMs": 88671,
+   "from": 2543,
+   "durationInFrames": 117
   },
   {
    "type": "timelineSpoken",
    "block": "acadiano",
    "word": "Por",
-   "startMs": 88011,
-   "endMs": 94111,
-   "from": 2640,
-   "durationInFrames": 183
+   "startMs": 88671,
+   "endMs": 94534,
+   "from": 2660,
+   "durationInFrames": 176
   },
   {
    "type": "timelineScholarly",
    "block": "acadiano",
    "word": "Mas",
-   "startMs": 94111,
-   "endMs": 99023,
-   "from": 2823,
-   "durationInFrames": 148
+   "startMs": 94534,
+   "endMs": 98666,
+   "from": 2836,
+   "durationInFrames": 124
   },
   {
    "type": "latin",
    "block": "acadiano",
    "word": "Como",
-   "startMs": 99023,
-   "endMs": 102394,
-   "from": 2971,
-   "durationInFrames": 101
+   "startMs": 98666,
+   "endMs": 101032,
+   "from": 2960,
+   "durationInFrames": 71
   },
   {
    "type": "lexicalList",
    "block": "final",
    "word": "Hoje",
-   "startMs": 102394,
-   "endMs": 108436,
-   "from": 3072,
-   "durationInFrames": 181
+   "startMs": 101032,
+   "endMs": 108497,
+   "from": 3031,
+   "durationInFrames": 224
   },
   {
    "type": "scribes",
    "block": "final",
    "word": "feitas",
-   "startMs": 108436,
-   "endMs": 110782,
-   "from": 3253,
-   "durationInFrames": 70
+   "startMs": 108497,
+   "endMs": 110889,
+   "from": 3255,
+   "durationInFrames": 72
   },
   {
    "type": "cta",
    "block": "final",
    "word": "Qual",
-   "startMs": 110782,
-   "endMs": 114614,
-   "from": 3323,
-   "durationInFrames": 115
+   "startMs": 110889,
+   "endMs": 114430,
+   "from": 3327,
+   "durationInFrames": 106
   },
   {
    "type": "ctaFollow",
    "block": "final",
    "word": "Comente",
-   "startMs": 114614,
+   "startMs": 114430,
    "endMs": 120000,
-   "from": 3438,
-   "durationInFrames": 162
+   "from": 3433,
+   "durationInFrames": 167
   }
  ],
- "audio": [],
+ "audio": [
+  {
+   "src": "audio/voz/gancho.mp3",
+   "fromFrame": 11,
+   "block": "gancho"
+  },
+  {
+   "src": "audio/voz/onde.mp3",
+   "fromFrame": 182,
+   "block": "onde"
+  },
+  {
+   "src": "audio/voz/isolada.mp3",
+   "fromFrame": 677,
+   "block": "isolada"
+  },
+  {
+   "src": "audio/voz/aglutinante.mp3",
+   "fromFrame": 1021,
+   "block": "aglutinante"
+  },
+  {
+   "src": "audio/voz/ergativa.mp3",
+   "fromFrame": 1521,
+   "block": "ergativa"
+  },
+  {
+   "src": "audio/voz/cuneiforme.mp3",
+   "fromFrame": 1948,
+   "block": "cuneiforme"
+  },
+  {
+   "src": "audio/voz/acadiano.mp3",
+   "fromFrame": 2546,
+   "block": "acadiano"
+  },
+  {
+   "src": "audio/voz/final.mp3",
+   "fromFrame": 3035,
+   "block": "final"
+  }
+ ],
  "blocks": [
   {
    "id": "gancho",
    "startMs": 350,
-   "endMs": 5356,
+   "endMs": 5444,
    "firstWord": 0,
    "lastWord": 12
   },
   {
    "id": "onde",
-   "startMs": 7073,
-   "endMs": 22017,
+   "startMs": 6070,
+   "endMs": 21953,
    "firstWord": 13,
    "lastWord": 48
   },
   {
    "id": "isolada",
-   "startMs": 23733,
-   "endMs": 34315,
+   "startMs": 22579,
+   "endMs": 33394,
    "firstWord": 49,
    "lastWord": 72
   },
   {
    "id": "aglutinante",
-   "startMs": 36032,
-   "endMs": 48144,
+   "startMs": 34020,
+   "endMs": 50085,
    "firstWord": 73,
    "lastWord": 97
   },
   {
    "id": "ergativa",
-   "startMs": 49860,
-   "endMs": 61636,
+   "startMs": 50711,
+   "endMs": 64321,
    "firstWord": 98,
    "lastWord": 128
   },
   {
    "id": "cuneiforme",
-   "startMs": 63353,
-   "endMs": 82597,
+   "startMs": 64947,
+   "endMs": 84252,
    "firstWord": 129,
    "lastWord": 176
   },
   {
    "id": "acadiano",
-   "startMs": 84313,
-   "endMs": 100797,
+   "startMs": 84878,
+   "endMs": 100526,
    "firstWord": 177,
    "lastWord": 219
   },
   {
    "id": "final",
-   "startMs": 102514,
+   "startMs": 101152,
    "endMs": 117400,
    "firstWord": 220,
    "lastWord": 253
@@ -2367,7 +2408,7 @@
     3
    ],
    "startMs": 350,
-   "endMs": 1968
+   "endMs": 1662
   },
   {
    "words": [
@@ -2377,8 +2418,8 @@
     7,
     8
    ],
-   "startMs": 1968,
-   "endMs": 3686
+   "startMs": 1755,
+   "endMs": 3543
   },
   {
    "words": [
@@ -2387,8 +2428,8 @@
     11,
     12
    ],
-   "startMs": 3686,
-   "endMs": 5806
+   "startMs": 3589,
+   "endMs": 4866
   },
   {
    "words": [
@@ -2396,8 +2437,8 @@
     14,
     15
    ],
-   "startMs": 7073,
-   "endMs": 8055
+   "startMs": 6070,
+   "endMs": 6964
   },
   {
    "words": [
@@ -2407,8 +2448,8 @@
     19,
     20
    ],
-   "startMs": 8055,
-   "endMs": 10107
+   "startMs": 7057,
+   "endMs": 8798
   },
   {
    "words": [
@@ -2418,8 +2459,8 @@
     24,
     25
    ],
-   "startMs": 10107,
-   "endMs": 12089
+   "startMs": 9147,
+   "endMs": 10470
   },
   {
    "words": [
@@ -2430,8 +2471,8 @@
     30,
     31
    ],
-   "startMs": 12089,
-   "endMs": 14763
+   "startMs": 11004,
+   "endMs": 13965
   },
   {
    "words": [
@@ -2441,8 +2482,8 @@
     35,
     36
    ],
-   "startMs": 14763,
-   "endMs": 17163
+   "startMs": 14127,
+   "endMs": 16298
   },
   {
    "words": [
@@ -2450,8 +2491,8 @@
     38,
     39
    ],
-   "startMs": 17163,
-   "endMs": 18597
+   "startMs": 16647,
+   "endMs": 17622
   },
   {
    "words": [
@@ -2461,8 +2502,8 @@
     43,
     44
    ],
-   "startMs": 18597,
-   "endMs": 20463
+   "startMs": 18110,
+   "endMs": 19584
   },
   {
    "words": [
@@ -2471,8 +2512,8 @@
     47,
     48
    ],
-   "startMs": 20463,
-   "endMs": 22467
+   "startMs": 20072,
+   "endMs": 21360
   },
   {
    "words": [
@@ -2483,8 +2524,8 @@
     53,
     54
    ],
-   "startMs": 23733,
-   "endMs": 26163
+   "startMs": 22579,
+   "endMs": 24657
   },
   {
    "words": [
@@ -2495,8 +2536,8 @@
     59,
     60
    ],
-   "startMs": 26163,
-   "endMs": 28753
+   "startMs": 25087,
+   "endMs": 27119
   },
   {
    "words": [
@@ -2504,8 +2545,8 @@
     62,
     63
    ],
-   "startMs": 28753,
-   "endMs": 30141
+   "startMs": 27653,
+   "endMs": 29023
   },
   {
    "words": [
@@ -2513,8 +2554,8 @@
     65,
     66
    ],
-   "startMs": 30141,
-   "endMs": 31633
+   "startMs": 29069,
+   "endMs": 30033
   },
   {
    "words": [
@@ -2522,8 +2563,8 @@
     68,
     69
    ],
-   "startMs": 31633,
-   "endMs": 32861
+   "startMs": 30729,
+   "endMs": 31600
   },
   {
    "words": [
@@ -2531,8 +2572,8 @@
     71,
     72
    ],
-   "startMs": 32861,
-   "endMs": 34765
+   "startMs": 31635,
+   "endMs": 32854
   },
   {
    "words": [
@@ -2540,8 +2581,8 @@
     74,
     75
    ],
-   "startMs": 36032,
-   "endMs": 37362
+   "startMs": 34020,
+   "endMs": 35158
   },
   {
    "words": [
@@ -2551,8 +2592,8 @@
     79,
     80
    ],
-   "startMs": 37362,
-   "endMs": 39982
+   "startMs": 35553,
+   "endMs": 37584
   },
   {
    "words": [
@@ -2561,8 +2602,8 @@
     83,
     84
    ],
-   "startMs": 39982,
-   "endMs": 42390
+   "startMs": 38037,
+   "endMs": 41241
   },
   {
    "words": [
@@ -2573,16 +2614,16 @@
     89,
     90
    ],
-   "startMs": 42390,
-   "endMs": 44908
+   "startMs": 41671,
+   "endMs": 44492
   },
   {
    "words": [
     91,
     92
    ],
-   "startMs": 44908,
-   "endMs": 45938
+   "startMs": 44991,
+   "endMs": 46164
   },
   {
    "words": [
@@ -2592,8 +2633,8 @@
     96,
     97
    ],
-   "startMs": 45938,
-   "endMs": 48594
+   "startMs": 46640,
+   "endMs": 49612
   },
   {
    "words": [
@@ -2601,8 +2642,8 @@
     99,
     100
    ],
-   "startMs": 49860,
-   "endMs": 51120
+   "startMs": 50711,
+   "endMs": 51965
   },
   {
    "words": [
@@ -2613,8 +2654,8 @@
     105,
     106
    ],
-   "startMs": 51120,
-   "endMs": 53156
+   "startMs": 52429,
+   "endMs": 54113
   },
   {
    "words": [
@@ -2625,8 +2666,8 @@
     111,
     112
    ],
-   "startMs": 53156,
-   "endMs": 55572
+   "startMs": 54426,
+   "endMs": 56922
   },
   {
    "words": [
@@ -2635,8 +2676,8 @@
     115,
     116
    ],
-   "startMs": 55572,
-   "endMs": 56712
+   "startMs": 57422,
+   "endMs": 58548
   },
   {
    "words": [
@@ -2646,8 +2687,8 @@
     120,
     121
    ],
-   "startMs": 56712,
-   "endMs": 58912
+   "startMs": 58675,
+   "endMs": 60649
   },
   {
    "words": [
@@ -2656,8 +2697,8 @@
     124,
     125
    ],
-   "startMs": 58912,
-   "endMs": 60240
+   "startMs": 61067,
+   "endMs": 62518
   },
   {
    "words": [
@@ -2665,8 +2706,8 @@
     127,
     128
    ],
-   "startMs": 60240,
-   "endMs": 62086
+   "startMs": 62588,
+   "endMs": 63772
   },
   {
    "words": [
@@ -2678,8 +2719,8 @@
     134,
     135
    ],
-   "startMs": 63353,
-   "endMs": 65997
+   "startMs": 64947,
+   "endMs": 66747
   },
   {
    "words": [
@@ -2687,8 +2728,8 @@
     137,
     138
    ],
-   "startMs": 65997,
-   "endMs": 67399
+   "startMs": 67176,
+   "endMs": 68337
   },
   {
    "words": [
@@ -2696,8 +2737,8 @@
     140,
     141
    ],
-   "startMs": 67399,
-   "endMs": 68833
+   "startMs": 68384,
+   "endMs": 69138
   },
   {
    "words": [
@@ -2706,8 +2747,8 @@
     144,
     145
    ],
-   "startMs": 68833,
-   "endMs": 70759
+   "startMs": 69487,
+   "endMs": 70926
   },
   {
    "words": [
@@ -2716,8 +2757,8 @@
     148,
     149
    ],
-   "startMs": 70759,
-   "endMs": 72743
+   "startMs": 71309,
+   "endMs": 73028
   },
   {
    "words": [
@@ -2726,8 +2767,8 @@
     152,
     153
    ],
-   "startMs": 72743,
-   "endMs": 73897
+   "startMs": 73376,
+   "endMs": 74339
   },
   {
    "words": [
@@ -2736,8 +2777,8 @@
     156,
     157
    ],
-   "startMs": 73897,
-   "endMs": 75547
+   "startMs": 74398,
+   "endMs": 75454
   },
   {
    "words": [
@@ -2746,8 +2787,8 @@
     160,
     161
    ],
-   "startMs": 75547,
-   "endMs": 77415
+   "startMs": 75837,
+   "endMs": 77834
   },
   {
    "words": [
@@ -2758,8 +2799,8 @@
     166,
     167
    ],
-   "startMs": 77415,
-   "endMs": 79599
+   "startMs": 78264,
+   "endMs": 80493
   },
   {
    "words": [
@@ -2769,8 +2810,8 @@
     171,
     172
    ],
-   "startMs": 79599,
-   "endMs": 81231
+   "startMs": 80923,
+   "endMs": 81898
   },
   {
    "words": [
@@ -2779,8 +2820,8 @@
     175,
     176
    ],
-   "startMs": 81231,
-   "endMs": 83047
+   "startMs": 81979,
+   "endMs": 83628
   },
   {
    "words": [
@@ -2791,8 +2832,8 @@
     181,
     182
    ],
-   "startMs": 84313,
-   "endMs": 86465
+   "startMs": 84878,
+   "endMs": 86828
   },
   {
    "words": [
@@ -2800,8 +2841,8 @@
     184,
     185
    ],
-   "startMs": 86465,
-   "endMs": 88131
+   "startMs": 87142,
+   "endMs": 88361
   },
   {
    "words": [
@@ -2811,8 +2852,8 @@
     189,
     190
    ],
-   "startMs": 88131,
-   "endMs": 89675
+   "startMs": 88791,
+   "endMs": 90126
   },
   {
    "words": [
@@ -2821,8 +2862,8 @@
     193,
     194
    ],
-   "startMs": 89675,
-   "endMs": 91801
+   "startMs": 90184,
+   "endMs": 91960
   },
   {
    "words": [
@@ -2833,8 +2874,8 @@
     199,
     200
    ],
-   "startMs": 91801,
-   "endMs": 94231
+   "startMs": 92320,
+   "endMs": 94166
   },
   {
    "words": [
@@ -2846,8 +2887,8 @@
     206,
     207
    ],
-   "startMs": 94231,
-   "endMs": 96555
+   "startMs": 94654,
+   "endMs": 96616
   },
   {
    "words": [
@@ -2859,8 +2900,8 @@
     213,
     214
    ],
-   "startMs": 96555,
-   "endMs": 99143
+   "startMs": 96662,
+   "endMs": 98322
   },
   {
    "words": [
@@ -2870,8 +2911,8 @@
     218,
     219
    ],
-   "startMs": 99143,
-   "endMs": 101247
+   "startMs": 98786,
+   "endMs": 100179
   },
   {
    "words": [
@@ -2881,8 +2922,8 @@
     223,
     224
    ],
-   "startMs": 102514,
-   "endMs": 104508
+   "startMs": 101152,
+   "endMs": 103137
   },
   {
    "words": [
@@ -2892,8 +2933,8 @@
     228,
     229
    ],
-   "startMs": 104508,
-   "endMs": 106386
+   "startMs": 103439,
+   "endMs": 105506
   },
   {
    "words": [
@@ -2902,8 +2943,8 @@
     232,
     233
    ],
-   "startMs": 106386,
-   "endMs": 108556
+   "startMs": 105587,
+   "endMs": 108269
   },
   {
    "words": [
@@ -2912,8 +2953,8 @@
     236,
     237
    ],
-   "startMs": 108556,
-   "endMs": 110902
+   "startMs": 108617,
+   "endMs": 110440
   },
   {
    "words": [
@@ -2922,8 +2963,8 @@
     240,
     241
    ],
-   "startMs": 110902,
-   "endMs": 112578
+   "startMs": 111009,
+   "endMs": 112298
   },
   {
    "words": [
@@ -2933,8 +2974,8 @@
     245,
     246
    ],
-   "startMs": 112578,
-   "endMs": 114734
+   "startMs": 112379,
+   "endMs": 114086
   },
   {
    "words": [
@@ -2943,8 +2984,8 @@
     249,
     250
    ],
-   "startMs": 114734,
-   "endMs": 116062
+   "startMs": 114550,
+   "endMs": 115966
   },
   {
    "words": [
@@ -2952,8 +2993,8 @@
     252,
     253
    ],
-   "startMs": 116062,
-   "endMs": 117850
+   "startMs": 115990,
+   "endMs": 117046
   }
  ]
 }

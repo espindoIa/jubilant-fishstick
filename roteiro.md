@@ -1,6 +1,6 @@
 # Roteiro final (narração / texto na tela)
 
-Gerado de `video/src/data/roteiro.json`. "Tela" é o texto das legendas; "Fala" é o texto enviado à voz, com grafia fonética nas palavras sumérias e números por extenso.
+Gerado de `video/src/data/roteiro.json`. "Tela" é o texto das legendas; "Fala" é o texto enviado à voz (ElevenLabs, voz Brian, eleven_multilingual_v2), com grafia fonética nas palavras sumérias e números por extenso.
 
 ## gancho
 
@@ -30,7 +30,7 @@ Gerado de `video/src/data/roteiro.json`. "Tela" é o texto das legendas; "Fala" 
 
 **Tela:** Ela é aglutinante: junta pedaços para formar palavras. lu₂, homem. gal, grande. lugal, o grande homem: o rei. e₂, casa. e₂-gal, casa grande: o palácio.
 
-**Fala (TTS):** Ela é aglutinante: junta pedaços para formar palavras. Lú, homem. Gál, grande. Lúgal, o grande homem: o rei. É, casa. É-gal, casa grande: o palácio.
+**Fala (TTS):** Ela é aglutinante: junta pedaços para formar palavras. Lú, homem. Gáll, grande. Lúgall, o grande homem: o rei. É, casa. É-gall, casa grande: o palácio.
 
 **Telas:** agglutinative → lugalBuild → egalBuild
 
@@ -38,7 +38,7 @@ Gerado de `video/src/data/roteiro.json`. "Tela" é o texto das legendas; "Fala" 
 
 **Tela:** E é ergativa. Em “o rei construiu o templo”, o rei leva uma marca: lugal-e. Em “o rei veio”, sem objeto, não leva nada. Quem age sobre algo ganha marca própria.
 
-**Fala (TTS):** E é ergativa. Em o rei construiu o templo, o rei leva uma marca: lúgal-ê. Em o rei veio, sem objeto, não leva nada. Quem age sobre algo ganha marca própria.
+**Fala (TTS):** E é ergativa. Em o rei construiu o templo, o rei leva uma marca: Lúgall-ê. Em o rei veio, sem objeto, não leva nada. Quem age sobre algo ganha marca própria.
 
 **Telas:** ergativeTitle → ergTransitive → ergIntransitive → ergRule
 
@@ -46,7 +46,7 @@ Gerado de `video/src/data/roteiro.json`. "Tela" é o texto das legendas; "Fala" 
 
 **Tela:** Com o tempo, a escrita virou cunhas: um cálamo pressionado na argila úmida. Cada toque, uma cunha. Daí o nome: cuneiforme. E um sinal podia ser palavra ou som. Este é dingir, deus. Mas também se lê an, céu. E, antes de um nome, avisa: é um deus.
 
-**Fala (TTS):** Com o tempo, a escrita virou cunhas: um cálamo pressionado na argila úmida. Cada toque, uma cunha. Daí o nome: cuneiforme. E um sinal podia ser palavra ou som. Este é dínguir, deus. Mas também se lê án, céu. E, antes de um nome, avisa: é um deus.
+**Fala (TTS):** Com o tempo, a escrita virou cunhas: um cálamo pressionado na argila úmida. Cada toque, uma cunha. Daí o nome: cuneiforme. E um sinal podia ser palavra ou som. Este é Dín-guir, deus. Mas também se lê Án. Céu. E, antes de um nome, avisa: é um deus.
 
 **Telas:** stylus → wedgeName → signRoles → dingirAn → determinative
 

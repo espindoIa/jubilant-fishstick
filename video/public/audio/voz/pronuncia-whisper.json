@@ -1,0 +1,548 @@
+{
+ "limite_ms": 150.0,
+ "blocos": [
+  {
+   "id": "gancho",
+   "whisper": "Uma das línguas escritas mais antigas do mundo não tem nenhum parente vivo.",
+   "casadas": 13,
+   "total": 13,
+   "sem_par_no_whisper": [],
+   "acima_do_limite": [
+    {
+     "palavra": "não",
+     "ds_ms": 179,
+     "de_ms": -107
+    }
+   ]
+  },
+  {
+   "id": "onde",
+   "whisper": "É o Sumério, falado no sul da Mesopotâmia, onde hoje fica o Iraque. Em Uruk, por volta de 3 .300 a 3 .200 antes de Cristo, surge a escrita. E não foi para poesia, foi para fazer contas.",
+   "casadas": 34,
+   "total": 42,
+   "sem_par_no_whisper": [
+    "três",
+    "mil",
+    "e",
+    "trezentos",
+    "três",
+    "mil",
+    "e",
+    "duzentos"
+   ],
+   "acima_do_limite": [
+    {
+     "palavra": "o",
+     "ds_ms": -49,
+     "de_ms": -286
+    },
+    {
+     "palavra": "sumério,",
+     "ds_ms": -216,
+     "de_ms": -26
+    },
+    {
+     "palavra": "falado",
+     "ds_ms": -193,
+     "de_ms": -38
+    },
+    {
+     "palavra": "no",
+     "ds_ms": 8,
+     "de_ms": -171
+    },
+    {
+     "palavra": "Mesopotâmia,",
+     "ds_ms": -58,
+     "de_ms": -232
+    },
+    {
+     "palavra": "o",
+     "ds_ms": -14,
+     "de_ms": -171
+    },
+    {
+     "palavra": "Iraque.",
+     "ds_ms": -124,
+     "de_ms": -160
+    },
+    {
+     "palavra": "por",
+     "ds_ms": -172,
+     "de_ms": -101
+    },
+    {
+     "palavra": "de",
+     "ds_ms": 14,
+     "de_ms": -296
+    },
+    {
+     "palavra": "a",
+     "ds_ms": 157,
+     "de_ms": -141
+    },
+    {
+     "palavra": "de",
+     "ds_ms": 28,
+     "de_ms": -182
+    },
+    {
+     "palavra": "Cristo,",
+     "ds_ms": -124,
+     "de_ms": -192
+    },
+    {
+     "palavra": "surge",
+     "ds_ms": -303,
+     "de_ms": 13
+    },
+    {
+     "palavra": "a",
+     "ds_ms": 37,
+     "de_ms": -260
+    },
+    {
+     "palavra": "escrita.",
+     "ds_ms": -214,
+     "de_ms": -288
+    },
+    {
+     "palavra": "poesia.",
+     "ds_ms": -21,
+     "de_ms": -306
+    }
+   ]
+  },
+  {
+   "id": "isolada",
+   "whisper": "O sumério é uma língua isolada, não é semítica como o acadiano, não é indo -europeia como o português. Nenhum parente foi demonstrado até hoje.",
+   "casadas": 23,
+   "total": 24,
+   "sem_par_no_whisper": [
+    "indo-europeia,"
+   ],
+   "acima_do_limite": [
+    {
+     "palavra": "O",
+     "ds_ms": 0,
+     "de_ms": -262
+    },
+    {
+     "palavra": "sumério",
+     "ds_ms": -169,
+     "de_ms": -23
+    },
+    {
+     "palavra": "é",
+     "ds_ms": 0,
+     "de_ms": -177
+    },
+    {
+     "palavra": "o",
+     "ds_ms": -42,
+     "de_ms": -158
+    },
+    {
+     "palavra": "é",
+     "ds_ms": -31,
+     "de_ms": -213
+    },
+    {
+     "palavra": "o",
+     "ds_ms": -113,
+     "de_ms": -309
+    },
+    {
+     "palavra": "português.",
+     "ds_ms": -251,
+     "de_ms": -446
+    }
+   ]
+  },
+  {
+   "id": "aglutinante",
+   "whisper": "Ela é aglutinante, junta pedaços para formar palavras. Lu, homem. Gal, grande. Lugal, o grande homem. O rei. É, casa. É, gal. Casa grande, o palácio.",
+   "casadas": 22,
+   "total": 25,
+   "sem_par_no_whisper": [
+    "Gáll,",
+    "Lúgall,",
+    "É-gall,"
+   ],
+   "acima_do_limite": [
+    {
+     "palavra": "aglutinante:",
+     "ds_ms": -90,
+     "de_ms": -182
+    },
+    {
+     "palavra": "junta",
+     "ds_ms": -167,
+     "de_ms": -46
+    },
+    {
+     "palavra": "Lú,",
+     "ds_ms": -243,
+     "de_ms": -126
+    },
+    {
+     "palavra": "homem.",
+     "ds_ms": -210,
+     "de_ms": 1
+    },
+    {
+     "palavra": "grande.",
+     "ds_ms": -247,
+     "de_ms": 61
+    },
+    {
+     "palavra": "o",
+     "ds_ms": -176,
+     "de_ms": -234
+    },
+    {
+     "palavra": "grande",
+     "ds_ms": -153,
+     "de_ms": -80
+    },
+    {
+     "palavra": "o",
+     "ds_ms": -148,
+     "de_ms": -221
+    },
+    {
+     "palavra": "rei.",
+     "ds_ms": -128,
+     "de_ms": -388
+    },
+    {
+     "palavra": "É,",
+     "ds_ms": -109,
+     "de_ms": -320
+    },
+    {
+     "palavra": "casa.",
+     "ds_ms": -325,
+     "de_ms": 84
+    },
+    {
+     "palavra": "o",
+     "ds_ms": -246,
+     "de_ms": -233
+    },
+    {
+     "palavra": "palácio.",
+     "ds_ms": -175,
+     "de_ms": 12
+    }
+   ]
+  },
+  {
+   "id": "ergativa",
+   "whisper": "e é ergativa. Em o rei construiu o templo, o rei leva uma marca, Lugalê. Em o rei veio, sem objeto, não leva nada. Quem age sobre algo ganha marca própria.",
+   "casadas": 30,
+   "total": 31,
+   "sem_par_no_whisper": [
+    "Lúgall-ê."
+   ],
+   "acima_do_limite": [
+    {
+     "palavra": "rei",
+     "ds_ms": -79,
+     "de_ms": -153
+    },
+    {
+     "palavra": "o",
+     "ds_ms": -56,
+     "de_ms": -192
+    },
+    {
+     "palavra": "templo,",
+     "ds_ms": -134,
+     "de_ms": -298
+    },
+    {
+     "palavra": "rei",
+     "ds_ms": -42,
+     "de_ms": -208
+    },
+    {
+     "palavra": "o",
+     "ds_ms": -16,
+     "de_ms": -173
+    },
+    {
+     "palavra": "rei",
+     "ds_ms": -103,
+     "de_ms": -206
+    }
+   ]
+  },
+  {
+   "id": "cuneiforme",
+   "whisper": "Com o tempo, a escrita virou cunhas, um cálamo pressionado na argila úmida, cada toque uma cunha, daí o nome cuneiforme e um sinal podia ser palavra ou som, este é dingir, deus, mas também se lê an, céu, e antes de um nome, avisa, é um deus.",
+   "casadas": 47,
+   "total": 48,
+   "sem_par_no_whisper": [
+    "Dín-guir,"
+   ],
+   "acima_do_limite": [
+    {
+     "palavra": "o",
+     "ds_ms": -31,
+     "de_ms": -168
+    },
+    {
+     "palavra": "a",
+     "ds_ms": -93,
+     "de_ms": -230
+    },
+    {
+     "palavra": "escrita",
+     "ds_ms": -195,
+     "de_ms": -67
+    },
+    {
+     "palavra": "um",
+     "ds_ms": -71,
+     "de_ms": -178
+    },
+    {
+     "palavra": "cunha.",
+     "ds_ms": -16,
+     "de_ms": -301
+    },
+    {
+     "palavra": "Daí",
+     "ds_ms": -178,
+     "de_ms": 6
+    },
+    {
+     "palavra": "cuneiforme.",
+     "ds_ms": 108,
+     "de_ms": -179
+    },
+    {
+     "palavra": "E",
+     "ds_ms": 169,
+     "de_ms": -107
+    },
+    {
+     "palavra": "um",
+     "ds_ms": -2,
+     "de_ms": -164
+    },
+    {
+     "palavra": "ou",
+     "ds_ms": 56,
+     "de_ms": -158
+    },
+    {
+     "palavra": "Este",
+     "ds_ms": -230,
+     "de_ms": -23
+    },
+    {
+     "palavra": "é",
+     "ds_ms": 81,
+     "de_ms": -161
+    },
+    {
+     "palavra": "deus.",
+     "ds_ms": -51,
+     "de_ms": -193
+    },
+    {
+     "palavra": "Án.",
+     "ds_ms": 14,
+     "de_ms": -208
+    },
+    {
+     "palavra": "Céu.",
+     "ds_ms": -185,
+     "de_ms": 6
+    },
+    {
+     "palavra": "um",
+     "ds_ms": -53,
+     "de_ms": -175
+    },
+    {
+     "palavra": "avisa:",
+     "ds_ms": -188,
+     "de_ms": -19
+    }
+   ]
+  },
+  {
+   "id": "acadiano",
+   "whisper": "Ao lado dele vivia o Akkadiano, uma língua semítica. Por volta de 2 .000 a 1 .800 antes de Cristo, o sumério deixou de ser falado, mas seguiu por quase 2 .000 anos como língua do culto e da escola, como o latim na Europa.",
+   "casadas": 38,
+   "total": 46,
+   "sem_par_no_whisper": [
+    "acadiano,",
+    "dois",
+    "mil",
+    "mil",
+    "e",
+    "oitocentos",
+    "dois",
+    "mil"
+   ],
+   "acima_do_limite": [
+    {
+     "palavra": "o",
+     "ds_ms": -52,
+     "de_ms": -162
+    },
+    {
+     "palavra": "semítica.",
+     "ds_ms": -22,
+     "de_ms": -237
+    },
+    {
+     "palavra": "de",
+     "ds_ms": 27,
+     "de_ms": -224
+    },
+    {
+     "palavra": "antes",
+     "ds_ms": 273,
+     "de_ms": -2
+    },
+    {
+     "palavra": "de",
+     "ds_ms": 22,
+     "de_ms": -169
+    },
+    {
+     "palavra": "o",
+     "ds_ms": -178,
+     "de_ms": -248
+    },
+    {
+     "palavra": "sumério",
+     "ds_ms": -179,
+     "de_ms": -14
+    },
+    {
+     "palavra": "ser",
+     "ds_ms": -72,
+     "de_ms": -184
+    },
+    {
+     "palavra": "falado.",
+     "ds_ms": -126,
+     "de_ms": -212
+    },
+    {
+     "palavra": "quase",
+     "ds_ms": -67,
+     "de_ms": -188
+    },
+    {
+     "palavra": "do",
+     "ds_ms": -14,
+     "de_ms": -164
+    },
+    {
+     "palavra": "da",
+     "ds_ms": -71,
+     "de_ms": -222
+    },
+    {
+     "palavra": "escola.",
+     "ds_ms": -187,
+     "de_ms": 24
+    },
+    {
+     "palavra": "o",
+     "ds_ms": -45,
+     "de_ms": -261
+    },
+    {
+     "palavra": "latim",
+     "ds_ms": -215,
+     "de_ms": -77
+    },
+    {
+     "palavra": "na",
+     "ds_ms": -54,
+     "de_ms": -156
+    }
+   ]
+  },
+  {
+   "id": "final",
+   "whisper": "Hoje lemos o sumério graças, em grande parte, às listas bilíngues, sumério e acadiano, feitas pelos próprios escribas. Qual palavra suméria você quer ver gravada na argila? Comente e siga para a próxima tabuinha.",
+   "casadas": 34,
+   "total": 34,
+   "sem_par_no_whisper": [],
+   "acima_do_limite": [
+    {
+     "palavra": "o",
+     "ds_ms": -12,
+     "de_ms": -269
+    },
+    {
+     "palavra": "sumério",
+     "ds_ms": -222,
+     "de_ms": -51
+    },
+    {
+     "palavra": "graças,",
+     "ds_ms": -5,
+     "de_ms": -215
+    },
+    {
+     "palavra": "em",
+     "ds_ms": -93,
+     "de_ms": -230
+    },
+    {
+     "palavra": "grande",
+     "ds_ms": -172,
+     "de_ms": -127
+    },
+    {
+     "palavra": "sumério",
+     "ds_ms": -296,
+     "de_ms": 30
+    },
+    {
+     "palavra": "feitas",
+     "ds_ms": -175,
+     "de_ms": -63
+    },
+    {
+     "palavra": "próprios",
+     "ds_ms": -37,
+     "de_ms": -205
+    },
+    {
+     "palavra": "Comente",
+     "ds_ms": -242,
+     "de_ms": -5
+    },
+    {
+     "palavra": "e",
+     "ds_ms": 64,
+     "de_ms": -169
+    },
+    {
+     "palavra": "a",
+     "ds_ms": -102,
+     "de_ms": -199
+    }
+   ]
+  }
+ ],
+ "resumo": {
+  "palavras_casadas": 241,
+  "inicio_mediana_ms": 53.0,
+  "inicio_p95_ms": 215.0,
+  "fim_mediana_ms": 90.0,
+  "fim_p95_ms": 261.0,
+  "acima_do_limite": 87
+ }
+}

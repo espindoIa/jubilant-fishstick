@@ -3,13 +3,14 @@
 // elevenlabs-remotion (estabilidade 0.65, similaridade 0.8, estilo 0.15).
 // Saída: public/audio/voz/<bloco>.mp3 + <bloco>.json { alignment, durationS, text, voice }
 //
-// Uso: node scripts/narrar.mjs [--voice=Brian] [--speed=0.95] [--only=bloco1,bloco2] [--dry]
+// Uso: node scripts/narrar.mjs [--voice=Brian] [--speed=0.95] [--only=bloco1,bloco2] [--force] [--dry]
 import { execFileSync } from "node:child_process";
 import crypto from "node:crypto";
 import fs from "node:fs";
 
 const arg = (k, d) => (process.argv.find((a) => a.startsWith(`--${k}=`)) ?? `=${d ?? ""}`).split("=")[1];
 const DRY = process.argv.includes("--dry");
+const FORCE = process.argv.includes("--force"); // refaz os blocos de --only mesmo sem mudança de texto (nova tomada)
 const VOICE = arg("voice", "Brian");
 const SPEED = Number(arg("speed", "0.95"));
 const ONLY = arg("only", "").split(",").filter(Boolean);
@@ -69,7 +70,7 @@ const prevIds = [];
 for (const [i, b] of blocks.entries()) {
   const jsonPath = `public/audio/voz/${b.id}.json`;
   const hash = crypto.createHash("sha1").update(`${b.text}|${voice.voice_id}|${SPEED}`).digest("hex");
-  if (!todo.includes(b) || (fs.existsSync(jsonPath) && JSON.parse(fs.readFileSync(jsonPath, "utf8")).hash === hash)) {
+  if (!todo.includes(b) || (!FORCE && fs.existsSync(jsonPath) && JSON.parse(fs.readFileSync(jsonPath, "utf8")).hash === hash)) {
     const old = fs.existsSync(jsonPath) ? JSON.parse(fs.readFileSync(jsonPath, "utf8")) : null;
     if (old?.requestId) prevIds.push(old.requestId);
     continue;

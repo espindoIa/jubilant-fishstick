@@ -61,6 +61,18 @@ function fromAlignment(tokens, al) {
   });
 }
 
+// Tempos por token a partir das palavras faladas já ajustadas (uma ou mais por token)
+function fromWords(tokens, ws) {
+  let n = 0;
+  return tokens.map((tok) => {
+    const k = tok.spoken.split(/\s+/).length;
+    const part = ws.slice(n, n + k);
+    n += k;
+    if (part.length !== k) throw new Error(`palavras ajustadas não batem com o roteiro em «${tok.spoken}»`);
+    return { startMs: part[0].s * 1000, endMs: part[k - 1].e * 1000 };
+  });
+}
+
 const blocks = [];
 for (const b of roteiro.blocks) {
   const tokens = tokenize(b.src);
@@ -68,7 +80,8 @@ for (const b of roteiro.blocks) {
   let words, durS, audio = null;
   if (fs.existsSync(alPath)) {
     const al = JSON.parse(fs.readFileSync(alPath, "utf8"));
-    words = fromAlignment(tokens, al.alignment);
+    // tempos ajustados à onda (scripts/ajustar-tempos.py) quando existem
+    words = al.words ? fromWords(tokens, al.words) : fromAlignment(tokens, al.alignment);
     durS = al.durationS;
     audio = `audio/voz/${b.id}.mp3`;
   } else {
@@ -186,8 +199,10 @@ timeline.pages = pages.map((idx, i) => {
   const startMs = timeline.words[idx[0]].startMs;
   const lastEnd = timeline.words[idx[idx.length - 1]].endMs;
   const nextStart = pages[i + 1] ? timeline.words[pages[i + 1][0]].startMs : lastEnd + 600;
-  // a página fica até a próxima começar, sem passar de 600 ms após a última palavra
-  return { words: idx, startMs, endMs: Math.min(nextStart, lastEnd + 600) };
+  // a página fica até a próxima começar, e some quando a última palavra termina
+  // (início e fim da legenda colados ao áudio: tolerância de 150 ms)
+  const hold = timeline.hasVoice ? 0 : 600;
+  return { words: idx, startMs, endMs: Math.min(nextStart, lastEnd + hold) };
 });
 
 fs.writeFileSync("src/data/timeline.json", JSON.stringify(timeline, null, 1));

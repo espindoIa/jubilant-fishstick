@@ -34,10 +34,21 @@ if (hasVoice) {
   ff([...inputs, "-filter_complex", `${delays};${mixIn}amix=inputs=${tl.audio.length}:normalize=0,apad,atrim=0:${TOTAL}[out]`, "-map", "[out]", "-ar", "48000", `${tmp}/voz.wav`]);
   const v = ebur(`${tmp}/voz.wav`);
   const m = ebur(music);
-  const musicGain = v.I - MUSIC_BELOW_VOICE_DB - m.I;
+  // +DUCK_COMP compensa a queda média do ducking, para o resultado ficar ~18 dB abaixo
+  const DUCK_COMP = Number(process.env.DUCK_COMP ?? 9);
+  const musicGain = v.I - MUSIC_BELOW_VOICE_DB - m.I + DUCK_COMP;
   console.log(`voz ${v.I} LUFS | trilha ${m.I} LUFS → ganho da trilha ${musicGain.toFixed(1)} dB (alvo ${MUSIC_BELOW_VOICE_DB} dB abaixo)`);
-  ff(["-i", `${tmp}/voz.wav`, "-i", music, "-filter_complex", `[1:a]volume=${musicGain.toFixed(2)}dB[m];[0:a][m]amix=inputs=2:normalize=0,atrim=0:${TOTAL}[out]`, "-map", "[out]", "-ar", "48000", pre]);
-  ff(["-i", music, "-af", `volume=${musicGain.toFixed(2)}dB`, `${tmp}/trilha-no-mix.wav`]);
+  // trilha com ganho fixo (-18 dB da voz) + ducking leve guiado pela voz (sidechain),
+  // para a voz ficar acima da trilha também nos finais de palavra e nas batidas do tambor.
+  // A chave do sidechain vai 80 ms adiantada (lookahead): a trilha já baixa quando a fala começa.
+  ff(["-i", music, "-i", `${tmp}/voz.wav`, "-filter_complex", `[0:a]volume=${musicGain.toFixed(2)}dB,aresample=48000,atrim=0:${TOTAL}[m];[1:a]aresample=48000,atrim=start=0.08,asetpts=PTS-STARTPTS[k];[m][k]sidechaincompress=threshold=0.008:ratio=3:attack=10:release=900:makeup=1[out]`, "-map", "[out]", "-ar", "48000", `${tmp}/trilha-no-mix.wav`]);
+  const md = ebur(`${tmp}/trilha-no-mix.wav`);
+  console.log(`trilha no mix (com ducking): ${md.I} LUFS → ${(v.I - md.I).toFixed(1)} dB abaixo da voz`);
+  ff(["-i", `${tmp}/voz.wav`, "-i", `${tmp}/trilha-no-mix.wav`, "-filter_complex", `[0:a][1:a]amix=inputs=2:normalize=0,atrim=0:${TOTAL}[out]`, "-map", "[out]", "-ar", "48000", pre]);
+  // voz sempre acima da trilha? (janelas de 400 ms com fala)
+  const acima = spawnSync("python3", ["-I", "scripts/voz-acima.py", `${tmp}/voz.wav`, `${tmp}/trilha-no-mix.wav`], { encoding: "utf8" });
+  console.log(`voz × trilha: ${acima.stdout.trim()}`);
+  fs.writeFileSync(`${tmp}/voz-acima.json`, acima.stdout);
 } else {
   console.log("sem voz: só a trilha");
   ff(["-i", music, "-af", `atrim=0:${TOTAL}`, pre]);

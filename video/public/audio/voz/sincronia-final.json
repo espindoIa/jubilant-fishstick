@@ -1,0 +1,14 @@
+{
+ "paginas_de_legenda": {
+  "paginas": 57,
+  "mediana_ms": 60.3,
+  "p95_ms": 114.2,
+  "max_ms": 133.0,
+  "acima_de_150ms": []
+ },
+ "tokens": 254,
+ "mediana_ms": 18.9,
+ "p95_ms": 96.7,
+ "max_ms": 133.0,
+ "acima_de_150ms": []
+}

@@ -1,0 +1,20 @@
+{
+ "limite_ms": 150.0,
+ "blocos": {
+  "gancho": [],
+  "onde": [],
+  "isolada": [],
+  "aglutinante": [],
+  "ergativa": [],
+  "cuneiforme": [],
+  "acadiano": [],
+  "final": []
+ },
+ "resumo_el_vs_mms": {
+  "bordas": 526,
+  "mediana_ms": 13.999999999999346,
+  "p95_ms": 91.75000000000044,
+  "max_ms": 147.9999999999997,
+  "palavras_corrigidas": 0
+ }
+}
