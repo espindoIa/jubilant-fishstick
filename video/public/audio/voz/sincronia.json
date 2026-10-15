@@ -1,0 +1,22 @@
+{
+ "limite_ms": 150.0,
+ "blocos": {
+  "gancho": [],
+  "onde": [],
+  "isolada": [],
+  "gramatica": [],
+  "cunhas": [],
+  "dingir": [],
+  "determinativo": [],
+  "escola": [],
+  "resposta": [],
+  "final": []
+ },
+ "resumo_el_vs_mms": {
+  "bordas": 574,
+  "mediana_ms": 14.000000000000234,
+  "p95_ms": 76.00000000000023,
+  "max_ms": 139.0,
+  "palavras_corrigidas": 0
+ }
+}

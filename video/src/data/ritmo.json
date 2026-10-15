@@ -1,0 +1,91 @@
+{
+ "blocos": [
+  {
+   "bloco": "gancho",
+   "palavras": 21,
+   "fala_s": 6.22,
+   "pal_s": 3.37
+  },
+  {
+   "bloco": "onde",
+   "palavras": 49,
+   "fala_s": 17.39,
+   "pal_s": 2.82
+  },
+  {
+   "bloco": "isolada",
+   "palavras": 24,
+   "fala_s": 8.96,
+   "pal_s": 2.68
+  },
+  {
+   "bloco": "gramatica",
+   "palavras": 30,
+   "fala_s": 11.33,
+   "pal_s": 2.65
+  },
+  {
+   "bloco": "cunhas",
+   "palavras": 16,
+   "fala_s": 4.83,
+   "pal_s": 3.31
+  },
+  {
+   "bloco": "dingir",
+   "palavras": 11,
+   "fala_s": 3.87,
+   "pal_s": 2.85
+  },
+  {
+   "bloco": "determinativo",
+   "palavras": 17,
+   "fala_s": 5.86,
+   "pal_s": 2.9
+  },
+  {
+   "bloco": "escola",
+   "palavras": 44,
+   "fala_s": 14.27,
+   "pal_s": 3.08
+  },
+  {
+   "bloco": "resposta",
+   "palavras": 37,
+   "fala_s": 15.87,
+   "pal_s": 2.33
+  },
+  {
+   "bloco": "final",
+   "palavras": 38,
+   "fala_s": 13.08,
+   "pal_s": 2.9
+  }
+ ],
+ "palavras_faladas": 287,
+ "pal_s_global": 2.82,
+ "pausas_entre_blocos_s": {
+  "min": 1.36,
+  "max": 1.87
+ },
+ "telas": {
+  "n": 29,
+  "min_s": 1.27,
+  "max_s": 7.2,
+  "media_s": 4.14,
+  "fora_2a4s": 16
+ },
+ "mudancas_visuais": {
+  "n": 60,
+  "min_s": 0.2,
+  "max_s": 4.04,
+  "media_s": 2,
+  "acima_de_4s": [
+   4.04
+  ],
+  "abaixo_de_2s": 28
+ },
+ "legendas": {
+  "paginas": 60,
+  "max_palavras": 7
+ }
+}

@@ -1,0 +1,140 @@
+{
+ "sitios": [
+  {
+   "sitio": "Uruk",
+   "pleiades": [
+    45.63905,
+    31.32338
+   ],
+   "wikidata": "Q168518",
+   "rotulo_wd": "Uruk",
+   "descricao_wd": "ancient city of Sumer and Babylonia",
+   "wd": [
+    45.6374,
+    31.3259
+   ],
+   "dif_graus": 0.0029,
+   "ok": true
+  },
+  {
+   "sitio": "Ur",
+   "pleiades": [
+    46.10542,
+    30.96132
+   ],
+   "wikidata": "Q5699",
+   "rotulo_wd": "Ur",
+   "descricao_wd": "(ID fixo, rótulo conferido)",
+   "wd": [
+    46.104444,
+    30.962222
+   ],
+   "dif_graus": 0.0012,
+   "ok": true
+  },
+  {
+   "sitio": "Nippur",
+   "pleiades": [
+    45.23056,
+    32.12676
+   ],
+   "wikidata": "Q188395",
+   "rotulo_wd": "Nippur",
+   "descricao_wd": "ancient city in modern day Iraq",
+   "wd": [
+    45.230833333333,
+    32.126111111111
+   ],
+   "dif_graus": 0.0007,
+   "ok": true
+  },
+  {
+   "sitio": "Eridu",
+   "pleiades": [
+    45.99564,
+    30.81999
+   ],
+   "wikidata": "Q210065",
+   "rotulo_wd": "Eridu",
+   "descricao_wd": "archaeological site in Iraq",
+   "wd": [
+    45.994627,
+    30.82604
+   ],
+   "dif_graus": 0.0061,
+   "ok": true
+  },
+  {
+   "sitio": "Lagash",
+   "pleiades": [
+    46.40968,
+    31.41934
+   ],
+   "wikidata": "Q207330",
+   "rotulo_wd": "Lagash",
+   "descricao_wd": "ancient Mesopotamian city-state",
+   "wd": [
+    46.407222,
+    31.411389
+   ],
+   "dif_graus": 0.0082,
+   "ok": true
+  },
+  {
+   "sitio": "Girsu",
+   "pleiades": [
+    46.17764,
+    31.56039
+   ],
+   "wikidata": "Q853946",
+   "rotulo_wd": "Girsu",
+   "descricao_wd": "ancient Sumerian city",
+   "wd": [
+    46.18964,
+    31.56526
+   ],
+   "dif_graus": 0.0113,
+   "ok": true
+  },
+  {
+   "sitio": "Nínive",
+   "pleiades": [
+    43.15994,
+    36.36076
+   ],
+   "wikidata": "Q5680",
+   "rotulo_wd": "Nineveh",
+   "descricao_wd": "(ID fixo, rótulo conferido)",
+   "wd": [
+    43.15,
+    36.366667
+   ],
+   "dif_graus": 0.0099,
+   "ok": true
+  },
+  {
+   "sitio": "Babilônia",
+   "pleiades": [
+    44.42498,
+    32.5373
+   ],
+   "wikidata": "Q5684",
+   "rotulo_wd": "Babylon",
+   "descricao_wd": "capital city of Babylonia and an archaeological site in modern-day Iraq",
+   "wd": [
+    44.42111111111111,
+    32.5425
+   ],
+   "dif_graus": 0.0061,
+   "ok": true
+  }
+ ],
+ "rios_principais": [
+  "Al Furat",
+  "Dicle",
+  "Euphrates",
+  "Firat",
+  "Shatt al-Arab",
+  "Tigris"
+ ]
+}

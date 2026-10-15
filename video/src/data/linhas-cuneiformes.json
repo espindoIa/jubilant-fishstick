@@ -1,0 +1,253 @@
+{
+  "_meta": {
+    "gerado_em": "2026-10-15",
+    "fontes": "CDLI (cdli.earth, ATF via API JSON); sinais e códigos: ORACC OSL (github.com/oracc/ogsl, 00lib/osl.asl); nomes Unicode conferidos com Python unicodedata 15.1.0",
+    "ver": "fontes.md, 4ª rodada"
+  },
+  "linhas": [
+    {
+      "id": "gudea-cilA-22-9",
+      "objeto": "Cilindro A de Gudea (inscrição de construção do templo E-ninnu)",
+      "museu": "Musée du Louvre, MNB 1512",
+      "cdli": "P232300 (testemunho); composto P431881 (Q000377a)",
+      "periodo": "Lagash II (ca. 2200-2100 a.C.), Girsu (Tello); RIME 3/1.01.07",
+      "linha": "col. 22, linha 9",
+      "atf": "9. ensi2-ke4 e2 mu-du3 mu-mu2",
+      "sinais": [
+        {
+          "valor": "ensi₂",
+          "valor_atf": "ensi2",
+          "sinal": "|PA.TE.SI|",
+          "codepoint": "U+1227A U+122FC U+122DB",
+          "char": "𒉺𒋼𒋛",
+          "unicode_name": "CUNEIFORM SIGN PA + CUNEIFORM SIGN TE + CUNEIFORM SIGN SI",
+          "funcao": "logograma (3 sinais: PA.TE.SI)"
+        },
+        {
+          "valor": "ke₄",
+          "valor_atf": "ke4",
+          "sinal": "KID",
+          "codepoint": "U+121A4",
+          "char": "𒆤",
+          "unicode_name": "CUNEIFORM SIGN KID",
+          "funcao": "marca do ergativo (-e, grafada ke4 após ensi2)"
+        },
+        {
+          "valor": "e₂",
+          "valor_atf": "e2",
+          "sinal": "E₂",
+          "codepoint": "U+1208D",
+          "char": "𒂍",
+          "unicode_name": "CUNEIFORM SIGN E2",
+          "funcao": "logograma: casa/templo"
+        },
+        {
+          "valor": "mu",
+          "valor_atf": "mu",
+          "sinal": "MU",
+          "codepoint": "U+1222C",
+          "char": "𒈬",
+          "unicode_name": "CUNEIFORM SIGN MU",
+          "funcao": "prefixo verbal"
+        },
+        {
+          "valor": "du₃",
+          "valor_atf": "du3",
+          "sinal": "KAK",
+          "codepoint": "U+12195",
+          "char": "𒆕",
+          "unicode_name": "CUNEIFORM SIGN KAK",
+          "funcao": "logograma: construir"
+        },
+        {
+          "valor": "mu",
+          "valor_atf": "mu",
+          "sinal": "MU",
+          "codepoint": "U+1222C",
+          "char": "𒈬",
+          "unicode_name": "CUNEIFORM SIGN MU",
+          "funcao": "prefixo verbal"
+        },
+        {
+          "valor": "mu₂",
+          "valor_atf": "mu2",
+          "sinal": "SAR",
+          "codepoint": "U+122AC",
+          "char": "𒊬",
+          "unicode_name": "CUNEIFORM SIGN SAR",
+          "funcao": "logograma: crescer"
+        }
+      ],
+      "traducao_pt": "O governante construiu a casa (o templo) e a fez crescer.",
+      "traducao_cdli_en": "The governor built the house, he made it grow,",
+      "notas": "A linha 22:9 completa tem 9 sinais; Zólyomi 2017 (p. 41, ex. 17) cita só o trecho \"ensi2-ke4 e2 mu-du3\" (\"The ruler has built the temple\"). Para a tela, os 7 primeiros sinais (ensi2-ke4 e2 mu-du3) formam a frase completa \"o governante construiu a casa\"; se cortar, indicar com reticências. ensi2 é um único logograma escrito com 3 sinais (PA+TE+SI); a OSL registra como sinal composto |PA.TE.SI|.",
+      "fonte_url": "https://cdli.earth/artifacts/232300",
+      "unicode_string": "𒉺𒋼𒋛𒆤𒂍𒈬𒆕𒈬𒊬"
+    },
+    {
+      "id": "enmetena-1-l1-2",
+      "objeto": "Cone de argila de Enmetena (inscrição sobre a fronteira Lagash-Umma), exemplar 1",
+      "museu": "Musée du Louvre, AO 3004",
+      "cdli": "P222532 (ex. 01); composto P431117 (Q001103)",
+      "periodo": "Dinástico Antigo IIIb (ca. 2500-2340 a.C.), Girsu (Tello); RIME 1.09.05.01",
+      "linha": "col. 1, linhas 1-2",
+      "atf": "1. {d}en-lil2\n2. lugal kur-kur-ra",
+      "sinais": [
+        {
+          "valor": "ᵈ",
+          "valor_atf": "d",
+          "sinal": "AN",
+          "codepoint": "U+1202D",
+          "char": "𒀭",
+          "unicode_name": "CUNEIFORM SIGN AN",
+          "funcao": "determinativo de divindade (não se lê)"
+        },
+        {
+          "valor": "en",
+          "valor_atf": "en",
+          "sinal": "EN",
+          "codepoint": "U+12097",
+          "char": "𒂗",
+          "unicode_name": "CUNEIFORM SIGN EN",
+          "funcao": "silabograma: en"
+        },
+        {
+          "valor": "lil₂",
+          "valor_atf": "lil2",
+          "sinal": "KID",
+          "codepoint": "U+121A4",
+          "char": "𒆤",
+          "unicode_name": "CUNEIFORM SIGN KID",
+          "funcao": "silabograma: lil (sinal KID)"
+        },
+        {
+          "valor": "lugal",
+          "valor_atf": "lugal",
+          "sinal": "LUGAL",
+          "codepoint": "U+12217",
+          "char": "𒈗",
+          "unicode_name": "CUNEIFORM SIGN LUGAL",
+          "funcao": "logograma: rei"
+        },
+        {
+          "valor": "kur",
+          "valor_atf": "kur",
+          "sinal": "KUR",
+          "codepoint": "U+121B3",
+          "char": "𒆳",
+          "unicode_name": "CUNEIFORM SIGN KUR",
+          "funcao": "logograma: terra/país"
+        },
+        {
+          "valor": "kur",
+          "valor_atf": "kur",
+          "sinal": "KUR",
+          "codepoint": "U+121B3",
+          "char": "𒆳",
+          "unicode_name": "CUNEIFORM SIGN KUR",
+          "funcao": "repetição = plural \"todas as terras\""
+        },
+        {
+          "valor": "ra",
+          "valor_atf": "ra",
+          "sinal": "RA",
+          "codepoint": "U+1228F",
+          "char": "𒊏",
+          "unicode_name": "CUNEIFORM SIGN RA",
+          "funcao": "silabograma: -ra (genitivo -a(k) após kur)"
+        }
+      ],
+      "traducao_pt": "Enlil, rei de todas as terras",
+      "traducao_cdli_en": "Enlil, / king of all the lands,",
+      "notas": "Mesmo trecho citado por Zólyomi 2017, p. 39, ex. (16) (En-metena 1). O sinal 𒀭 (AN) antes do nome é o determinativo divino.",
+      "fonte_url": "https://cdli.earth/artifacts/222532",
+      "unicode_string": "𒀭𒂗𒆤𒈗𒆳𒆳𒊏"
+    },
+    {
+      "id": "lu-a-arcaica-uruk-iv",
+      "objeto": "Tabuinha lexical arcaica (lista de títulos/profissões, precursora de \"Lu A\"), CDLI Lexical 000002, ex. 173",
+      "museu": "Vorderasiatisches Museum, Berlim, VAT 15003 (escavação W 09656,h1)",
+      "cdli": "P000006; composto Archaic Lu2 A = P464118 (Q000002)",
+      "periodo": "Uruk IV (ca. 3350-3200 a.C.), Uruk (Warka); proto-cuneiforme",
+      "linha": "anverso, col. 1, linha 4",
+      "atf": "4. 1(N01) , NAM2 NAM2",
+      "sinais": [
+        {
+          "valor": "1(N01)",
+          "valor_atf": "1(N01)",
+          "sinal": "N01 (numeral proto-cuneiforme \"1\", marcador de entrada)",
+          "codepoint": null,
+          "char": null,
+          "unicode_name": null,
+          "funcao": "marcador de entrada da lista (não mapeado: proto-cuneiforme ainda não codificado no Unicode; proposta L2/19-284)"
+        },
+        {
+          "valor": "nam₂",
+          "valor_atf": "nam2",
+          "sinal": "NAM₂",
+          "codepoint": "U+12247",
+          "char": "𒉇",
+          "unicode_name": "CUNEIFORM SIGN NAM2",
+          "funcao": "sinal NAM2 (título/função; leitura arcaica incerta)"
+        },
+        {
+          "valor": "nam₂",
+          "valor_atf": "nam2",
+          "sinal": "NAM₂",
+          "codepoint": "U+12247",
+          "char": "𒉇",
+          "unicode_name": "CUNEIFORM SIGN NAM2",
+          "funcao": "sinal NAM2"
+        }
+      ],
+      "traducao_pt": "(entrada de uma lista de títulos e profissões: \"NAM₂ NAM₂\"; sentido exato incerto)",
+      "traducao_cdli_en": null,
+      "notas": "Escolhida por ser uma das listas lexicais mais antigas datadas (Uruk IV no catálogo CDLI) e visualmente simples (2 sinais). A mesma entrada é a linha 4 do composto Archaic Lu2 A (P464118). ATENÇÃO: a forma gráfica de Uruk IV é desenhada e difere dos glifos da fonte Noto Sans Cuneiform (forma posterior); o código U+12247 é a equivalência do sinal na OSL, não uma reprodução do traçado arcaico. Valor fonético e sentido de NAM2 NAM2 nesta lista não estão estabelecidos nas fontes consultadas: não traduzir na tela.",
+      "fonte_url": "https://cdli.earth/artifacts/6",
+      "unicode_string": "𒉇𒉇"
+    },
+    {
+      "id": "lu-sha-lugal-sharru",
+      "objeto": "Lista lexical bilíngue sumério-acadiano \"Lu = ša\", tabuinha 1 (MSL 12, 91 A)",
+      "museu": "Vorderasiatisches Museum, Berlim, VAT 10216",
+      "cdli": "P373780",
+      "periodo": "Neoassírio (ca. 911-612 a.C.)",
+      "linha": "anverso, col. 1, linha 41",
+      "atf": "41. lugal = %a szar-ru",
+      "sinais": [
+        {
+          "valor": "lugal",
+          "valor_atf": "lugal",
+          "sinal": "LUGAL",
+          "codepoint": "U+12217",
+          "char": "𒈗",
+          "unicode_name": "CUNEIFORM SIGN LUGAL",
+          "funcao": "sumério: logograma LUGAL \"rei\""
+        },
+        {
+          "valor": "šar",
+          "valor_atf": "szar",
+          "sinal": "SAR",
+          "codepoint": "U+122AC",
+          "char": "𒊬",
+          "unicode_name": "CUNEIFORM SIGN SAR",
+          "funcao": "acadiano: silabograma šar (sinal SAR)"
+        },
+        {
+          "valor": "ru",
+          "valor_atf": "ru",
+          "sinal": "RU",
+          "codepoint": "U+12292",
+          "char": "𒊒",
+          "unicode_name": "CUNEIFORM SIGN RU",
+          "funcao": "acadiano: silabograma ru"
+        }
+      ],
+      "traducao_pt": "lugal (sumério) = šarru (acadiano): \"rei\"",
+      "traducao_cdli_en": null,
+      "notas": "Coluna suméria à esquerda, acadiana à direita (%a = muda para acadiano). Na mesma tabuinha, linhas 38-47 listam vários equivalentes de šarru. Proveniência não registrada no CDLI; não afirmar o local de achado.",
+      "fonte_url": "https://cdli.earth/artifacts/373780",
+      "unicode_string": "𒈗𒊬𒊒"
+    }
+  ]
+}

@@ -1,0 +1,245 @@
+{
+ "_comentario": "src = texto do bloco. [tela|fala] = um token de legenda (tela) falado como 'fala' (pode ter várias palavras). beats.at = índice do token de legenda (0-based) onde a tela começa. Fio: o gancho abre a pergunta 'como conseguimos ler?'; cada bloco responde uma parte; a resposta são as listas bilíngues.",
+ "blocks": [
+  {
+   "id": "gancho",
+   "src": "Uma das línguas escritas mais antigas do mundo não tem nenhum parente vivo. Então como é que a gente consegue ler?",
+   "beats": [
+    {
+     "at": 0,
+     "type": "hookFoto",
+     "eventos": [
+      8
+     ]
+    },
+    {
+     "at": 13,
+     "type": "hookPergunta"
+    }
+   ]
+  },
+  {
+   "id": "onde",
+   "src": "É o sumério, do sul da Mesopotâmia, atual Iraque. Em [Uruk,|Úruk,] por volta de [3300|três mil e trezentos] a [3200|três mil e duzentos] antes de Cristo, surge a escrita. Para quê? Contas. Esta tabuinha registra cevada. E, desde o começo, listas de palavras, copiadas por mais de mil anos.",
+   "beats": [
+    {
+     "at": 0,
+     "type": "mapaUruk",
+     "eventos": [
+      7,
+      10
+     ]
+    },
+    {
+     "at": 11,
+     "type": "date",
+     "eventos": [
+      17,
+      20
+     ]
+    },
+    {
+     "at": 23,
+     "type": "contasFoto",
+     "eventos": [
+      25,
+      28
+     ]
+    },
+    {
+     "at": 30,
+     "type": "listaArcaica",
+     "eventos": [
+      37
+     ]
+    }
+   ]
+  },
+  {
+   "id": "isolada",
+   "src": "Só que o sumério é isolado. Não é semítico, como o acadiano. Nem indo-europeu, como o português. Sem parentes, não há com quem comparar.",
+   "beats": [
+    {
+     "at": 0,
+     "type": "isolate"
+    },
+    {
+     "at": 6,
+     "type": "familySemitic"
+    },
+    {
+     "at": 12,
+     "type": "familyIE"
+    },
+    {
+     "at": 17,
+     "type": "isolateAlone"
+    }
+   ]
+  },
+  {
+   "id": "gramatica",
+   "src": "E ele junta [pedaços:|pedaços.] [lu₂,|Lú,] homem, mais [gal,|Gáll,] [grande:|grande.] [lugal,|Lúgall,] o rei. E marca quem age. Numa inscrição de [Gudea,|Gudêa,] [“o|o] governante construiu o [templo”:|templo,] o governante leva a marca.",
+   "beats": [
+    {
+     "at": 0,
+     "type": "lugalBuild",
+     "eventos": [
+      7,
+      9
+     ]
+    },
+    {
+     "at": 12,
+     "type": "marcaQuemAge"
+    },
+    {
+     "at": 16,
+     "type": "gudeaLinha",
+     "eventos": [
+      25
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cunhas",
+   "src": "Tudo em cunhas de cálamo na argila úmida. E um sinal podia ser palavra ou som.",
+   "beats": [
+    {
+     "at": 0,
+     "type": "stylus"
+    },
+    {
+     "at": 8,
+     "type": "signRoles"
+    }
+   ]
+  },
+  {
+   "id": "dingir",
+   "src": "Este é [dingir,|Dín-guir,] deus. Também se lê [an,|Án,] que significa céu.",
+   "beats": [
+    {
+     "at": 0,
+     "type": "dingirAn",
+     "eventos": [
+      7
+     ]
+    }
+   ]
+  },
+  {
+   "id": "determinativo",
+   "src": "E, antes de um nome, nem se lê: só avisa que é um deus, como em [Enlil.|Ên-líl.]",
+   "beats": [
+    {
+     "at": 0,
+     "type": "coneEnmetena"
+    },
+    {
+     "at": 8,
+     "type": "enlilLinha",
+     "eventos": [
+      9,
+      16
+     ]
+    }
+   ]
+  },
+  {
+   "id": "escola",
+   "src": "Por volta de [2000|dois mil] a [1800|mil e oitocentos] antes de Cristo, o sumério deixou de ser falado. Mas virou língua de escola, como o latim na Europa. Um provérbio de escola provoca: escriba que não sabe sumério, de onde vai tirar a tradução?",
+   "beats": [
+    {
+     "at": 0,
+     "type": "timelineSpoken",
+     "eventos": [
+      3,
+      11
+     ]
+    },
+    {
+     "at": 15,
+     "type": "latin"
+    },
+    {
+     "at": 25,
+     "type": "proverbio",
+     "eventos": [
+      30,
+      34
+     ]
+    }
+   ]
+  },
+  {
+   "id": "resposta",
+   "src": "[Tradução:|Tradução,] essa é a resposta. Escribas que falavam acadiano fizeram listas bilíngues. [lugal,|Lúgall] em [acadiano,|acadiano é] [šarru:|Xárru,] rei. Boa parte da pronúncia do sumério só conhecemos por elas. E as tabuinhas bilíngues de Nínive ajudaram na decifração.",
+   "beats": [
+    {
+     "at": 0,
+     "type": "respostaTitulo"
+    },
+    {
+     "at": 5,
+     "type": "bilingueLinha",
+     "eventos": [
+      10,
+      12,
+      16
+     ]
+    },
+    {
+     "at": 17,
+     "type": "pronuncia",
+     "eventos": [
+      19,
+      21,
+      23
+     ]
+    },
+    {
+     "at": 27,
+     "type": "mapaNinive",
+     "eventos": [
+      32
+     ]
+    }
+   ]
+  },
+  {
+   "id": "final",
+   "src": "No século [XIX,|dezenove,] teve gente jurando que o sumério era só um código de sacerdotes. A prova contra? O [emesal,|êmessál,] um dialeto usado na fala de deusas. Qual palavra suméria você quer ver na argila? Comenta e segue.",
+   "beats": [
+    {
+     "at": 0,
+     "type": "halevy",
+     "eventos": [
+      7,
+      12
+     ]
+    },
+    {
+     "at": 15,
+     "type": "emesal",
+     "eventos": [
+      19,
+      21
+     ]
+    },
+    {
+     "at": 27,
+     "type": "ctaSelo"
+    },
+    {
+     "at": 35,
+     "type": "ctaFollow",
+     "eventos": [
+      37
+     ]
+    }
+   ]
+  }
+ ]
+}

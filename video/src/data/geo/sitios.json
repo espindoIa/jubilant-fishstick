@@ -1,0 +1,66 @@
+[
+ {
+  "nome_pt": "Uruk (Warka)",
+  "pleiades_id": "912986",
+  "url": "https://pleiades.stoa.org/places/912986",
+  "lon": 45.63905,
+  "lat": 31.32338,
+  "titulo_pleiades": "Uruk/Orchoe/Erech/Orikut"
+ },
+ {
+  "nome_pt": "Ur",
+  "pleiades_id": "912985",
+  "url": "https://pleiades.stoa.org/places/912985",
+  "lon": 46.10542,
+  "lat": 30.96132,
+  "titulo_pleiades": "Ur(i)"
+ },
+ {
+  "nome_pt": "Nippur",
+  "pleiades_id": "912910",
+  "url": "https://pleiades.stoa.org/places/912910",
+  "lon": 45.23056,
+  "lat": 32.12676,
+  "titulo_pleiades": "Nippur/Nufar/‘Hippareni’"
+ },
+ {
+  "nome_pt": "Eridu",
+  "pleiades_id": "912845",
+  "url": "https://pleiades.stoa.org/places/912845",
+  "lon": 45.99564,
+  "lat": 30.81999,
+  "titulo_pleiades": "Eridu"
+ },
+ {
+  "nome_pt": "Lagash (al-Hiba)",
+  "pleiades_id": "959120263",
+  "url": "https://pleiades.stoa.org/places/959120263",
+  "lon": 46.40968,
+  "lat": 31.41934,
+  "titulo_pleiades": "Lagash"
+ },
+ {
+  "nome_pt": "Girsu (Telloh)",
+  "pleiades_id": "912855",
+  "url": "https://pleiades.stoa.org/places/912855",
+  "lon": 46.17764,
+  "lat": 31.56039,
+  "titulo_pleiades": "[Girsu]/Tello(h)"
+ },
+ {
+  "nome_pt": "Nínive",
+  "pleiades_id": "874621",
+  "url": "https://pleiades.stoa.org/places/874621",
+  "lon": 43.15994,
+  "lat": 36.36076,
+  "titulo_pleiades": "Nineveh/Ninos"
+ },
+ {
+  "nome_pt": "Babilônia",
+  "pleiades_id": "893951",
+  "url": "https://pleiades.stoa.org/places/893951",
+  "lon": 44.42498,
+  "lat": 32.5373,
+  "titulo_pleiades": "Babylon"
+ }
+]
