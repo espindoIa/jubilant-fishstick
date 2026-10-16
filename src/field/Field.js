@@ -491,6 +491,7 @@ export class Field {
         this.game.input.press('confirm');
       });
     }
+    this.game.touch?.el.querySelector('.tbtn-a')?.classList.toggle('ready', !!target);
     if (!target) {
       this.hintEl.style.display = 'none';
       return;

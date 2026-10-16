@@ -4,7 +4,7 @@ export class Input {
     this.keys = new Set();
     this.pressed = new Set(); // ações disparadas neste frame
     this.axis = { x: 0, y: 0 };
-    this.stick = { x: 0, y: 0, active: false };
+    this.stick = { x: 0, y: 0, active: false, run: false };
     this.enabled = true;
     window.addEventListener('keydown', (e) => {
       if (e.repeat) {
@@ -70,7 +70,16 @@ export class Input {
       x /= l;
       y /= l;
     }
-    return { x, y, run: k.has('shift') };
+    return { x, y, run: k.has('shift') || (this.stick.active && this.stick.run) };
+  }
+}
+
+// Vibração curta (onde houver suporte) para dar resposta tátil aos botões.
+export function buzz(ms = 10) {
+  try {
+    navigator.vibrate?.(ms);
+  } catch {
+    /* sem vibração */
   }
 }
 
@@ -88,6 +97,22 @@ export class TouchControls {
     `;
     root.appendChild(el);
     this.el = el;
+    const hint = document.createElement('div');
+    hint.className = 'rotate-hint';
+    hint.textContent = '↻ Gire o aparelho para jogar deitado';
+    root.appendChild(hint);
+    window.addEventListener('contextmenu', (e) => e.preventDefault());
+    document.addEventListener('dblclick', (e) => e.preventDefault());
+    // mantém a tela ligada durante o jogo (o pedido é renovado ao voltar à aba)
+    const keepAwake = async () => {
+      try {
+        if (document.visibilityState === 'visible') await navigator.wakeLock?.request('screen');
+      } catch {
+        /* sem wake lock */
+      }
+    };
+    window.addEventListener('pointerdown', keepAwake, { once: true });
+    document.addEventListener('visibilitychange', keepAwake);
     const zone = el.querySelector('.stick-zone');
     const base = el.querySelector('.stick-base');
     const knob = el.querySelector('.stick-knob');
@@ -122,6 +147,9 @@ export class TouchControls {
       const m = k < dead ? 0 : (k - dead) / (1 - dead);
       input.stick.x = l ? (dx / Math.max(l, 1)) * m : 0;
       input.stick.y = l ? (dy / Math.max(l, 1)) * m : 0;
+      // empurrar o joystick até a borda = correr (o botão acende)
+      input.stick.run = k >= 0.97;
+      knob.classList.toggle('run', input.stick.run);
       e.preventDefault();
     };
     const end = (e) => {
@@ -131,6 +159,8 @@ export class TouchControls {
       base.classList.remove('on');
       knob.style.transform = '';
       input.stick.active = false;
+      input.stick.run = false;
+      knob.classList.remove('run');
       input.stick.x = input.stick.y = 0;
     };
     zone.addEventListener('touchstart', start, { passive: false });
@@ -143,6 +173,7 @@ export class TouchControls {
         e.preventDefault();
         e.stopPropagation();
         b.classList.add('down');
+        buzz(12);
         input.press(action);
       };
       b.addEventListener('touchstart', fire, { passive: false });

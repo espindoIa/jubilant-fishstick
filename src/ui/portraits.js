@@ -4,6 +4,7 @@ import { Bitmap } from '../art/bitmap.js';
 import { bitmapToDataURL } from '../render/textures.js';
 import { buildFieldFrames } from '../art/characters.js';
 import { charDef } from '../game/assets.js';
+import { portraitImage } from '../art/imageSprites.js';
 
 const portraitMods = import.meta.glob('../art/portraits.js', { eager: true });
 const mod = Object.values(portraitMods)[0] || null;
@@ -13,9 +14,9 @@ const cache = new Map();
 export function portraitURL(id, expr = 'neutral') {
   const key = id + ':' + expr;
   if (cache.has(key)) return cache.get(key);
-  let url = null;
+  let url = portraitImage(id, expr);
   try {
-    if (mod && mod.PORTRAIT_IDS?.includes(id)) {
+    if (!url && mod && mod.PORTRAIT_IDS?.includes(id)) {
       const bmp = mod.buildPortrait(id, expr);
       url = bitmapToDataURL(bmp, 4);
     }

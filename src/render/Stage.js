@@ -145,6 +145,9 @@ export class Stage {
 
   // Aplica preset de iluminação/atmosfera do mapa
   setAtmosphere(a) {
+    // sprites em PNG têm meios-tons ricos: suaviza o grading para não esmagá-los
+    a = { ...a, saturation: Math.max(-0.02, (a.saturation ?? 0.12) - 0.1), contrast: Math.min(0.04, a.contrast ?? 0.06),
+      ambient: (a.ambient ?? 0.9) * 1.12, sunIntensity: (a.sunIntensity ?? 1.6) * 0.88, bloom: (a.bloom ?? 1.1) * 0.78 };
     const bg = new THREE.Color(a.bg || '#10101c');
     this.scene.background = bg;
     this.scene.fog.color.copy(new THREE.Color(a.fog || a.bg || '#10101c'));

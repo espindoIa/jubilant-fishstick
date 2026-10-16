@@ -5,7 +5,7 @@ import { paintSideAtlas } from '../art/terrain.js';
 import { buildFieldFrames, buildBattleFrames } from '../art/characters.js';
 import { bitmapToTexture } from '../render/textures.js';
 import { makeSheet } from '../render/Actor.js';
-import { heroFieldImages, heroBattleImages } from '../art/imageSprites.js';
+import { heroFieldImages, heroBattleImages, npcFieldImages, propImage } from '../art/imageSprites.js';
 
 const cache = {
   props: null,
@@ -33,7 +33,11 @@ export function propTextures(name) {
   if (cache.propTex[name]) return cache.propTex[name];
   const p = props()[name];
   if (!p) throw new Error('prop desconhecido: ' + name);
-  const t = { map: bitmapToTexture(p.bmp), glow: p.glow ? bitmapToTexture(p.glow) : null, w: p.bmp.w, h: p.bmp.h, def: p };
+  // PNG (arte nova) tem prioridade; w/h lógicos mantêm o tamanho no mundo
+  const img = propImage(name);
+  const bmp = img ? img.bmp : p.bmp;
+  const glow = img ? img.glow : p.glow;
+  const t = { map: bitmapToTexture(bmp), glow: glow ? bitmapToTexture(glow) : null, w: img ? img.w : bmp.w, h: img ? img.h : bmp.h, def: p };
   cache.propTex[name] = t;
   return t;
 }
@@ -52,7 +56,7 @@ export function fieldSheet(id) {
     if (!def) throw new Error('personagem desconhecido: ' + id);
     const code = buildFieldFrames(def);
     // sprites em PNG (SpriteCook) têm prioridade quando o ciclo está completo
-    const img = heroFieldImages(id, code, def.scale || 1);
+    const img = heroFieldImages(id, code, def.scale || 1) || npcFieldImages(id, code, def.scale || 1);
     cache.fieldSheets[id] = makeSheet(img ? img.frames : code);
     cache.fieldSheets[id].floats = !!def.floats;
     cache.fieldSheets[id].scale = img ? img.scale : def.scale || 1;

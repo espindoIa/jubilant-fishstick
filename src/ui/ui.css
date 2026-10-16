@@ -1059,3 +1059,50 @@ body {
     max-height: calc(100% - 140px - var(--safe-t) - var(--safe-b));
   }
 }
+
+/* celular: botão A pulsa quando há algo para interagir; joystick acende ao correr */
+.tbtn-a.ready {
+  border-color: #ffe27a;
+  animation: abtn 1s ease-in-out infinite;
+}
+@keyframes abtn {
+  50% {
+    box-shadow: 0 0 0 6px rgba(255, 226, 122, 0.25), 0 3px 10px rgba(0, 0, 0, 0.45);
+  }
+}
+.stick-knob.run {
+  background: radial-gradient(circle at 35% 35%, #fff, #ffe27a 60%, #d89a2a);
+}
+.tbtn {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* retrato: sugere girar o aparelho (o jogo foi feito para deitado) */
+.rotate-hint {
+  display: none;
+}
+@media (max-aspect-ratio: 3/4) and (pointer: coarse) {
+  .rotate-hint {
+    display: block;
+    position: fixed;
+    left: 50%;
+    top: calc(10px + var(--safe-t));
+    transform: translateX(-50%);
+    z-index: 50;
+    padding: 6px 12px;
+    border-radius: 14px;
+    background: rgba(10, 12, 40, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #ffe9a8;
+    font-size: 13px;
+    pointer-events: none;
+    white-space: nowrap;
+    animation: fadeout 6s 3s forwards;
+  }
+}
+@keyframes fadeout {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

@@ -13,7 +13,8 @@ try {
   /* fora do Vite: sem sprites em PNG */
 }
 
-const store = { heroes: {}, enemies: {} };
+const store = { heroes: {}, enemies: {}, npcs: {}, props: {}, portraits: {} };
+let propMeta = {};
 
 function loadImage(url) {
   return new Promise((resolve, reject) => {
@@ -38,18 +39,29 @@ function toBitmap(img) {
 }
 
 function parse(path) {
-  const m = path.match(/assets\/sprites\/(heroes|enemies)\/([^/]+)\/([^/]+)\.(png|json)$/);
+  const m = path.match(/assets\/sprites\/(heroes|enemies|npcs)\/([^/]+)\/([^/]+)\.(png|json)$/);
   return m ? { group: m[1], id: m[2], name: m[3] } : null;
 }
 
 // Carrega todas as imagens antes do jogo começar.
 export async function loadImageSprites() {
   for (const [path, meta] of Object.entries(METAS)) {
+    if (/sprites\/props\/meta\.json$/.test(path)) propMeta = meta;
     const p = parse(path);
     if (p) (store[p.group][p.id] ||= { frames: {} }).meta = meta;
   }
   await Promise.allSettled(
     Object.entries(PNGS).map(async ([path, url]) => {
+      const pr = path.match(/sprites\/portraits\/([^/]+)\/([^/]+)\.png$/);
+      if (pr) {
+        (store.portraits[pr[1]] ||= {})[pr[2]] = url;
+        return;
+      }
+      const pp = path.match(/sprites\/props\/([^/]+)\.png$/);
+      if (pp) {
+        store.props[pp[1]] = toBitmap(await loadImage(url));
+        return;
+      }
       const p = parse(path);
       if (!p) return;
       const bmp = toBitmap(await loadImage(url));
@@ -94,18 +106,113 @@ export function heroBattleImages(id, codeFrames, codeScale = 1) {
   return { frames, scale: (heightOf(codeFrames.idle) * codeScale) / h };
 }
 
+const GLOWS = /^(lobo|lodo|golem|aranha|cao_ferro|cao_ferro2|mago|drone|tita|crystal|crystalblue|mushglow|save|lamp|torch|fire0|fire1)$/;
+
+// Máscara emissiva (só as partes que brilham) para sprites sem quadro "glow".
+function makeGlow(src, id) {
+  if (!GLOWS.test(id)) return null;
+  const out = new Bitmap(src.w, src.h);
+  const violet = /lobo|lodo|golem|aranha|crystal$/.test(id);
+  const cyan = /crystalblue|mushglow|save|cao_ferro2/.test(id);
+  const strength = /^(lobo|lodo|golem|aranha|cao_ferro|cao_ferro2|mago|drone|tita)$/.test(id) ? 0.38 : 0.9;
+  let lit = 0;
+  for (let y = 0; y < src.h; y++) {
+    for (let x = 0; x < src.w; x++) {
+      const c = src.get(x, y);
+      if (!c || !c[3]) continue;
+      const [r, g, b] = c;
+      const on = violet ? b > 140 && b > g * 1.25 && r > 85
+        : cyan ? b > 170 && g > 140 && r < b * 0.85
+        : /mago/.test(id) ? g > 150 && g > r * 1.4
+        : r > 200 && g > 90 && b < g * 0.8;
+      if (on && (!/lodo/.test(id) || y < src.h * 0.45) && (id !== 'tita' || (x > src.w * 0.35 && x < src.w * 0.78 && y > src.h * 0.25 && y < src.h * 0.6))) {
+        out.set(x, y, [Math.round(r * strength), Math.round(g * strength), Math.round(b * strength), 255]);
+        lit++;
+      } else out.set(x, y, [0, 0, 0, 255]);
+    }
+  }
+  return lit ? out : null;
+}
+
+// "Respiração": a metade de cima sobe 1 pixel.
+function breathe(src, id) {
+  const out = new Bitmap(src.w, src.h);
+  const pivot = /goticula|lodo/.test(id) ? 0.6 : 0.72;
+  for (let y = 0; y < src.h; y++) {
+    for (let x = 0; x < src.w; x++) {
+      const c = src.get(x, Math.min(src.h - 1, y + (y < src.h * pivot ? 1 : 0)));
+      if (c && c[3]) out.set(x, y, c);
+    }
+  }
+  return out;
+}
+
+function pad(b, w, h) {
+  const out = new Bitmap(w, h);
+  out.blit(b, Math.floor((w - b.w) / 2), h - b.h - 2);
+  return out;
+}
+
 export function enemyImages(kind, codeIdle, codeScale = 1) {
   const s = store.enemies[kind];
   if (!s || !s.frames.idle) return null;
   const f = s.frames;
   const h = s.meta?.heightPx || heightOf(f.idle);  // aura/chamas contam na altura
-  return {
-    idle: f.idle,
-    alt: f.alt || f.idle,
-    glow: f.glow || null,
-    altGlow: f.altGlow || f.glow || null,
-    scale: (heightOf(codeIdle) * codeScale) / h,
-  };
+  const scale = (heightOf(codeIdle) * codeScale) / h;
+  if (f.alt) {
+    return { idle: f.idle, alt: f.alt, glow: f.glow || null, altGlow: f.altGlow || f.glow || null, scale };
+  }
+  // quadro único: gera respiração e brilho
+  const idle = pad(f.idle, f.idle.w + 8, f.idle.h + 8);
+  const alt = pad(breathe(f.idle, kind), idle.w, idle.h);
+  return { idle, alt, glow: f.glow || makeGlow(idle, kind), altGlow: makeGlow(alt, kind), scale };
+}
+
+// Passo de caminhada sintético: as pernas deslocam-se em contrafase.
+function walkFrame(src, phase, dir) {
+  const out = new Bitmap(src.w, src.h);
+  const cut = Math.floor(src.h * 0.72);
+  const mid = src.w / 2;
+  for (let y = 0; y < src.h; y++) {
+    for (let x = 0; x < src.w; x++) {
+      const prog = Math.max(0, (y - cut) / Math.max(1, src.h - cut));
+      const leg = Math.abs(x - mid) < src.w * 0.28;
+      const off = leg ? Math.round(prog * phase * (x < mid ? 1.6 : -1.6)) : 0;
+      const sx = dir === 'left' && leg ? x - Math.round(prog * phase) : x;
+      const c = src.get(sx, y - off);
+      if (c && c[3]) out.set(x, y, c);
+    }
+  }
+  return out;
+}
+
+// NPC: três poses (frente, costas, lado) viram o ciclo de campo completo.
+export function npcFieldImages(id, codeFrames, codeScale = 1) {
+  const s = store.npcs[id];
+  if (!s || !['down', 'up', 'left'].every((d) => s.frames[d])) return null;
+  const W = 72, H = 84;
+  const frames = {};
+  for (const [dir, p] of [['down', 'd'], ['up', 'u'], ['left', 'l']]) {
+    const b = s.frames[dir];
+    frames[p + '0'] = pad(b, W, H);
+    frames[p + '1'] = pad(walkFrame(b, 1, dir), W, H);
+    frames[p + '2'] = pad(walkFrame(b, -1, dir), W, H);
+  }
+  for (let i = 0; i < 3; i++) frames['r' + i] = frames['l' + i].flippedX();
+  return { frames, scale: (heightOf(codeFrames.d0) * codeScale) / heightOf(frames.d0) };
+}
+
+// Props em PNG (3x a densidade lógica): { bmp, glow, w, h } com tamanho lógico em px.
+export function propImage(id) {
+  const bmp = store.props[id];
+  if (!bmp) return null;
+  const m = propMeta[id] || {};
+  return { bmp, glow: makeGlow(bmp, id), w: m.logicalW || bmp.w, h: m.logicalH || bmp.h };
+}
+
+export function portraitImage(id, expr = 'neutral') {
+  const p = store.portraits[id];
+  return p ? p[expr] || p.neutral || null : null;
 }
 
 export function imageSpriteSummary() {

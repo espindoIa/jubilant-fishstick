@@ -145,13 +145,15 @@ function paintRoof(w, h, kind, seed = 1) {
         const n = valueNoise(x / 1.5, y / 4, seed);
         k = (y % 6 === 5 ? 3 : n > 0.6 ? 1 : n < 0.3 ? 3 : 2);
       } else {
-        // telhas em escama
-        const row = Math.floor(y / 5);
-        const off = (row % 2) * 3;
-        const lx = (x + off) % 6, ly = y % 5;
-        const curve = Math.abs(lx - 2.5) / 2.5;
-        k = ly === 4 || (ly === 3 && curve > 0.7) ? 4 : ly === 0 ? 1 : lx === 0 ? 3 : curve < 0.4 ? 1 : 2;
-        if (hash2(Math.floor((x + off) / 6), row, seed) > 0.9 && k < 3) k = Math.min(3, k + 1);
+        // telhas arredondadas sobrepostas: rejunte estreito, lábio quente e fundo frio
+        const row = Math.floor(y / 6), tx = (x + (row % 2) * 3.5 | 0) % 7, ty = y % 6;
+        const cell = Math.floor((x + (row % 2) * 3.5) / 7);
+        k = 2;
+        if (ty === 5 || tx === 0 || (ty > 4 && (tx < 1 || tx > 6))) k = 4;
+        else if (ty === 0 || (tx === 1 && ty < 5)) k = 1;
+        else if (tx > 5 || ty > 4) k = 3;
+        else if (tx < 3 && ty < 4) k = 1 + (hash2(cell, row, seed + 5) > 0.5 ? 1 : 0);
+        if (hash2(cell, row, seed) > 0.8 && ty > 1 && ty < 4 && tx > 2 && tx < 5) k = Math.min(3, k + 1);
       }
       // luz: topo mais claro
       if (y < 2) k = Math.max(0, k - 1);
@@ -247,6 +249,7 @@ export function buildHouse(spec, base) {
     g.add(cm);
     g.userData.chimney = new THREE.Vector3(x + w - 0.8, topY + 0.6, y + d / 2 - 0.4);
   }
+  addHouseDetails(g, spec, base, topY, wallH);
   g.traverse((o) => {
     if (o.isMesh) {
       o.castShadow = true;
@@ -255,6 +258,38 @@ export function buildHouse(spec, base) {
   });
   g.userData.windowMats = [fm.material, sideMat];
   return g;
+}
+
+// Fundação de pedra, beirais, vigas de canto, peitoris, degrau e cumeeira em telhas.
+function addHouseDetails(g, spec, base, topY, wallH) {
+  const { x, y, w, d } = spec;
+  const z = y;
+  const M = (c) => new THREE.MeshLambertMaterial({ color: c });
+  const timber = M('#594638'), edge = M('#a88664'), stone = M('#99928a');
+  const box = (bw, bh, bd, bx, by, bz, m, name) => {
+    const me = new THREE.Mesh(new THREE.BoxGeometry(bw, bh, bd), m);
+    me.position.set(bx, by, bz);
+    me.name = name;
+    g.add(me);
+    return me;
+  };
+  box(w + 0.12, 0.2, d + 0.12, x + w / 2, base + 0.1, z + d / 2, stone, 'stone-foundation');
+  for (const zz of [z - 0.33, z + d + 0.33]) {
+    box(w + 0.8, 0.17, 0.18, x + w / 2, base + wallH - 0.02, zz, timber, 'roof-fascia');
+    box(w + 0.83, 0.045, 0.2, x + w / 2, base + wallH + 0.08, zz, edge, 'eave-highlight');
+  }
+  if (['plaster', 'wood', 'dark'].includes(spec.wall || 'plaster')) {
+    for (const xx of [x + 0.04, x + w - 0.04]) box(0.13, wallH - 0.2, 0.13, xx, base + wallH / 2 + 0.1, z + d + 0.035, timber, 'corner-post');
+  }
+  for (const wx of spec.windows || []) {
+    const cx = x + wx + 0.5;
+    const cy = base + wallH - (Math.max(6, Math.floor((wallH * 16) / 2) - 8) + 6) / 16;
+    box(1.12, 0.13, 0.24, cx, cy - 0.43, z + d + 0.09, edge, 'window-sill');
+    box(1.05, 0.1, 0.16, cx, cy + 0.44, z + d + 0.07, timber, 'window-lintel');
+  }
+  if (spec.door !== undefined && spec.door !== null) box(1.16, 0.12, 0.38, x + spec.door + 0.5, base + 0.05, z + d + 0.14, stone, 'doorstep');
+  const capMat = M((ROOFS[spec.roof || 'red'] || ROOFS.red)[2]);
+  for (let xx = x - 0.28; xx < x + w + 0.3; xx += 0.55) box(0.5, 0.12, 0.3, xx + 0.25, topY + 0.12, z + d / 2, capMat, 'ridge-cap');
 }
 
 function gableGeometry(d, rise) {
@@ -332,6 +367,29 @@ export function buildLighthouse(spec, base) {
     g.userData.update = (t) => {
       pivot.rotation.y = t * 0.6;
     };
+  }
+  {
+    const iron = new THREE.MeshLambertMaterial({ color: '#3c4355' }), brass = new THREE.MeshLambertMaterial({ color: '#c4aa78' });
+    const cx = spec.x + 0.5, cz = spec.y + 0.5;
+    const ledge = new THREE.Mesh(new THREE.CylinderGeometry(1.48, 1.38, 0.15, 20), iron);
+    ledge.position.set(cx, base + H + 0.25, cz);
+    g.add(ledge);
+    for (let j = 0; j < 16; j++) {
+      const a = (j * Math.PI) / 8, xx = cx + Math.cos(a) * 1.35, zz = cz + Math.sin(a) * 1.35;
+      const post = new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.48, 0.055), iron);
+      post.position.set(xx, base + H + 0.54, zz);
+      g.add(post);
+      const rail = new THREE.Mesh(new THREE.BoxGeometry(0.56, 0.065, 0.065), brass);
+      rail.position.set(xx, base + H + 0.79, zz);
+      rail.rotation.y = -a + Math.PI / 2;
+      g.add(rail);
+    }
+    for (let j = 0; j < 8; j++) {
+      const a = (j * Math.PI) / 4;
+      const mul = new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.95, 0.055), iron);
+      mul.position.set(cx + Math.cos(a) * 0.76, base + H + 0.76, cz + Math.sin(a) * 0.76);
+      g.add(mul);
+    }
   }
   g.userData.lightPos = new THREE.Vector3(spec.x + 0.5, base + H + 0.8, spec.y + 0.5);
   return g;
