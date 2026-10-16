@@ -17,9 +17,9 @@ import { updateOcclusion } from '../render/occlusion.js';
 const HERO_SLOTS = [[2.8, -2.1], [4.4, -0.6], [2.8, 0.9], [4.4, 2.4]];
 const ENEMY_SLOTS = {
   1: [[-3.4, 0.1]],
-  2: [[-3.6, -1.2], [-2.8, 1.4]],
-  3: [[-4.2, -1.8], [-2.6, 0.1], [-4.2, 2.0]],
-  4: [[-4.6, -1.9], [-2.6, -0.8], [-4.6, 1.1], [-2.6, 2.2]],
+  2: [[-3.5, -1.5], [-2.6, 0.8]],
+  3: [[-4.1, -2.2], [-2.5, -0.6], [-3.7, 1.1]],
+  4: [[-4.6, -2.3], [-2.6, -1.3], [-4.3, 0.4], [-2.4, 1.3]],
 };
 const STATUS_NAMES = { veneno: 'Veneno', sono: 'Sono', lento: 'Lento' };
 const STATUS_ICONS = { veneno: '☠', sono: '💤', lento: '🐌' };
@@ -65,9 +65,11 @@ export class Battle {
     const M = W.map.margin;
     this.center = new THREE.Vector3(M + ARENA_W / 2, W.groundHeight(M + ARENA_W / 2, M + 6) || 1, M + 6.2);
     this.stage.pitchOverride = THREE.MathUtils.degToRad(36);
-    this.stage.zoom = 0.95;
+    // chefes grandes: câmera mais afastada para caber o sprite inteiro
+    const bigBoss = this.formation.some((k) => (enemySheet(k).fh || 0) > 60);
+    this.stage.zoom = bigBoss ? 1.22 : 0.98;
     updateOcclusion(this.stage, null, false);
-    this.stage.setCameraTarget(this.center.clone().add(new THREE.Vector3(0, 0.8, 0)), true);
+    this.stage.setCameraTarget(this.center.clone().add(new THREE.Vector3(0, bigBoss ? 1.6 : 0.8, 0.9)), true);
     this.effects = new Effects(W.group, this.stage);
 
     // heróis
@@ -196,6 +198,7 @@ export class Battle {
         const o = this._tagPos?.[j];
         if (o && Math.abs(o.x - p.x) < 150 && Math.abs(o.y - py) < 46) py = o.y + 48;
       }
+      py = Math.max(64, py);
       (this._tagPos ||= [])[i] = { x: p.x, y: py };
       t.style.left = p.x + 'px';
       t.style.top = py + 'px';
@@ -425,6 +428,15 @@ export class Battle {
       this.closeCmd();
       const win = h('div', 'win battle-cmd');
       win.appendChild(h('div', 'title', title));
+      if (!opts.noCancel) {
+        const back = h('div', 'menu-close', '↩');
+        back.title = 'Voltar';
+        back.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.ui.dispatch('cancel');
+        });
+        win.appendChild(back);
+      }
       const desc = h('div', 'desc', '');
       this.ui.root.appendChild(win);
       this.cmdWin = win;
@@ -700,6 +712,13 @@ export class Battle {
     c.atb = 0;
   }
 
+  // distância de parada do avanço: metade da largura visível do alvo + folga
+  reach(c, t) {
+    const tw = (t.actor.sheet.fw / 16) * (t.actor.group.scale.x || 1);
+    const visible = t.side === 'enemy' ? tw * 0.42 : 0.5;
+    return visible + (c.side === 'hero' ? 1.0 : 0.9);
+  }
+
   async lunge(c, target, dist = 1.4) {
     const a = c.actor;
     const from = c.home.clone();
@@ -740,7 +759,7 @@ export class Battle {
     if (name) this.banner(name, 900);
     c.anim = true;
     c.actor.setFrame('windup');
-    const back = await this.lunge(c, t, c.side === 'hero' ? 1.5 : 1.2);
+    const back = await this.lunge(c, t, this.reach(c, t));
     for (let i = 0; i < hits; i++) {
       if (t.hp <= 0) break;
       c.actor.setFrame('attack');
@@ -1091,7 +1110,7 @@ export class Battle {
       } else {
         const t = this.pickHeroTarget();
         if (!t) return;
-        const back = await this.lunge(c, t, 1.5);
+        const back = await this.lunge(c, t, this.reach(c, t));
         for (let i = 0; i < (s.hits || 1); i++) {
           if (t.hp <= 0) break;
           this.effects.play(s.fx || 'slash', t.actor.position);

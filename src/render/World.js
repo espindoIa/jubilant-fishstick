@@ -253,6 +253,27 @@ export function buildWorld(srcMap, opts = {}) {
     if (o.name === 'water') o.renderOrder = 2;
   });
 
+  // feixes de luz (god rays) atravessando a copa das árvores
+  const nShafts = dyn.shafts ?? map.shafts ?? 0;
+  if (nShafts) {
+    const tex = shaftTexture();
+    const inner = map.inner;
+    for (let i = 0; i < nShafts; i++) {
+      const x = inner.x0 + 2 + hash2(i, 7, 91) * (inner.x1 - inner.x0 - 4);
+      const z = inner.y0 + 2 + hash2(i, 8, 92) * (inner.y1 - inner.y0 - 4);
+      const h = groundHeight(map, Math.floor(x), Math.floor(z)) ?? 0;
+      const mat = new THREE.MeshBasicMaterial({ map: tex, color: new THREE.Color(map.shaftColor || '#fff2c0'), transparent: true, opacity: 0.16, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false });
+      const w = 1 + hash2(i, 9, 93) * 1.4;
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(w, 10), mat);
+      m.position.set(x, h + 5, z);
+      m.rotation.z = 0.38;
+      m.renderOrder = 4;
+      root.add(m);
+      const ph = hash2(i, 10, 94) * 6;
+      updaters.push((dt, t) => (mat.opacity = 0.09 + Math.sin(t * 0.4 + ph) * 0.06));
+    }
+  }
+
   return {
     map,
     group: root,
@@ -272,3 +293,27 @@ export function smoothHeight(map, x, z) {
 }
 
 export { cellMat, cellH };
+
+let _shaft = null;
+function shaftTexture() {
+  if (_shaft) return _shaft;
+  const c = document.createElement('canvas');
+  c.width = 32;
+  c.height = 128;
+  const g = c.getContext('2d');
+  const grd = g.createLinearGradient(0, 0, 0, 128);
+  grd.addColorStop(0, 'rgba(255,255,255,0.9)');
+  grd.addColorStop(0.7, 'rgba(255,255,255,0.35)');
+  grd.addColorStop(1, 'rgba(255,255,255,0)');
+  g.fillStyle = grd;
+  g.fillRect(0, 0, 32, 128);
+  // bordas suaves
+  const img = g.getImageData(0, 0, 32, 128);
+  for (let y = 0; y < 128; y++) for (let x = 0; x < 32; x++) {
+    const k = Math.sin((x / 31) * Math.PI);
+    img.data[(y * 32 + x) * 4 + 3] *= k;
+  }
+  g.putImageData(img, 0, 0);
+  _shaft = new THREE.CanvasTexture(c);
+  return _shaft;
+}

@@ -15,9 +15,9 @@ import {
 } from 'postprocessing';
 
 export const QUALITY = {
-  high: { pixelRatio: 2, shadows: 2048, dof: true, bloom: true },
-  medium: { pixelRatio: 1.5, shadows: 1024, dof: 'tilt', bloom: true },
-  low: { pixelRatio: 1, shadows: 0, dof: false, bloom: false },
+  high: { pixelRatio: 2, shadows: 2048, dof: true, bloom: true, lights: 8 },
+  medium: { pixelRatio: 1.5, shadows: 1024, dof: 'tilt', bloom: true, lights: 6 },
+  low: { pixelRatio: 1, shadows: 0, dof: false, bloom: false, lights: 4 },
 };
 
 export function detectQuality() {
@@ -38,7 +38,12 @@ export class Stage {
       stencil: false,
       depth: true,
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, this.q.pixelRatio));
+    this.maxPR = Math.min(window.devicePixelRatio || 1, this.q.pixelRatio);
+    this.pr = this.maxPR;
+    renderer.setPixelRatio(this.pr);
+    this.perf = { acc: 0, frames: 0, t: 0 };
+    // parâmetro ?q= (testes) fixa a qualidade e desliga a adaptação
+    this.noAdapt = new URLSearchParams(location.search).has('q');
     renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.NoToneMapping;
     renderer.shadowMap.enabled = this.q.shadows > 0;
@@ -77,7 +82,7 @@ export class Stage {
 
     // pool fixo de luzes pontuais (evita recompilar shaders)
     this.pointLights = [];
-    for (let i = 0; i < 8; i++) {
+    for (let i = 0; i < this.q.lights; i++) {
       const l = new THREE.PointLight('#ffb060', 0, 6, 1.6);
       l.castShadow = false;
       this.scene.add(l);
@@ -249,6 +254,27 @@ export class Stage {
 
   render(dt) {
     this.composer.render(dt);
+    this.adaptResolution(dt);
+  }
+
+  // resolução dinâmica: mantém a fluidez em celulares mais fracos
+  adaptResolution(dt) {
+    const p = this.perf;
+    p.acc += dt;
+    p.frames++;
+    p.t += dt;
+    if (p.t < 2.5 || this.noAdapt) return;
+    const avg = p.acc / p.frames;
+    p.acc = p.frames = p.t = 0;
+    if (document.hidden) return;
+    let next = this.pr;
+    if (avg > 1 / 42 && this.pr > 0.7) next = Math.max(0.7, this.pr - 0.15);
+    else if (avg < 1 / 57 && this.pr < this.maxPR) next = Math.min(this.maxPR, this.pr + 0.1);
+    if (Math.abs(next - this.pr) > 0.01) {
+      this.pr = next;
+      this.renderer.setPixelRatio(next);
+      this.resize();
+    }
   }
 }
 

@@ -9,8 +9,11 @@
     "build": "vite build",
     "preview": "vite preview --host",
     "art": "node tools/preview-art.mjs",
+    "test": "node tools/check-art.mjs",
+    "icons": "node tools/make-icons.mjs",
+    "build:single": "SINGLE=1 vite build",
     "shot": "node tools/screenshot.mjs",
-    "test": "node tools/smoke-test.mjs"
+    "play": "node tools/play.mjs"
   },
   "dependencies": {
     "@fontsource/dotgothic16": "^5.3.1",

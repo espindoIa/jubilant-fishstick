@@ -304,6 +304,7 @@ export class Field {
     if (!this.cameraLocked) this.stage.setCameraTarget(this.focusPoint());
     for (const u of this.world.updaters) u(dt, this.time);
     updateOcclusion(this.stage, this.player.position, this.game.mode !== 'battle');
+    this.updateHint();
   }
 
   pushTrail() {
@@ -447,6 +448,55 @@ export class Field {
     const [dx, dz] = DIRS[this.player.facing];
     const p = this.player.position;
     return { x: p.x + dx * dist, z: p.z + dz * dist };
+  }
+
+  // encontra o que está à frente do jogador (para interagir ou mostrar dica)
+  findInteractable() {
+    const f = this.facingPoint(0.85);
+    const p = this.player.position;
+    let best = null, bd = 1.1;
+    for (const n of this.npcs.values()) {
+      if (!n.talk) continue;
+      const q = n.actor.position;
+      const d = Math.hypot(q.x - f.x, q.z - f.z);
+      if (d < bd) {
+        bd = d;
+        best = { kind: 'npc', x: q.x, y: q.y + 2.3, z: q.z };
+      }
+    }
+    if (best) return best;
+    for (const c of this.chests) {
+      if (!c.opened && Math.hypot(c.x + 0.5 - f.x, c.y + 0.6 - f.z) < 0.85) return { kind: 'chest', x: c.x + 0.5, y: this.hAt(c.x + 0.5, c.y + 0.6) + 1.3, z: c.y + 0.6 };
+    }
+    for (const o of this.map.interactables || []) {
+      const ox = o.x + 0.5 + (o.ox || 0), oz = o.y + 0.5 + (o.oz || 0);
+      if (o.cond && !o.cond(this.state)) continue;
+      if (Math.hypot(ox - f.x, oz - f.z) < (o.r || 0.9) || Math.hypot(ox - p.x, oz - p.z) < (o.r || 0.9) * 0.8) return { kind: 'obj', x: ox, y: this.hAt(ox, oz) + 1.8, z: oz };
+    }
+    return null;
+  }
+
+  updateHint() {
+    const target = !this.locked && this.game.mode === 'field' && !this.game.ui.busy ? this.findInteractable() : null;
+    if (!this.hintEl) {
+      this.hintEl = document.createElement('div');
+      this.hintEl.className = 'interact-hint';
+      this.hintEl.textContent = '!';
+      this.game.uiRoot.appendChild(this.hintEl);
+      this.hintEl.addEventListener('pointerdown', (e) => {
+        e.stopPropagation();
+        this.game.input.press('confirm');
+      });
+    }
+    if (!target) {
+      this.hintEl.style.display = 'none';
+      return;
+    }
+    const v = new THREE.Vector3(target.x, target.y, target.z).project(this.stage.camera);
+    this.hintEl.style.display = '';
+    this.hintEl.textContent = target.kind === 'chest' ? '✦' : target.kind === 'npc' ? '💬' : '!';
+    this.hintEl.style.left = ((v.x + 1) / 2) * window.innerWidth + 'px';
+    this.hintEl.style.top = ((1 - v.y) / 2) * window.innerHeight + 'px';
   }
 
   interact() {

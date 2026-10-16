@@ -47,8 +47,12 @@ export class Menu {
       this.infoWin = h('div', 'win menu-info');
       this.main = h('div', 'win menu-main');
       root.append(this.tabsWin, this.main, this.infoWin);
+      // ✕ funciona como "voltar": cancela o submenu ativo (ou fecha o menu)
       const close = h('div', 'menu-close', '✕');
-      close.addEventListener('click', () => this.close());
+      close.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.ui.dispatch('cancel');
+      });
       this.main.appendChild(close);
       this.renderInfo();
       const tabs = [
@@ -81,7 +85,8 @@ export class Menu {
     this.infoWin.innerHTML = `
       <div>💰 <span style="color:var(--gold)">${this.st.gold}</span> moedas</div>
       <div>⏱ ${formatTime(this.st.playTime)}</div>
-      <div style="color:var(--muted)">📍 ${map?.name || ''}</div>`;
+      <div style="color:var(--muted)">📍 ${map?.name || ''}</div>
+      ${this.st.flags.objetivo ? `<div style="margin-top:6px;color:var(--gold)">★ ${this.st.flags.objetivo}</div>` : ''}`;
   }
 
   clearMain() {

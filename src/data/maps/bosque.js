@@ -67,6 +67,8 @@ export default {
   music: 'forest',
   atmosphere: 'forest',
   particles: ['fireflies', 'motes'],
+  shafts: 9,
+  shaftColor: '#fff0b8',
   battleBg: 'forest',
   objects: [],
   props: [],

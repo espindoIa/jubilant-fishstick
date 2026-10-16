@@ -63,6 +63,8 @@ export default {
   music: 'cave',
   atmosphere: 'cave',
   particles: ['sparkles'],
+  shafts: 4,
+  shaftColor: '#b0a0ff',
   battleBg: 'cave',
   objects: [],
   props: [

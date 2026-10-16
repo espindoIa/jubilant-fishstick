@@ -142,15 +142,15 @@ export class Game {
     this.state = new GameState();
     const settings = GameState.loadSettings();
     if (settings) Object.assign(this.state.settings, settings);
-    this.state.addHero('lio', 1);
+    const start = this.params.get('start');
+    const party = start && MAPS[start] ? (this.params.get('party') || 'lio').split(',') : ['lio'];
+    const lv = start ? +(this.params.get('lv') || 3) : 1;
+    for (const id of party) this.state.addHero(id, lv);
     this.state.gold = 60;
     this.state.addItem('pocao', 3);
     this.state.addItem('antidoto', 1);
-    const start = this.params.get('start');
     if (start && MAPS[start]) {
-      // atalho de depuração: ?start=mapa&party=lio,sena
-      const party = (this.params.get('party') || 'lio').split(',');
-      for (const id of party) this.state.addHero(id, +(this.params.get('lv') || 3));
+      // atalho de depuração: ?start=mapa&party=lio,sena&lv=5
       for (const f of (this.params.get('flags') || '').split(',').filter(Boolean)) this.state.set(f);
       await this.changeMap(start, this.params.get('spawn') || undefined);
       return;
@@ -223,6 +223,7 @@ export class Game {
     const { Battle } = await import('../battle/Battle.js');
     const prev = this.mode;
     this.touch.show(false);
+    if (this.field.hintEl) this.field.hintEl.style.display = 'none';
     this.mode = 'transition';
     this.sfx('encounter');
     await this.encounterTransition();

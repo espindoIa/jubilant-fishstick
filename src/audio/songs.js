@@ -98,13 +98,13 @@ export const SONGS = {
     prog: 'intro G A | A: D A/C# Bm F#m/A G D/F# Em7 Asus4-A | A2: D A/C# Bm Bm/A G D/F# Em7-A7 D | B: Gmaj7 F#m7 Em7 A7 Gmaj7 F#m7 Bm7-E7 Asus4-A',
     echo: { beats: 0.75, fb: 0.35, wet: 0.3, lp: 2600 },
     ch: {
-      lead: { inst: 'flute', vol: 1, echo: 0.35, rev: 0.3, intro: bars(rep(2, 'r:4')), loop: bars(LEIT_A, LEIT_A2, LEIT_B) },
-      counter: { inst: 'strings', vol: 0.55, pan: -0.3, echo: 0.15, rev: 0.3, intro: bars(rep(2, 'r:4')), loop: bars(rep(8, 'r:4'), LEIT_CA2, LEIT_CB) },
-      harp: { inst: 'harp', vol: 0.55, pan: 0.35, echo: 0.3, rev: 0.25, intro: bars(harpBar('Gmaj7'), harpBar('A')), loop: bars(LEIT_HARP_A, LEIT_HARP_A2, LEIT_HARP_B) },
-      pad: { inst: 'pad', vol: 0.8, pan: -0.15, rev: 0.35, intro: bars('F#3+B3+D4:4', 'E3+A3+C#4:4'), loop: bars(LEIT_PAD_A, LEIT_PAD_A2, LEIT_PAD_B) },
+      lead: { inst: 'flute', vol: 0.85, echo: 0.35, rev: 0.3, intro: bars(rep(2, 'r:4')), loop: bars(LEIT_A, LEIT_A2, LEIT_B) },
+      counter: { inst: 'strings', vol: 0.8, pan: -0.3, echo: 0.15, rev: 0.3, intro: bars(rep(2, 'r:4')), loop: bars(rep(8, 'r:4'), LEIT_CA2, LEIT_CB) },
+      harp: { inst: 'harp', vol: 0.8, pan: 0.35, echo: 0.3, rev: 0.25, intro: bars(harpBar('Gmaj7'), harpBar('A')), loop: bars(LEIT_HARP_A, LEIT_HARP_A2, LEIT_HARP_B) },
+      pad: { inst: 'pad', vol: 1.05, pan: -0.15, rev: 0.35, intro: bars('F#3+B3+D4:4', 'E3+A3+C#4:4'), loop: bars(LEIT_PAD_A, LEIT_PAD_A2, LEIT_PAD_B) },
       bass: { inst: 'softbass', vol: 0.8, rev: 0.05, intro: bars('G2:4', 'A2:4'), loop: bars(LEIT_BASS_A, LEIT_BASS_A2, LEIT_BASS_B) },
       bell: {
-        inst: 'glock', vol: 0.45, pan: 0.45, echo: 0.5, rev: 0.4, intro: bars('r:4', 'r:2 E6:1 C#6:1'),
+        inst: 'glock', vol: 0.6, pan: 0.45, echo: 0.5, rev: 0.4, intro: bars('r:4', 'r:2 E6:1 C#6:1'),
         loop: bars('r:4', 'r:4', 'r:4', 'r:3 C#6:1', 'r:4', 'r:4', 'r:4', 'r:2 E6:1 A6:1',
           'r:4', 'r:4', 'r:4', 'r:3 F#6:1', 'r:4', 'r:4', 'r:4', 'r:2 A5:1 D6:1',
           'r:4', 'r:4', 'r:4', 'r:2 C#6:1 E6:1', 'r:4', 'r:4', 'r:4', 'r:2 E6:1 C#6:1'),
@@ -146,9 +146,9 @@ export const SONGS = {
       echo: { beats: 0.5, fb: 0.25, wet: 0.22, lp: 2800 },
       ch: {
         lead: { inst: 'accordion', vol: 1.6, pan: 0.05, echo: 0.2, rev: 0.2, loop: bars(A, A2, B, A2) },
-        flute: { inst: 'flute', vol: 0.45, pan: -0.35, echo: 0.3, rev: 0.25, loop: bars(FA, FA2, FB, FA2) },
-        guitar: { inst: 'guitar', vol: 0.5, pan: 0.3, strum: 0.012, echo: 0.1, rev: 0.15, loop: bars(gA, gA2, gB, gA2) },
-        bass: { inst: 'bass', vol: 0.65, loop: bars(bA, bA2, bB, bA2) },
+        flute: { inst: 'flute', vol: 0.3, pan: -0.35, echo: 0.3, rev: 0.25, loop: bars(FA, FA2, FB, FA2) },
+        guitar: { inst: 'guitar', vol: 1.5, pan: 0.3, strum: 0.012, echo: 0.1, rev: 0.15, loop: bars(gA, gA2, gB, gA2) },
+        bass: { inst: 'bass', vol: 0.55, loop: bars(bA, bA2, bB, bA2) },
         drums: { inst: 'drums', vol: 0.5, pan: -0.1, rev: 0.1, loop: bars(drum8, drum8, drum8, drum8) },
         bell: { inst: 'glock', vol: 0.35, pan: 0.5, echo: 0.5, rev: 0.4, loop: bars('r:1.5 D6:.5? G6:.5? r:.5', 'r:2 B6:.5? r:.5') },
       },
@@ -183,10 +183,10 @@ export const SONGS = {
       prog: 'Dm9 G6/D Dm9 G6/D Fmaj7 C/E Bbmaj7 Asus4-A7 | Dm9 G6/D Dm9 G6/D Bbmaj7 C Asus4 A7',
       echo: { beats: 0.75, fb: 0.45, wet: 0.38, lp: 2200 },
       ch: {
-        lead: { inst: 'flute', vol: 1, pan: 0.1, echo: 0.45, rev: 0.3, intro: bars(rep(2, 'r:4')), loop: bars(lead) },
+        lead: { inst: 'flute', vol: 0.85, pan: 0.1, echo: 0.45, rev: 0.3, intro: bars(rep(2, 'r:4')), loop: bars(lead) },
         harp: { inst: 'harp', vol: 0.55, pan: -0.3, echo: 0.3, rev: 0.25, intro: bars(seq(H.Dm9), seq(H.G6)), loop: bars(prog.map((c) => seq(H[c]))) },
-        counter: { inst: 'strings', vol: 0.45, pan: -0.4, echo: 0.2, rev: 0.35, intro: bars(rep(2, 'r:4')), loop: bars(counter) },
-        pad: { inst: 'pad', vol: 0.75, pan: 0.2, rev: 0.4, intro: bars(P.Dm9, P.G6), loop: bars(prog.map((c) => P[c])) },
+        counter: { inst: 'strings', vol: 0.6, pan: -0.4, echo: 0.2, rev: 0.35, intro: bars(rep(2, 'r:4')), loop: bars(counter) },
+        pad: { inst: 'pad', vol: 1.0, pan: 0.2, rev: 0.4, intro: bars(P.Dm9, P.G6), loop: bars(prog.map((c) => P[c])) },
         bass: { inst: 'softbass', vol: 0.75, intro: bars('D2:4', 'D2:4'), loop: bars(prog.map((c) => B[c])) },
         fireflies: {
           inst: 'glock', vol: 0.4, pan: 0.5, echo: 0.6, rev: 0.45, intro: bars(rep(2, 'r:4')),
@@ -226,7 +226,7 @@ export const SONGS = {
         pad: { inst: 'choir', vol: 0.8, pan: -0.2, rev: 0.5, loop: bars(prog.map((c) => P[c])) },
         harp: { inst: 'harp', vol: 0.4, pan: -0.4, echo: 0.5, rev: 0.4, loop: bars(prog.map((c) => seq(H[c], 1))) },
         bass: { inst: 'softbass', vol: 0.65, rev: 0.2, loop: bars(prog.map((c) => B[c])) },
-        drops: { inst: 'drop', vol: 0.6, pan: 0.5, echo: 0.7, rev: 0.5, loop: bars('r:2.5 B5:.5? r:1', 'r:1 E6:.5? r:1.5 G5:.5? r:.5') },
+        drops: { inst: 'drop', vol: 1.1, pan: 0.5, echo: 0.7, rev: 0.5, loop: bars('r:2.5 B5:.5? r:1', 'r:1 E6:.5? r:1.5 G5:.5? r:.5') },
       },
     };
   })(),
@@ -269,7 +269,7 @@ export const SONGS = {
       echo: { beats: 0.25, fb: 0.2, wet: 0.18, lp: 2400 },
       ch: {
         lead: { inst: 'brass', vol: 1, pan: 0.05, echo: 0.2, rev: 0.2, intro: 'r:4', loop: bars(A, A2, B) },
-        fife: { inst: 'fife', vol: 0.75, pan: 0.4, echo: 0.3, rev: 0.2, intro: 'r:4', loop: bars(rep(8, 'r:4'), fifeA2, fifeB) },
+        fife: { inst: 'fife', vol: 1.1, pan: 0.4, echo: 0.3, rev: 0.2, intro: 'r:4', loop: bars(rep(8, 'r:4'), fifeA2, fifeB) },
         stab: { inst: 'stab', vol: 0.8, pan: -0.25, rev: 0.15, intro: 'r:4', loop: bars(stA, stA2, stB) },
         bass: { inst: 'bass', vol: 0.8, intro: 'C2:1 r:3', loop: bars(bA, bA2, bB) },
         timp: { inst: 'timp', vol: 0.7, pan: -0.3, rev: 0.25, intro: 'r:4', loop: bars(timp, timp, rep(8, 'r:4')) },
@@ -323,7 +323,7 @@ export const SONGS = {
         lead: { inst: 'lead', vol: 1.3, pan: 0.05, echo: 0.25, rev: 0.15, intro: bars('r:4', 'E5:.5 F5:.5 F#5:.5 G5:.5 G#5:2'), loop: bars(A, B, C) },
         counter: { inst: 'brass', vol: 0.6, pan: -0.35, echo: 0.15, rev: 0.2, intro: bars('r:4', 'r:2 B4:2'), loop: bars(counter) },
         comp: {
-          inst: 'comp', vol: 0.6, pan: 0.35, rev: 0.1, intro: bars('r:4', 'r:4'),
+          inst: 'comp', vol: 1.3, pan: 0.35, rev: 0.1, intro: bars('r:4', 'r:4'),
           loop: bars(['Am', 'F', 'G', 'E', 'Am', 'F', 'G', 'E', 'F', 'G', 'Em', 'Am', 'Dm', 'G', 'Es', 'E'].map(off), ['Am', 'Am', 'F', 'F', 'Dm', 'E', 'F', 'E7'].map(stab)),
         },
         bass: {
@@ -414,7 +414,7 @@ export const SONGS = {
       ch: {
         fan: { inst: 'fanfare', vol: 1, pan: 0.1, echo: 0.2, rev: 0.25, intro: bars('G4:1/3 C5:1/3 E5:1/3 G5:1.5 E5:.5 G5:1', 'C5:.5 Eb5:.5 Ab5:1 D5:.5 F5:.5 Bb5:1', 'C6:3 r:1'), loop: bars(rep(8, 'r:4')) },
         fan2: { inst: 'brass', vol: 0.75, pan: -0.25, echo: 0.15, rev: 0.25, intro: bars('E4:1/3 G4:1/3 C5:1/3 E5:1.5 C5:.5 E5:1', 'Ab4:.5 C5:.5 Eb5:1 Bb4:.5 D5:.5 F5:1', 'G5:3 r:1'), loop: bars(rep(8, 'r:4')) },
-        lead: { inst: 'flute', vol: 0.95, pan: 0.05, echo: 0.3, rev: 0.25, intro: bars(rep(3, 'r:4')), loop: bars(VL) },
+        lead: { inst: 'flute', vol: 0.8, pan: 0.05, echo: 0.3, rev: 0.25, intro: bars(rep(3, 'r:4')), loop: bars(VL) },
         harp: { inst: 'harp', vol: 0.55, pan: 0.35, echo: 0.25, rev: 0.25, intro: bars(rep(3, 'r:4')), loop: bars(prog.map((c) => seq(H[c]))) },
         pad: { inst: 'pad', vol: 0.7, pan: -0.2, rev: 0.35, intro: bars('C4+E4+G4:4', 'C4+Eb4+Ab4:2 D4+F4+Bb4:2', 'C4+E4+G4:3 r:1'), loop: bars(prog.map((c) => P[c])) },
         bass: { inst: 'bass', vol: 0.7, intro: bars('C3:1 r:1 C3:1 r:1', 'Ab2:2 Bb2:2', 'C3:3 r:1'), loop: bars(bass) },
@@ -459,7 +459,7 @@ export const SONGS = {
       ch: {
         lead: { inst: 'strings', vol: 1.4, pan: 0.05, echo: 0.3, rev: 0.4, loop: bars(L) },
         viola: { inst: 'strings', vol: 0.6, pan: -0.35, echo: 0.15, rev: 0.4, loop: bars(viola) },
-        piano: { inst: 'piano', vol: 0.6, pan: 0.3, echo: 0.2, rev: 0.3, loop: bars(prog.map((c) => seq(H[c]))) },
+        piano: { inst: 'piano', vol: 0.8, pan: 0.3, echo: 0.2, rev: 0.3, loop: bars(prog.map((c) => seq(H[c]))) },
         pad: { inst: 'pad', vol: 0.75, pan: -0.15, rev: 0.4, loop: bars(prog.map((c) => P[c])) },
         bass: { inst: 'softbass', vol: 0.7, rev: 0.1, loop: bars(bass) },
       },

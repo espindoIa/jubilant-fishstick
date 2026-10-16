@@ -105,7 +105,7 @@ export const PATCHES = {
   // Harpa dedilhada.
   harp: { wave: 'harp', gain: 0.24, a: 0.003, ring: true, d: 1.7, lp: 1700, fenv: 2.6, fd: 0.3, kt: 0.6, poly: 4 },
   // Violão (corda de nylon): dente-de-serra com filtro que fecha rápido.
-  guitar: { wave: 'sawtooth', gain: 0.11, a: 0.003, ring: true, d: 0.7, lp: 950, fenv: 3.2, fd: 0.1, q: 1.4, kt: 0.4, poly: 6 },
+  guitar: { wave: 'sawtooth', gain: 0.11, a: 0.003, ring: true, d: 0.7, lp: 1300, fenv: 3.2, fd: 0.1, q: 1.4, kt: 0.4, poly: 6 },
   // Piano simples (pluck harmônico longo).
   piano: { wave: 'piano', gain: 0.2, a: 0.004, ring: true, d: 2.4, lp: 2300, fenv: 2, fd: 0.45, kt: 0.5, poly: 5 },
   // Celesta / caixinha de música: fundamental + parcial 4x que some rápido.
@@ -129,7 +129,7 @@ export const PATCHES = {
   // Órgão (drawbars).
   organ: { wave: 'organ', gain: 0.09, a: 0.006, d: 0.25, s: 0.85, r: 0.06, lp: 3800, legato: 0.85, poly: 8 },
   // Comp de pulso curto (batalha).
-  comp: { wave: 'pulse12', gain: 0.07, a: 0.003, d: 0.12, s: 0.25, r: 0.04, lp: 2600, legato: 0.6, poly: 6 },
+  comp: { wave: 'pulse12', gain: 0.12, a: 0.003, d: 0.12, s: 0.25, r: 0.04, lp: 2600, legato: 0.6, poly: 6 },
   // Tímpano afinado.
   timp: { osc: [{ w: 'sine' }, { w: 'sine', m: 1.5, g: 0.35, d: 0.18 }, { w: 'triangle', m: 2.02, g: 0.12, d: 0.08 }], gain: 0.42, a: 0.004, ring: true, d: 1.2, slide: 1.1, slideT: 0.07, poly: 3 },
 };

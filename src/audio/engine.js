@@ -292,7 +292,10 @@ export class SongPlayer {
   scheduleUntil(now, horizon) {
     if (this.paused || this.disposed) return;
     const h = Math.min(horizon, this.stopAt);
+    const nowBeat = (now - this.t0) / this.spb;
     for (const c of this.chans) {
+      // muito atrasado (main thread travou por segundos): pula direto para o tempo atual
+      if (c.cur.peek() < nowBeat - 4) c.cur.seek(nowBeat);
       for (let guard = 0; guard < 512; guard++) {
         const b = c.cur.peek();
         if (b === Infinity) break;
@@ -416,7 +419,7 @@ export class Engine {
   constructor(ctx, { musicVol = 0.8, sfxVol = 0.9 } = {}) {
     this.ctx = ctx;
     const gain = (v) => { const n = ctx.createGain(); n.gain.value = v; return n; };
-    this.master = gain(1);
+    this.master = gain(0.85);
     const warm = ctx.createBiquadFilter();
     warm.type = 'lowpass';
     warm.frequency.value = 11000;

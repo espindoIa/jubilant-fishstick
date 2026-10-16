@@ -388,8 +388,14 @@ body {
 
 .menu-close {
   position: absolute;
-  right: 10px;
-  top: 8px;
+  right: 6px;
+  top: 4px;
+  min-width: 36px;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
   color: var(--muted);
   cursor: pointer;
   font-size: var(--fs);
@@ -543,14 +549,38 @@ body {
 .logo {
   text-align: center;
   margin-bottom: 4vh;
+  padding: 2vh 6vw;
   animation: fadein 2.5s ease-out;
+  background: radial-gradient(ellipse at center, rgba(20, 8, 30, 0.55) 0%, rgba(20, 8, 30, 0.25) 45%, transparent 72%);
 }
 
 .logo .a {
   font-size: clamp(34px, 6.5vw + 3vh, 92px);
   letter-spacing: 6px;
-  color: #fff7e6;
-  text-shadow: 0 0 22px rgba(255, 200, 120, 0.85), 0 0 46px rgba(255, 140, 80, 0.5), 3px 3px 0 #2a1430;
+  background: linear-gradient(180deg, #ffffff 0%, #fff4c8 38%, #ffc860 62%, #ff9a4a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(3px 3px 0 #3a1830) drop-shadow(0 0 2px #1a0a18) drop-shadow(0 0 18px rgba(255, 170, 90, 0.85));
+  text-shadow: none;
+  position: relative;
+}
+
+.logo .star {
+  display: inline-block;
+  color: #fff8d0;
+  -webkit-text-fill-color: #fff8d0;
+  font-size: 0.45em;
+  vertical-align: super;
+  animation: twinkle 2.2s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px #8ff2ff);
+}
+
+@keyframes twinkle {
+  50% {
+    opacity: 0.35;
+    transform: scale(0.8) rotate(20deg);
+  }
 }
 
 .logo .b {
@@ -955,5 +985,38 @@ body {
   }
   .tbtn-a {
     bottom: calc(60px + var(--safe-b));
+  }
+}
+
+.battle-cmd {
+  position: absolute;
+}
+.battle-cmd .title {
+  padding-right: 36px;
+}
+
+.interact-hint {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  min-width: 30px;
+  height: 30px;
+  padding: 0 6px;
+  border-radius: 15px;
+  background: #fff;
+  color: #2a2040;
+  border: 2px solid #2a2040;
+  text-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  pointer-events: auto;
+  animation: hintbob 0.9s ease-in-out infinite;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes hintbob {
+  50% {
+    transform: translate(-50%, calc(-100% - 5px));
   }
 }

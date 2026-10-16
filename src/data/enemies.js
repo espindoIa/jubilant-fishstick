@@ -12,11 +12,11 @@ for (const m of Object.values(artMods)) {
 // Habilidades de inimigos
 const S = {
   bater: { name: 'Ataque', kind: 'phys', power: 1, target: 'hero' },
-  jato: { name: 'Jato d’Água', kind: 'mag', power: 16, element: 'gelo', target: 'hero', fx: 'ice' },
-  esporos: { name: 'Esporos do Sono', kind: 'status', status: 'sono', chance: 0.55, target: 'heroes', fx: 'spores' },
+  jato: { name: 'Jato d’Água', kind: 'mag', power: 13, element: 'gelo', target: 'hero', fx: 'ice' },
+  esporos: { name: 'Esporos do Sono', kind: 'status', status: 'sono', chance: 0.45, target: 'heroes', fx: 'spores' },
   mordida: { name: 'Mordida Sombria', kind: 'phys', power: 1.35, target: 'hero', fx: 'bite' },
   uivo: { name: 'Uivo', kind: 'buff', buff: { atk: 0.3 }, turns: 3, target: 'self', fx: 'roar' },
-  ferrao: { name: 'Ferrão', kind: 'phys', power: 1.0, status: 'veneno', chance: 0.45, target: 'hero', fx: 'pierce' },
+  ferrao: { name: 'Ferrão', kind: 'phys', power: 1.0, status: 'veneno', chance: 0.35, target: 'hero', fx: 'pierce' },
   // Cão de Ferro
   mordida_ferro: { name: 'Mandíbula de Ferro', kind: 'phys', power: 1.3, target: 'hero', fx: 'bite' },
   carregar: { name: 'Fornalha Carregando…', kind: 'charge', next: 'rajada', target: 'self', fx: 'charge', msg: 'A fornalha do Cão de Ferro brilha intensamente!' },
@@ -54,28 +54,28 @@ export const ENEMY_SKILLS = S;
 export const ENEMIES = {
   // ---------------------------------------------------------------- Bosque
   goticula: {
-    name: 'Gotícula', hp: 34, atk: 9, def: 5, mag: 7, res: 5, spd: 7, shield: 2,
+    name: 'Gotícula', hp: 30, atk: 8, def: 5, mag: 6, res: 5, spd: 7, shield: 2,
     weak: ['fogo', 'raio', 'impacto'], exp: 8, gold: 6, drops: [['pocao', 0.25]],
-    ai: [[S.bater, 3], [S.jato, 1]], fieldSpeed: 2.0, fieldScale: 0.8,
+    ai: [[S.bater, 4], [S.jato, 1]], fieldSpeed: 2.0, fieldScale: 0.8,
   },
   cogumelo: {
-    name: 'Cogumelo Sonolento', hp: 46, atk: 10, def: 6, mag: 8, res: 6, spd: 6, shield: 2,
+    name: 'Cogumelo Sonolento', hp: 42, atk: 9, def: 6, mag: 8, res: 6, spd: 6, shield: 2,
     weak: ['fogo', 'corte'], exp: 11, gold: 8, drops: [['antidoto', 0.3]],
     ai: [[S.bater, 3], [S.esporos, 1]], fieldSpeed: 1.6, fieldScale: 0.8,
   },
   lobo: {
-    name: 'Lobo Sombrio', hp: 58, atk: 13, def: 7, mag: 4, res: 5, spd: 14, shield: 3,
+    name: 'Lobo Sombrio', hp: 52, atk: 12, def: 7, mag: 4, res: 5, spd: 13, shield: 3,
     weak: ['luz', 'perfuracao', 'fogo'], exp: 15, gold: 10, drops: [['pocao', 0.3]],
     ai: [[S.bater, 3], [S.mordida, 2], [S.uivo, 1]], fieldSpeed: 3.2, fieldScale: 0.7,
   },
   vespa: {
-    name: 'Vespa-Lanterna', hp: 40, atk: 11, def: 5, mag: 6, res: 7, spd: 16, shield: 2,
+    name: 'Vespa-Lanterna', hp: 38, atk: 10, def: 5, mag: 6, res: 7, spd: 16, shield: 2,
     weak: ['gelo', 'vento', 'corte'], exp: 12, gold: 9, drops: [['antidoto', 0.35]],
     ai: [[S.bater, 2], [S.ferrao, 2]], floats: true, fieldSpeed: 2.8, fieldScale: 0.75,
   },
   cao_ferro: {
-    name: 'Cão de Ferro', boss: true, hp: 380, atk: 15, def: 11, mag: 12, res: 8, spd: 9, shield: 5,
-    weak: ['raio', 'impacto'], exp: 120, gold: 150, drops: [['hipocao', 1]],
+    name: 'Cão de Ferro', boss: true, hp: 360, atk: 15, def: 11, mag: 11, res: 8, spd: 9, shield: 4,
+    weak: ['raio', 'impacto', 'luz'], exp: 120, gold: 150, drops: [['hipocao', 1]],
     ai: [[S.bater, 2], [S.mordida_ferro, 2], [S.carregar, 1]], fieldScale: 0.7,
   },
   // ---------------------------------------------------------------- Caverna

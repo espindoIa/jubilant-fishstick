@@ -40,7 +40,7 @@ export class Title {
     g.ui.fadeIn(1600);
 
     const scr = h('div', 'title-screen');
-    scr.innerHTML = `<div class="logo"><div class="a">Ecos da Aurora</div><div class="b">CRÔNICA I · A ESTRELA QUE CANTA</div></div>`;
+    scr.innerHTML = `<div class="logo"><div class="a">Ecos da Aurora<span class="star">✦</span></div><div class="b">CRÔNICA I · A ESTRELA QUE CANTA</div></div>`;
     const hint = h('div', 'title-hint', 'Toque na tela para começar');
     scr.appendChild(hint);
     g.ui.root.appendChild(scr);

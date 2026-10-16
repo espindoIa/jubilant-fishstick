@@ -122,10 +122,12 @@ const PAINT = {
     return pick(MAT.cave, k);
   },
   crystal(x, y, seed) {
-    const v = voronoi(x / 6, y / 6, seed + 61);
-    if (v.edge < 0.08) return pick(MAT.crystal, 4);
-    let k = 1 + Math.floor(v.id * 3);
-    if (v.d < 0.2) k = 0;
+    // lajes de cristal escuras com veios brilhantes ocasionais
+    const v = voronoi(x / 9, y / 8, seed + 61);
+    if (v.edge < 0.07) return pick(MAT.crystal, 4);
+    let k = v.id > 0.8 ? 2 : 3;
+    if (v.edge < 0.14) k = Math.max(1, k - 1);
+    if (v.d < 0.12 && v.id > 0.6) k = 1;
     return pick(MAT.crystal, k);
   },
   metal(x, y, seed) {

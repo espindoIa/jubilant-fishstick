@@ -20,11 +20,18 @@ export class Shop {
     const main = h('div', 'win menu-main');
     const info = h('div', 'win menu-info');
     root.append(top, main, info);
+    const back = h('div', 'menu-close', '✕');
+    back.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.ui.dispatch('cancel');
+    });
+    main.appendChild(back);
     const renderInfo = () => (info.innerHTML = `💰 <span style="color:var(--gold)">${this.st.gold}</span> moedas`);
     renderInfo();
     for (;;) {
       top.innerHTML = '';
       main.innerHTML = '';
+      main.appendChild(back);
       main.appendChild(h('div', 'desc', 'O que deseja?'));
       const mode = await new Promise((resolve) => {
         const ctl = new ListCtl(top, [{ label: 'Comprar', v: 'buy' }, { label: 'Vender', v: 'sell' }, { label: 'Sair', v: 'exit' }], {
@@ -43,6 +50,7 @@ export class Shop {
       if (mode === 'exit') break;
       for (;;) {
         main.innerHTML = '';
+        main.appendChild(back);
         const desc = h('div', 'desc', '');
         main.appendChild(h('div', 'section-title', mode === 'buy' ? 'Comprar' : 'Vender'));
         main.appendChild(desc);

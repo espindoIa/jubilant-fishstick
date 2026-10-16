@@ -251,7 +251,7 @@ export const SCRIPTS = {
     await ctx.say('sena', 'O santuário ainda está de pé. E nós também.');
     ctx.remove('sena_c');
     await ctx.join('sena');
-    await ctx.say(null, 'Dica: o *Cão de Ferro* é fraco contra *IMPACTO* 🔨 (o cajado da Sena) e *RAIO* ⚡.\nQuando ele carregar a fornalha, quebre o escudo para interromper!');
+    await ctx.say(null, 'Dica: o *Cão de Ferro* é fraco contra *IMPACTO* 🔨 (o cajado da Sena) e *LUZ* ✦ (Luz Sagrada).\nQuando ele carregar a fornalha, quebre o escudo para interromper o ataque!');
     ctx.hideEnemy(cao);
     const r = await ctx.battle(['cao_ferro'], { bg: 'forest', music: 'boss', noFlee: true });
     if (r !== 'win') return;
