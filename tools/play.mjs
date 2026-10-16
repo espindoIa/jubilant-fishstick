@@ -52,11 +52,17 @@ for (const step of spec.steps) {
   }
   if (step.until) {
     const t0 = Date.now();
+    let ok = false;
     while (Date.now() - t0 < (step.timeout || 10000)) {
-      const ok = await page.evaluate(step.until).catch(() => false);
+      ok = await page.evaluate(step.until).catch(() => false);
       if (ok) break;
       if (step.press) await page.keyboard.press(step.press);
       await page.waitForTimeout(step.every || 400);
+    }
+    // espera que expira não pode passar em silêncio: marca o teste como falho
+    if (!ok && !step.optional) {
+      console.log('TIMEOUT', step.until);
+      process.exitCode = 1;
     }
   }
   if (step.shot) {
