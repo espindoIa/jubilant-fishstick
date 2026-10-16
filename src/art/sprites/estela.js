@@ -2,8 +2,15 @@
 // Baixinha, cabelo dourado curto com mechas que brilham em ciano nas pontas,
 // capa índigo com fecho de estrela, vestido branco com constelações douradas.
 // Ela flutua em vez de andar e luta com um astrolábio flutuante.
+//
+// Estilo FF6 (criança, ~21 linhas como a Relm): cabeça ~10 linhas, contorno
+// preto (ink) automático e '#' só para linhas internas. As pontas do cabelo,
+// o tufo no topo e as pontas dos pés brilham em ciano (bloom); a capa é um
+// céu noturno com estrelinhas. O "andar" é um balanço de capa e pés soltos.
+import { compose } from '../charkit.js';
 
 export const ESTELA_PALETTE = {
+  '#': '#1a1020',
   // cabelo dourado
   h: '#fffbe2', H: '#f7d872', J: '#cf9d3e', K: '#8a6024',
   // brilho
@@ -23,314 +30,366 @@ export const ESTELA_PALETTE = {
 };
 
 // ============================================================ FRENTE
-const D_HEAD = [
-  '......hHHHHHh.......',
-  '....hhHHHHHHHHh.....',
-  '...hHHHhhhHHHHHJ....',
-  '..+HHhhHHHHHHHHHJ+..',
-  '..JHhHHHHHHHHHHHHJ..',
-  '..JHHHJHHHHHJHHHHJ..',
-  '.+JHJHHJHHHJHHJHHJ+.',
-  '..JHSSJHSSHJSSHSHJ..',
-  '..JJSSeeSSSSeeSSJJ..',
-  '..+JSSiWSSSSiWSSJ+..',
-  '...JSSSSSSSSSSSSJ...',
-  '...+JSSSSmmSSSSJ+...',
-  '.....TSSSSSSSST.....',
-  '......TTSSSSTT......',
+const HEAD_D = [
+  '........J+......',
+  '....hhHHHHJ.....',
+  '..hhHHHHHHHHJ...',
+  '.hHHHHJhHHHJHJ..',
+  '.HHHHJhHHHJhHJK.',
+  '.HhHJhHHHJhHHJK.',
+  '.HHJsSJHJsSJJJK.',
+  '.HJSS#SJS#SSJK..',
+  '%HJSSiSSSiSSJJ%.',
+  '+%.TTSSSSSTT.%+.',
 ];
-const D_TORSO = [
-  '......BbyYyBB.......',
-  '....bbBByYBBBBN.....',
-  '...bbBBwwccwwBBNN...',
-  '...bBBNwcyccwNBBN...',
-  '...bBBNwccccwNBBN...',
-  '...SBBNwcyccwNBBS...',
-  '....BBNcccccCNBN....',
-  '....NNwcccyccCNN....',
+const TORSO_D = [
+  '....#BbyBB#.....',
+  '...bbBy*yBBN....',
+  '..bbBBYBYBBBN...',
+  '..bBBBYwYBBBN...',
+  '..bBBYwcwYBBN...',
+  '..bBSYwywYSBN...',
+  '..NNYwcccCYNN...',
 ];
-const D_TORSO_A = [
-  '......BbyYyBB.......',
-  '....bbBByYBBBBN.....',
-  '...bbBBwwccwwBBNN...',
-  '...bBBNwcyccwNBBN...',
-  '..bbBBNwccccwNBBNN..',
-  '..SbBBNwcyccwNBBN...',
-  '...NBBNcccccCNBNS...',
-  '....NNwcccyccCNN....',
+const TORSO_D_A = [
+  '....#BbyBB#.....',
+  '...bbBy*yBBN....',
+  '..bbBBYBYBBBN...',
+  '..bBBBYwYBBBN...',
+  '.bbBBYwcwYBBN...',
+  '.bBBSYwywYSBN...',
+  '.NNNYwcccCYNN...',
 ];
-const D_LEGS = [
-  '.....wccccccccC.....',
-  '.....cccCcccCcC.....',
-  '......CC....CC......',
-  '.......S....S.......',
+const TORSO_D_B = [
+  '....#BbyBB#.....',
+  '...bbBy*yBBN....',
+  '..bbBBYBYBBBN...',
+  '..bBBBYwYBBBN...',
+  '..bBBYwcwYBBNN..',
+  '..bBSYwywYSBBN..',
+  '..NNYwcccCYNNN..',
 ];
-const D_LEGS_A = [
-  '.....wcccccccccC....',
-  '.....cccCcccCcC.....',
-  '......CC....CC......',
-  '.......S.....S......',
+const LEGS_D = [
+  '...XwcccwccCX...',
+  '....XCcCcCCX....',
+  '.....sS.Ss......',
+  '.....+...+......',
+];
+const LEGS_D_A = [
+  '..XwcccwccCX....',
+  '...XCcCcCCX.....',
+  '....sS..Ss......',
+  '....+...........',
+];
+const LEGS_D_B = [
+  '....XwcccwccCX..',
+  '.....XCcCcCCX...',
+  '......sS..Ss....',
+  '..........+.....',
 ];
 
 // ============================================================ COSTAS
-const U_HEAD = [
-  '......hHHHHHh.......',
-  '....hhHHHHHHHHh.....',
-  '...hHHHhhhHHHHHJ....',
-  '..+HHhhHHHHHHHHHJ+..',
-  '..JHhHHHHHHHHHHHHJ..',
-  '..JHHHHHHHHHHHHHHJ..',
-  '.+JHHHHHHHHHHHHHHJ+.',
-  '..JHHHHHJHHJHHHHHJ..',
-  '..JJHHHJHHHHJHHHJJ..',
-  '..+JJHJHHHHHHJHJJ+..',
-  '...JJJHHJHHJHHJJJ...',
-  '...+.JJJJJJJJJJ.+...',
-  '.....NBBBBBBBBN.....',
-  '....NBbbBBBBbbBN....',
+const HEAD_U = [
+  '......+J........',
+  '....hhHHHHJ.....',
+  '..hhHHHHHHHHJ...',
+  '.hHHHHJhHHHHJJ..',
+  '.HHhHJhHHHJHHJK.',
+  '.HhHJhHHHJhHHJK.',
+  '.HHJhHHHJhHHJJK.',
+  '.HJhHHHJHHHJJJK.',
+  '%HJJHJJJHJJJJJ%.',
+  '+%.+%TSSST%+.%+.',
 ];
-const U_TORSO = [
-  '....BbbBBBBBBbbB....',
-  '...bbBBBByBBBBBBN...',
-  '...bBBBByyyBBBBBN...',
-  '...bBBByyyyyBBBBN...',
-  '...bBBBByyyBBBBBN...',
-  '...SBBBByBYBBBBBS...',
-  '....BBBBBBBBBBBN....',
-  '....NNBBBBBBBBNN....',
+const TORSO_U = [
+  '....BBBBBBB.....',
+  '...bbBBBBBBN....',
+  '..bbBBBBByBBN...',
+  '..bBByBBBBBBN...',
+  '..bBBBBB*BBBN...',
+  '..bBBBBBBBBBN...',
+  '..NNBByBBBBNN...',
 ];
-const U_TORSO_A = [
-  '....BbbBBBBBBbbB....',
-  '...bbBBBByBBBBBBN...',
-  '...bBBBByyyBBBBBN...',
-  '..bbBBByyyyyBBBBNN..',
-  '..bbBBBByyyBBBBBNN..',
-  '..SBBBBByBYBBBBBN...',
-  '...NBBBBBBBBBBBNS...',
-  '....NNBBBBBBBBNN....',
+const TORSO_U_A = [
+  '....BBBBBBB.....',
+  '...bbBBBBBBN....',
+  '..bbBBBBByBBN...',
+  '..bBByBBBBBBN...',
+  '.bbBBBBB*BBBN...',
+  '.bBBBBBBBBBBN...',
+  '.NNNBByBBBBNN...',
+];
+const TORSO_U_B = [
+  '....BBBBBBB.....',
+  '...bbBBBBBBN....',
+  '..bbBBBBByBBN...',
+  '..bBByBBBBBBN...',
+  '..bBBBBB*BBBNN..',
+  '..bBBBBBBBBBBN..',
+  '..NNBByBBBBNNN..',
 ];
 
 // ============================================================ LADO (esquerda)
-const L_HEAD = [
-  '.......hHHHHh.......',
-  '.....hhHHHHHHHh.....',
-  '....hHHhhhHHHHHJ....',
-  '...hHhhHHHHHHHHHJ...',
-  '..JHhHHHHHHHHHHHHJ+.',
-  '..JHHJHHHHHHHHHHHHJ*',
-  '..JHJHHJHHHHHHHHHHJ+',
-  '..JSSJHSHHJHHHHHHHJ.',
-  '..SSSSSJHHHHHHHHHJJ+',
-  '..SSSSeSSJHHHHHHJJ+.',
-  '..SSSSiWSJHHHHHJJ+..',
-  '.SSSSSSSSTJHHHJJ+...',
-  '..TmSSSSSTJJJJ......',
-  '...TTSSSTT..........',
+const HEAD_L = [
+  '.......J+.......',
+  '....hhHHHJ......',
+  '..hhHHHHHHHJ....',
+  '.hHHHHJhHHHJHJ..',
+  'hHHHHJhHHHJhHJK.',
+  'HJhHJhHHHJhHHJK.',
+  '.SsJsHHJHJhHJJK.',
+  '.SS#SSJHHJHHJK..',
+  'sSSiSSTJHJJHJJ+.',
+  '.TSSST+%TTJJJ%..',
 ];
-const L_TORSO = [
-  '......BbyYBB........',
-  '.....bBByYBBBN......',
-  '....bBwwcBBBBBN.....',
-  '....bBwcyBBBBBNN....',
-  '....bBwccSSBBBBN....',
-  '....bBwcySSBBBBBN...',
-  '.....NcccccBBBBBN...',
-  '.....wcccycCNBBN....',
+const TORSO_L = [
+  '...#yBbB#.......',
+  '..y*ybbBBN......',
+  '..wYbbBBBBN.....',
+  '..wcYbBBBNBN....',
+  '..cwYbBBBNBBN...',
+  '..SScYbBBBNBBN..',
+  '..wccYbBBBBNBN..',
 ];
-const L_TORSO_FWD = [
-  '......BbyYBB........',
-  '.....bBByYBBBN......',
-  '....bBwwcBBBBBN.....',
-  '....bBwcyBBBBBNN....',
-  '...SSBccBBBBBBBN....',
-  '...SSwcyBBBBBBBBN...',
-  '.....NcccccBBBBBN...',
-  '.....wcccycCNBBN....',
+const TORSO_L_BACK = [
+  '...#yBbB#.......',
+  '..y*ybbBBN......',
+  '..wYbbBBBBNN....',
+  '..wcYbBBBNBBN...',
+  '..cwYbBBBNBBBN..',
+  '..SScYbBBBBNBBN.',
+  '..wccYbBBBBNBNN.',
 ];
-const L_TORSO_BACK = [
-  '......BbyYBB........',
-  '.....bBByYBBBN......',
-  '....bBwwcBBBBBN.....',
-  '....bBwcyBBBBBBN....',
-  '....bBwccBBBBBBBN...',
-  '....bBwcyBBBBBBBSS..',
-  '.....NcccccBBBBBSS..',
-  '.....wcccycCNBBN....',
+const TORSO_L_FWD = [
+  '...#yBbB#.......',
+  '..y*ybbBBN......',
+  '..wYbbBBBBN.....',
+  '..wcYbBBBNBN....',
+  '..cwYbBBBNBN....',
+  '..SScYbBBBNBN...',
+  '..wccYbBBBNBN...',
 ];
-const L_LEGS = [
-  '.....wccccccC.......',
-  '.....cccCcccC.......',
-  '......CC..CC........',
-  '......S...S.........',
+const LEGS_L = [
+  '..wcccNBBBNBN...',
+  '..XCCC.NNN.N....',
+  '...sT...........',
+  '...+............',
 ];
-const L_LEGS_A = [
-  '....wcccccccC.......',
-  '....cccCcccCcC......',
-  '.....CC...CC........',
-  '.....S.....S........',
+const LEGS_L_A = [
+  '..wcccNBBBNBBN..',
+  '..XCCC.NNN..NN..',
+  '..sT.sT.........',
+  '..+....+........',
 ];
-const L_LEGS_B = [
-  '.....wcccccccC......',
-  '.....cccCccccC......',
-  '......CC...CC.......',
-  '......S.....S.......',
+const LEGS_L_B = [
+  '..wcccNBBNBN....',
+  '..XCCC.NN.N.....',
+  '...sTsT.........',
+  '....+.+.........',
 ];
 
-// ============================================================ BATALHA
-const ORB = [
-  '..*..',
-  '.qOq.',
-  '*OqO*',
-  '.qOq.',
-  '..*..',
+// ============================================================ BATALHA (voltada à esquerda)
+// troca caracteres (ex.: pontas do cabelo mais brilhantes ao conjurar)
+const remap = (rows, map) => rows.map((r) => r.replace(/./g, (ch) => map[ch] || ch));
+const GLOW_HAIR = { '%': '+', '+': '*' };
+
+const HEAD_L_HURT = [
+  '.......J+.......',
+  '....hhHHHJ......',
+  '..hhHHHHHHHJ....',
+  '.hHHHHJhHHHJHJ..',
+  'hHHHHJhHHHJhHJK.',
+  'HJhHJhHHHJhHHJK.',
+  '.SsJsHHJHJhHJJK.',
+  '.SSSSSJHHJHHJK..',
+  'sS##SSTJHJJHJJ+.',
+  '.tSSST+%TTJJJ%..',
 ];
-function withOrb(rows, x, y) {
-  const out = rows.map((r) => r.split(''));
-  ORB.forEach((line, j) => {
-    for (let i = 0; i < line.length; i++) if (line[i] !== '.' && out[y + j]) out[y + j][x + i] = line[i];
-  });
-  return out.map((r) => r.join(''));
-}
-
-const B_BODY = [
-  '...........hHHHHh.......',
-  '.........hhHHHHHHHh.....',
-  '........hHHhhhHHHHHJ....',
-  '.......hHhhHHHHHHHHHJ...',
-  '......JHhHHHHHHHHHHHHJ+.',
-  '......JHHJHHHHHHHHHHHHJ*',
-  '......JHJHHJHHHHHHHHHHJ+',
-  '......JSSJHSHHJHHHHHHHJ.',
-  '......SSSSSJHHHHHHHHHJJ+',
-  '......SSSSeSSJHHHHHHJJ+.',
-  '......SSSSiWSJHHHHHJJ+..',
-  '.....SSSSSSSSTJHHHJJ+...',
-  '......TmSSSSSTJJJJ......',
-  '.......TTSSSTT..........',
-  '..........BbyYBB........',
-  '.........bBByYBBBN......',
-  '........bBwwcBBBBBN.....',
-  '........bBwcyBBBBBNN....',
-  '......SSbBccBBBBBBBN....',
-  '......SSBwcyBBBBBBBBN...',
-  '.........NcccccBBBBBN...',
-  '.........wcccycCNBBN....',
-  '........wccccccC........',
-  '........cccCcccC........',
-  '.........CC..CC.........',
-  '.........S...S..........',
-];
-const B_IDLE = withOrb(B_BODY, 1, 16);
-
-const B_CAST_BODY = [
-  '..*.....................',
-  '.*+*.......hHHHHh.......',
-  '..*.....hhHHHHHHHh......',
-  '...SS..hHHhhhHHHHHJ.....',
-  '...SS.hHhhHHHHHHHHHJ....',
-  '...bBJHhHHHHHHHHHHHHJ+..',
-  '...bBJHHJHHHHHHHHHHHHJ*.',
-  '...bBJHJHHJHHHHHHHHHHJ+.',
-  '...bBJSSJHSHHJHHHHHHHJ..',
-  '....BSSSSSJHHHHHHHHHJJ+.',
-  '....SSSSeSSJHHHHHHJJ+...',
-  '....SSSSiWSJHHHHHJJ+....',
-  '...SSSSSSSSTJHHHJJ+.....',
-  '....TmSSSSSTJJJJ........',
-  '.....TTSSSTT............',
-  '........BbyYBB..........',
-  '.......bBByYBBBN........',
-  '......bBwwcBBBBBN.......',
-  '......bBwcyBBBBBNN......',
-  '......bBwccBBBBBBBN.....',
-  '......bBwcyBBBBBBBBN....',
-  '.......NcccccBBBBBN.....',
-  '.......wcccycCNBBN......',
-  '......wccccccC..........',
-  '......cccCcccC..........',
-  '.......CC..CC...........',
-  '.......S...S............',
-];
-const B_CAST = withOrb(B_CAST_BODY, 9, 0).map((r, y) => (y < 0 ? r : r));
-
-const B_ATTACK = withOrb(B_BODY.map((r, y) => {
-  // estende as mãos para a frente
-  if (y === 18) return '....SSSSbBccBBBBBBBN....';
-  if (y === 19) return '....SSSSBwcyBBBBBBBBN...';
-  return r;
-}), 0, 15).map((r, y) => (y === 17 ? r.replace(/^\.\./, '%*') : r));
-
-const B_HURT = B_BODY.map((r, y) => {
-  if (y === 9) return '......SSSSTSSJHHHHHHJJ+.';
-  if (y === 10) return '......SSSTTSSJHHHHHJJ+..';
-  if (y === 18) return '........bBccBBBBBBSSN...';
-  if (y === 19) return '........BwcyBBBBBBSSBN..';
-  return r;
-});
-
-const B_KO = [
-  '................................',
-  '................................',
-  '................................',
-  '................................',
-  '...................+hHHHHh+.....',
-  '.................+hHHHHHHHHHJ...',
-  '.....wcccBBbyBBBJHHJHHHHHHHHJ+..',
-  'SccCcwcyccBBBBBBSSJHHHJSSTJHJ...',
-  '.SCcccccyBBBBBBBSSSSSSSSTJJ.+...',
-  '...CCCCCCNNNNNNNTTTTTTTTJ.......',
+const HEAD_L_DOWN = [ // cabeça baixa, olhos fechados
+  '.......J+.......',
+  '....hhHHHJ......',
+  '..hhHHHHHHHJ....',
+  '.hHHHHJhHHHJHJ..',
+  'hHHHHJhHHHJhHJK.',
+  'HJhHJhHHHJhHHJK.',
+  'HJsJJHHJHJhHJJK.',
+  '.SSSSSJHHJHHJK..',
+  '.S##SSTJHJJHJJ+.',
+  '..TSTT+%TTJJJ%..',
 ];
 
-const B_WIN = [
-  '...*..........*.....',
-  '..*+*..hHHHHh..*+*..',
-  '...*.hhHHHHHHHh.*...',
-  '....hHHHhhhHHHHHJ...',
-  '...+HHhhHHHHHHHHHJ+.',
-  '...JHhHHHHHHHHHHHHJ.',
-  '...JHHHJHHHHHJHHHHJ.',
-  '..+JHJHHJHHHJHHJHHJ+',
-  '...JHSSJHSSHJSSHSHJ.',
-  '...JJSSTTSSSSTTSSJJ.',
-  '...+JSSSSSSSSSSSSJ+.',
-  '....JSSSSSSSSSSSSJ..',
-  '....+JSSSmmmSSSSJ+..',
-  '......TSSSSSSSST....',
-  '...SS..TTSSSSTT.SS..',
-  '...SSbBBbyYyBBbBSS..',
-  '....bbBByYBBBBNN....',
-  '....bBBwwccwwBBN....',
-  '....bBNwcyccwNBN....',
-  '.....BNwccccwNB.....',
-  '.....BNwcyccwNB.....',
-  '.....BNcccccCNB.....',
-  '.....NNwcccyccCN....',
-  '......wccccccccC....',
-  '......cccCcccCcC....',
-  '.......CC....CC.....',
-  '........S....S......',
+// astrolábio: aro de latão, placa índigo, cristal-estrela no centro
+const ASTRO = [
+  '....o....',
+  '..ooOOO..',
+  '.oNNqNNO.',
+  '.oNQ+QNO.',
+  'ooq+*+qDD',
+  '.ONQ+QND.',
+  '.ONNqNND.',
+  '..ODDDD..',
+  '....D....',
 ];
+const ASTRO_GLOW = [
+  '....o....',
+  '..ooOOO..',
+  '.oq++qqO.',
+  '.oq+*+qO.',
+  'oo+*W*+DD',
+  '.Oq+*+qD.',
+  '.Oqq+qqD.',
+  '..ODDDD..',
+  '....D....',
+];
+const ASTRO_DIM = [
+  '....o....',
+  '..ooOOO..',
+  '.ONNBNNO.',
+  '.ONBQBNO.',
+  'OOBQqQBDD',
+  '.ONBQBND.',
+  '.ONNBNND.',
+  '..ODDDD..',
+  '....D....',
+];
+const ASTRO_SPIN = [ // girando de lado (lançado)
+  '....o...',
+  '..oOOO..',
+  '.oq++qO.',
+  'o+*W*+DD',
+  '.Oq++qD.',
+  '..DDDD..',
+  '....D...',
+];
+const SPARK = [
+  '.+.',
+  '+*+',
+  '.+.',
+];
+const DOT = ['*'];
+
+const B_TORSO_NOARM = [
+  '...#yBbB#.......',
+  '..y*ybbBBN......',
+  '..wYbbBBBBN.....',
+  '..wcYbBBBNBN....',
+  '..cwYbBBBNBBN...',
+  '..wcwYbBBBNBBN..',
+  '..wccYbBBBBNBN..',
+];
+const ARM_FWD = [ // braço sob a capa, estendido para a frente
+  '...bbBB',
+  'SSbbBBN',
+  '...NNN.',
+];
+const ARM_CAST = [ // braço erguido para a frente
+  'SS......',
+  'SbbB....',
+  '..bBBN..',
+  '....bBBN',
+];
+const ARM_BACK = [ // braço puxado para trás (a capa escorrega, manga branca)
+  'cwwc..',
+  '.CccSS',
+  '....SS',
+];
+const B_LEGS = [
+  '..wcccNBBBNBN...',
+  '..XCCC.NNN.N....',
+  '...sT...........',
+  '...+............',
+];
+const B_LEGS_BACK = [ // pernas soltas para trás (avanço)
+  '..wcccNBBBNBN...',
+  '...XCCCNNN.N....',
+  '.....sTT........',
+  '.......++.......',
+];
+const B_LEGS_FWD = [ // pernas jogadas à frente (recuo)
+  '..wcccNBBBNBN...',
+  '.XCCC.NNN.N.....',
+  'sTT.............',
+  '+...............',
+];
+// ajoelhada (sentada sobre os calcanhares, flutuando baixo)
+const K_TORSO = [
+  '..y*ybbBBN......',
+  '..wYbbBBBBN.....',
+  '..wcYbBBBNBN....',
+  '.SScYbBBBNBBN...',
+  '..cwwYbBBBNBBN..',
+];
+const K_LEGS = [
+  '.wwcccccNBBBNBN.',
+  'XCCCCCCsT+NNNN..',
+];
+// vitória: de frente, astrolábio erguido
+const W_TORSO = [
+  '....#BbyBB#.....',
+  '...bbBy*yBBN....',
+  '..bbBBYBYBBBN...',
+  '..bBBBYwYBBBN...',
+  '..bBBYwcwYBBN...',
+  '..bBBYwywYSBN...',
+  '..NNYwcccCYNN...',
+];
+const W_ARM = [
+  '.SS.',
+  '.bB.',
+  '.bB.',
+  '.bBN',
+  'bBN.',
+  'bBN.',
+  'bN..',
+];
+// caída de costas (campo e batalha)
+const KO_BODY = [
+  '................',
+  '.........cSSc...',
+  '....wwcwcwSSwy*y',
+  '+sSwcccyccwcwYBB',
+  '+TTCCcCCcCCcYbBB',
+  '..bBBBByBBBBBBBN',
+  '...NNNNNNNNNNNNN',
+];
+const KO_HEAD = [
+  '...s.hhHHJ...',
+  '.SsSSJhHHHHJ.',
+  'TS##SJHhHHHHJ',
+  'TSSSSJHHJHHJK',
+  '.TTJ%JHJJHJK+',
+  'BB+%JJHJJJ%+.',
+  'NN.+%%JJ%+...',
+];
+const KO = compose(29, 7, [[KO_BODY, 0, 0], [KO_HEAD, 16, 0]]);
+
+const AX = 12; // âncora do corpo na grade de batalha (32 colunas)
+const B = (h, layers) => compose(32, h, layers);
 
 export const estela = {
   id: 'estela',
   name: 'Estela',
   palette: ESTELA_PALETTE,
-  localW: 20,
-  armW: 4,
+  ink: '#120a14',
+  scale: 1.2,
+  localW: 16,
   floats: true,
+  battleW: 32,
+  battleOffX: -3,
   dir: {
-    down: { head: D_HEAD, torso: [D_TORSO, D_TORSO_A], legs: [D_LEGS, D_LEGS_A] },
-    up: { head: U_HEAD, torso: [U_TORSO, U_TORSO_A], legs: [D_LEGS, D_LEGS_A] },
-    left: { head: L_HEAD, torso: [L_TORSO, L_TORSO_BACK, L_TORSO_FWD], legs: [L_LEGS, L_LEGS_A, L_LEGS_B] },
+    down: { head: HEAD_D, torso: [TORSO_D, TORSO_D_A], torsoB: TORSO_D_B, legs: [LEGS_D, LEGS_D_A], legsB: LEGS_D_B },
+    up: { head: HEAD_U, torso: [TORSO_U, TORSO_U_A], torsoB: TORSO_U_B, legs: [LEGS_D, LEGS_D_A], legsB: LEGS_D_B },
+    left: { head: HEAD_L, torso: [TORSO_L, TORSO_L_BACK, TORSO_L_FWD], legs: [LEGS_L, LEGS_L_A, LEGS_L_B] },
   },
-  extra: { ko: B_KO },
+  extra: { ko: KO },
   battle: {
-    idle: B_IDLE,
-    windup: B_CAST,
-    attack: B_ATTACK,
-    cast: B_CAST,
-    hurt: B_HURT,
-    ko: B_KO,
-    win: B_WIN,
+    idle: B(21, [[ASTRO, AX - 11, 3], [HEAD_L, AX, 0], [B_TORSO_NOARM, AX, 10], [ARM_FWD, AX - 4, 12], [B_LEGS, AX, 17]]),
+    windup: B(21, [[HEAD_L, AX + 1, 0], [B_TORSO_NOARM, AX + 1, 10], [ARM_BACK, AX + 6, 12], [ASTRO_GLOW, AX + 11, 9], [SPARK, AX + 17, 5], [B_LEGS, AX + 1, 17]]),
+    attack: B(22, [[ASTRO_SPIN, AX - 12, 4], [SPARK, AX - 4, 1], [DOT, AX - 3, 6], [DOT, AX - 1, 0], [HEAD_L, AX - 1, 1], [B_TORSO_NOARM, AX - 1, 11], [ARM_FWD, AX - 5, 12], [B_LEGS_BACK, AX - 1, 18]]),
+    cast: B(24, [[SPARK, AX - 13, 1], [DOT, AX - 2, 2], [DOT, AX - 14, 10], [ASTRO_GLOW, AX - 11, 2], [remap(HEAD_L, GLOW_HAIR), AX, 3], [B_TORSO_NOARM, AX, 13], [ARM_CAST, AX - 4, 13], [B_LEGS, AX, 20]]),
+    hurt: B(21, [[ASTRO_DIM, AX - 11, 8], [HEAD_L_HURT, AX + 2, 0], [B_TORSO_NOARM, AX + 1, 10], [B_LEGS_FWD, AX + 1, 17]]),
+    kneel: B(17, [[ASTRO_DIM, AX - 10, 8], [HEAD_L_DOWN, AX - 1, 0], [K_TORSO, AX, 10], [K_LEGS, AX - 1, 15]]),
+    ko: B(7, [[KO, AX - 9, 0]]),
+    win: B(29, [[SPARK, AX - 6, 0], [ASTRO_GLOW, AX - 4, 0], [W_ARM, AX - 2, 9], [HEAD_D, AX, 9], [W_TORSO, AX, 19], [LEGS_D, AX, 25], [DOT, AX + 15, 7]]),
   },
 };
