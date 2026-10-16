@@ -65,6 +65,7 @@ export function normalizeMap(src) {
     chests: (src.chests || []).map(shift),
     exits: (src.exits || []).map(shift),
     triggers: (src.triggers || []).map(shift),
+    interactables: (src.interactables || []).map(shift),
     enemies: (src.enemies || []).map(shift),
     lights: (src.lights || []).map(shift),
     spawns: Object.fromEntries(Object.entries(src.spawns || {}).map(([k, v]) => [k, shift(v)])),

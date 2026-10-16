@@ -265,13 +265,16 @@ export class Field {
     this.time += dt;
     this.invuln = Math.max(0, this.invuln - dt);
     const g = this.game;
-    const free = !this.locked && !g.ui.busy && g.mode === 'field';
+    const isFree = () => !this.locked && !g.ui.busy && g.mode === 'field';
+    let free = isFree();
 
     if (free) {
       if (g.input.consume('confirm')) this.interact();
       else if (g.input.consume('menu')) g.openMenu();
     }
 
+    // An interaction can open a menu/script synchronously in this same frame.
+    free = isFree();
     // movimento do jogador
     const mv = free ? g.input.move() : { x: 0, y: 0 };
     const speed = (mv.run ? 5.2 : 3.9) * dt;
@@ -298,8 +301,8 @@ export class Field {
     this.updateNpcs(dt);
     if (free) {
       this.updateEnemies(dt);
-      this.checkExits();
-      this.checkTriggers();
+      if (isFree()) this.checkExits();
+      if (isFree()) this.checkTriggers();
     } else {
       for (const e of this.enemies) e.actor.update(dt);
     }

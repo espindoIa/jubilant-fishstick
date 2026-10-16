@@ -177,7 +177,22 @@ export class GameState {
 
   static fromJSON(o) {
     const s = new GameState();
-    Object.assign(s, o);
+    if (!o || o.v !== 1 || !Array.isArray(o.party) || !o.party.length || o.party.length > 4 ||
+        new Set(o.party).size !== o.party.length || !o.heroes || typeof o.heroes !== 'object' ||
+        typeof o.mapId !== 'string' || !o.pos || !Number.isFinite(o.pos.x) || !Number.isFinite(o.pos.y)) return null;
+    for (const id of o.party) if (!Object.hasOwn(HERO_DATA, id) || !o.heroes[id]) return null;
+    for (const [id, hero] of Object.entries(o.heroes)) {
+      if (!Object.hasOwn(HERO_DATA, id) || !hero || !Number.isInteger(hero.level) || hero.level < 1 || hero.level > 50 ||
+          !['hp', 'mp', 'exp'].every(k => Number.isFinite(hero[k]) && hero[k] >= 0) || !hero.equip || !Array.isArray(hero.skills)) return null;
+      if (Object.values(hero.equip).some(item => item && !Object.hasOwn(ITEMS, item))) return null;
+    }
+    for (const key of ['party', 'heroes', 'inventory', 'gold', 'flags', 'mapId', 'pos', 'playTime', 'opened', 'defeated']) {
+      if (o[key] !== undefined && o[key] !== null) s[key] = structuredClone(o[key]);
+    }
+    if (!Number.isFinite(s.gold) || s.gold < 0 || !Number.isFinite(s.playTime)) return null;
+    if (typeof s.inventory !== 'object' || Array.isArray(s.inventory) || typeof s.flags !== 'object' || Array.isArray(s.flags)) return null;
+    if (Object.entries(s.inventory).some(([id, qty]) => !Object.hasOwn(ITEMS, id) || !Number.isInteger(qty) || qty < 0)) return null;
+    if (o.settings && typeof o.settings === 'object') Object.assign(s.settings, o.settings);
     return s;
   }
 
@@ -192,7 +207,7 @@ export class GameState {
 
   static hasSave() {
     try {
-      return !!localStorage.getItem(SAVE_KEY);
+      return !!GameState.peek();
     } catch (e) {
       return false;
     }
@@ -201,7 +216,8 @@ export class GameState {
   static peek() {
     try {
       const raw = localStorage.getItem(SAVE_KEY);
-      return raw ? JSON.parse(raw) : null;
+      const parsed = raw ? JSON.parse(raw) : null;
+      return GameState.fromJSON(parsed) ? parsed : null;
     } catch (e) {
       return null;
     }

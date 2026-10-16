@@ -8,9 +8,11 @@ import fs from 'node:fs';
 
 const arg = process.argv[2];
 const spec = JSON.parse(fs.existsSync(arg) ? fs.readFileSync(arg, 'utf8') : arg);
+if (process.env.TEST_SPEED) { const u = new URL(spec.url || '/', 'http://test'); u.searchParams.set('speed', process.env.TEST_SPEED); spec.url = u.pathname + u.search; }
 const base = process.env.BASE_URL || 'http://localhost:5173';
 const W = spec.width || 1280, H = spec.height || 720;
 const browser = await chromium.launch({
+  ...(process.env.CHROMIUM_EXECUTABLE ? {executablePath: process.env.CHROMIUM_EXECUTABLE} : {}),
   args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist', '--autoplay-policy=no-user-gesture-required'],
 });
 // "video": "nome" grava a sessão inteira em shots/play/<nome>.webm
@@ -30,7 +32,8 @@ page.on('console', (m) => {
 page.on('pageerror', (e) => logs.push(`[pageerror] ${e.message}\n${e.stack}`));
 await page.goto(base + (spec.url || '/'), { waitUntil: 'load' });
 fs.mkdirSync('shots/play', { recursive: true });
-let n = 0;
+let n = 0, timeouts = 0;
+try {
 for (const step of spec.steps) {
   if (step.wait) await page.waitForTimeout(step.wait);
   if (step.key) await page.keyboard.press(step.key);
@@ -49,6 +52,8 @@ for (const step of spec.steps) {
   // com "touch": true os toques são de tela sensível (como no celular)
   const tap = (x, y) => (spec.touch ? page.touchscreen.tap(x, y) : page.mouse.click(x, y));
   if (step.tap) await tap(step.tap[0], step.tap[1]);
+  if (step.tapSelector) await page.locator(step.tapSelector).tap();
+  if (step.assert) { const ok = await page.evaluate(step.assert); if (!ok) throw new Error('ASSERT: ' + step.assert); }
   if (step.eval) {
     const r = await page.evaluate(step.eval);
     if (r !== undefined) console.log('eval →', JSON.stringify(r));
@@ -66,6 +71,7 @@ for (const step of spec.steps) {
     // espera que expira não pode passar em silêncio: marca o teste como falho
     if (!ok && !step.optional) {
       console.log('TIMEOUT', step.until);
+      timeouts++;
       process.exitCode = 1;
     }
   }
@@ -75,7 +81,11 @@ for (const step of spec.steps) {
     console.log('shot', f);
   }
 }
+} catch (error) { console.error(error); process.exitCode = 1; }
 console.log(logs.slice(-40).join('\n'));
+const health = {pageerror: logs.filter(x=>x.startsWith('[pageerror]')).length, consoleerror: logs.filter(x=>x.startsWith('[error]')).length, timeouts};
+console.log('HEALTH', JSON.stringify(health));
+if (health.pageerror || health.consoleerror || timeouts) process.exitCode = 1;
 const video = page.video();
 await ctx.close();
 if (video && spec.video) {

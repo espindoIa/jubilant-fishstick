@@ -9,9 +9,11 @@ const LOJA_ACAMPAMENTO = ['pocao', 'hipocao', 'eter', 'tonico', 'pena', 'manto_e
 
 // Estilhaço de Memória: revela uma lembrança de Estela
 async function coletarEstilhaco(ctx, sh) {
+  if (ctx.flag(shardFlag(sh.id))) return;
+  // Reserve before the first await: touching twice cannot collect twice.
+  ctx.set(shardFlag(sh.id));
   ctx.sfx('star');
   await ctx.flash(450, '#c8f0ff', 0.6);
-  ctx.set(shardFlag(sh.id));
   await ctx.say(null, `✦ Estilhaço de Memória — ${sh.title}`);
   await ctx.say(null, sh.text);
   if (ctx.state.party.includes('estela')) await ctx.say('estela:sad', 'Isso… era meu. Obrigada por encontrar.');

@@ -174,13 +174,19 @@ export function bondsOf(state, heroId) {
   return CAMP_SCENES.filter((s) => s.pair.includes(heroId) && state.flag('camp_' + s.id)).length;
 }
 
+const playing = new WeakSet();
+
 // Escolhe e executa uma cena ao redor do cristal
 export async function playCamp(ctx) {
+  if (playing.has(ctx.state)) return false;
   const list = pendingScenes(ctx.state);
   if (!list.length) return false;
   const pick = await ctx.choose([...list.map((s) => `✦ ${s.title}`), 'Agora não'], { cancel: list.length });
   if (pick >= list.length) return false;
   const scene = list[pick];
+  if (playing.has(ctx.state) || !sceneAvailable(ctx.state, scene)) return false;
+  playing.add(ctx.state);
+  try {
   ctx.gather();
   ctx.music('star');
   await ctx.fadeOut(500);
@@ -192,4 +198,5 @@ export async function playCamp(ctx) {
   const m = ctx.f.map?.music;
   ctx.music((typeof m === 'function' ? m(ctx.state) : m) || 'village');
   return true;
+  } finally { playing.delete(ctx.state); }
 }

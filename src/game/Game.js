@@ -7,6 +7,7 @@ import { UI, wait, TIME } from '../ui/UI.js';
 import { GameState } from './state.js';
 import { Field } from '../field/Field.js';
 import { ScriptContext } from './Script.js';
+import { HERO_DATA } from '../data/heroes.js';
 import { MAPS } from '../data/maps/index.js';
 import { SCRIPTS } from '../data/story.js';
 import { Menu } from '../ui/Menu.js';
@@ -169,8 +170,11 @@ export class Game {
     const settings = GameState.loadSettings();
     if (settings) Object.assign(this.state.settings, settings);
     const start = this.params.get('start');
-    const party = start && MAPS[start] ? (this.params.get('party') || 'lio').split(',') : ['lio'];
-    const lv = start ? +(this.params.get('lv') || 3) : 1;
+    const requested = start && MAPS[start] ? (this.params.get('party') || 'lio').split(',') : ['lio'];
+    const valid = [...new Set(requested)].filter(id => Object.hasOwn(HERO_DATA, id));
+    const party = valid.length ? valid.slice(0, 4) : ['lio'];
+    const rawLevel = Number(this.params.get('lv') || 3);
+    const lv = start ? (Number.isFinite(rawLevel) ? Math.max(1, Math.min(50, Math.floor(rawLevel))) : 3) : 1;
     for (const id of party) this.state.addHero(id, lv);
     this.state.gold = 60;
     this.state.addItem('pocao', 3);
@@ -187,7 +191,9 @@ export class Game {
 
   async continueGame() {
     const st = GameState.load();
-    if (!st) return this.newGame();
+    if (!st || !MAPS[st.mapId]) return this.newGame();
+    this.stage.pitchOverride = null;
+    this.stage.zoom = 1;
     this.state = st;
     this.ui.setFade(1);
     await this.changeMap(st.mapId, { raw: true, x: st.pos.x, y: st.pos.y, dir: st.pos.dir });
@@ -238,8 +244,8 @@ export class Game {
     }
     this.field.locked = Math.max(0, this.field.locked - 1);
     ctx.release?.();
-    this.field.cameraLocked = false;
-    if (this.mode === 'script') this.mode = prev === 'script' ? 'field' : prev === 'battle' ? 'field' : prev;
+    if (!this.field.locked) this.field.cameraLocked = false;
+    if (this.mode === 'script' && !this.field.locked) this.mode = prev === 'script' ? 'field' : prev === 'battle' ? 'field' : prev;
     if (this.mode === 'loading' || this.mode === 'boot') this.mode = 'field';
     if (this.mode === 'field' && !this.field.locked) this.touch.show(true);
   }

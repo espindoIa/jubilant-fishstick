@@ -82,7 +82,7 @@ export class Battle {
     const amap = arenaMap(theme, Math.floor(Math.random() * 1000));
     const W = buildWorld(amap, { night: true });
     this.W = W;
-    this.stage.setWorld(W.group);
+    this.stage.setWorld(W.group, { retainPrevious: true });
     const atmKey = this.opts.atmosphere || themeAtmosphere(theme);
     const atm = ATMOSPHERES[atmKey] || ATMOSPHERES.forest;
     this.stage.setAtmosphere(atm);
@@ -574,11 +574,22 @@ export class Battle {
   repeatable(c) {
     const a = this.lastAction[c.id];
     if (!a) return null;
-    const alive = this.enemies.filter((e) => e.hp > 0);
-    const fresh = (t) => t.map((x) => (x.hp > 0 || x.side === 'hero' ? x : alive[0])).filter(Boolean);
-    if (a.type === 'attack' && alive.length) return { label: 'Atacar', act: () => ({ ...a, targets: fresh(a.targets) }) };
-    if (a.type === 'skill' && c.mp >= a.skill.mp && (a.skill.target !== 'enemy' || alive.length)) return { label: a.skill.name, act: () => ({ ...a, targets: a.skill.target === 'enemies' ? alive : fresh(a.targets) }) };
-    if (a.type === 'item' && this.state.inventory[a.item] > 0) return { label: ITEMS[a.item].name, act: () => ({ ...a }) };
+    const alive = this.enemies.filter(e => e.hp > 0);
+    const targetsFor = (kind, previous = []) => {
+      if (kind === 'enemies') return alive;
+      if (kind === 'allies') return this.heroes.filter(h => h.hp > 0);
+      if (kind === 'self') return c.hp > 0 ? [c] : [];
+      const pool = kind === 'enemy' ? alive : this.heroes.filter(h => kind === 'ally_ko' ? h.hp <= 0 : h.hp > 0);
+      const previousTarget = previous.find(t => pool.includes(t));
+      return previousTarget ? [previousTarget] : pool.slice(0, 1);
+    };
+    const kind = a.type === 'attack' ? 'enemy' : a.type === 'skill' ? a.skill.target : a.type === 'item' ? ITEMS[a.item]?.target : null;
+    const targets = targetsFor(kind, a.targets);
+    if (!kind || !targets.length) return null;
+    const act = () => ({ ...a, targets: targetsFor(kind, a.targets) });
+    if (a.type === 'attack') return { label: 'Atacar', act };
+    if (a.type === 'skill' && c.mp >= a.skill.mp) return { label: a.skill.name, act };
+    if (a.type === 'item' && this.state.inventory[a.item] > 0) return { label: ITEMS[a.item].name, act };
     return null;
   }
 

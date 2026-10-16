@@ -29,8 +29,8 @@ export function detectQuality() {
 export class Stage {
   constructor(canvas, qualityName = detectQuality()) {
     this.canvas = canvas;
-    this.qualityName = qualityName;
-    this.q = QUALITY[qualityName];
+    this.qualityName = Object.hasOwn(QUALITY, qualityName) ? qualityName : detectQuality();
+    this.q = QUALITY[this.qualityName];
     const renderer = new THREE.WebGLRenderer({
       canvas,
       antialias: false,
@@ -179,9 +179,9 @@ export class Stage {
     u.uAlpha.value = a.waterAlpha ?? 0.42;
   }
 
-  setWorld(group) {
+  setWorld(group, { retainPrevious = false } = {}) {
     this.scene.remove(this.world);
-    disposeTree(this.world);
+    if (!retainPrevious) disposeTree(this.world);
     this.world = group;
     this.scene.add(group);
     this.waterMeshes = [];
