@@ -76,7 +76,8 @@ export function heroFieldImages(id, codeFrames, codeScale = 1) {
   frames.r2 = frames.l2.flippedX();
   if (s.frames.field_ko) frames.ko = s.frames.field_ko;
   else if (codeFrames.ko) frames.ko = codeFrames.ko;
-  const h = s.meta?.heightPx || heightOf(frames.d0);
+  // altura medida no próprio quadro parado (mais confiável que o meta)
+  const h = heightOf(frames.d0) || s.meta?.heightPx;
   return { frames, scale: (heightOf(codeFrames.d0) * codeScale) / h };
 }
 
@@ -89,7 +90,7 @@ export function heroBattleImages(id, codeFrames, codeScale = 1) {
   const missing = Object.keys(frames).filter((k) => !frames[k]);
   const fallback = frames.hurt || frames.idle;
   for (const k of missing) frames[k] = k === 'kneel' ? fallback : frames.idle;
-  const h = s.meta?.heightPx || heightOf(frames.idle);
+  const h = heightOf(frames.idle) || s.meta?.battleHeightPx;
   return { frames, scale: (heightOf(codeFrames.idle) * codeScale) / h };
 }
 
@@ -97,7 +98,7 @@ export function enemyImages(kind, codeIdle) {
   const s = store.enemies[kind];
   if (!s || !s.frames.idle) return null;
   const f = s.frames;
-  const h = s.meta?.heightPx || heightOf(f.idle);
+  const h = s.meta?.heightPx || heightOf(f.idle);  // aura/chamas contam na altura
   return {
     idle: f.idle,
     alt: f.alt || f.idle,
