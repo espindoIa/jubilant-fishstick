@@ -15,5 +15,5 @@ document.addEventListener('gesturestart', (e) => e.preventDefault());
 document.addEventListener('contextmenu', (e) => e.preventDefault());
 
 const game = new Game();
-// sprites em PNG (SpriteCook), se houver, carregam antes do primeiro quadro
+// sprites em PNG, se houver, carregam antes do primeiro quadro
 Promise.allSettled([document.fonts?.ready, loadImageSprites()]).finally(() => game.start());
