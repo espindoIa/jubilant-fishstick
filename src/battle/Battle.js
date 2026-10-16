@@ -14,7 +14,7 @@ import { h, ListCtl, wait, TIME } from '../ui/UI.js';
 import { portraitURL } from '../ui/portraits.js';
 import { updateOcclusion } from '../render/occlusion.js';
 
-const HERO_SLOTS = [[2.8, -2.1], [4.4, -0.6], [2.8, 0.9], [4.4, 2.4]];
+const HERO_SLOTS = [[2.7, -2.9], [4.5, -1.1], [2.7, 0.7], [4.5, 2.5]];
 const ENEMY_SLOTS = {
   1: [[-3.4, 0.1]],
   2: [[-3.5, -1.5], [-2.6, 0.8]],
