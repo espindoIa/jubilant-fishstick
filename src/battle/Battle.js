@@ -10,7 +10,7 @@ import { ITEMS } from '../data/items.js';
 import { ENEMIES, ENEMY_SKILLS, enemySheet, enemyGlowSheet } from '../data/enemies.js';
 import { arenaMap, ARENA_W, ARENA_H, themeAtmosphere } from './arena.js';
 import { Effects } from './effects.js';
-import { h, ListCtl, wait } from '../ui/UI.js';
+import { h, ListCtl, wait, TIME } from '../ui/UI.js';
 import { portraitURL } from '../ui/portraits.js';
 import { updateOcclusion } from '../render/occlusion.js';
 
@@ -842,7 +842,7 @@ export class Battle {
     this.actionQueue = this.actionQueue.filter((a) => a.actor !== t);
     if (t.charging) {
       t.charging = null;
-      setTimeout(() => this.popup(t, 'Carga interrompida!', 'label'), 300);
+      setTimeout(() => this.popup(t, 'Carga interrompida!', 'label'), 300 * TIME.scale);
     }
     this.game.sfx('break');
     this.effects.play('break', t.actor.position);
@@ -858,7 +858,7 @@ export class Battle {
     if (t.side === 'hero' && t.hp > 0) {
       t.anim = true;
       a.setFrame('hurt');
-      setTimeout(() => (t.anim = false), 380);
+      setTimeout(() => (t.anim = false), 380 * TIME.scale);
     }
     this.tween(0.25, (k) => {
       const off = Math.sin(k * Math.PI) * 0.25 * dir;
@@ -1092,7 +1092,7 @@ export class Battle {
       this.game.sfx('steam');
       if (s.msg) {
         this.help(s.msg + ' <span style="color:var(--gold)">Quebre o escudo para interromper!</span>');
-        setTimeout(() => this.help(null), 2600);
+        setTimeout(() => this.help(null), 2600 * TIME.scale);
       }
       await wait(700);
       return;
@@ -1217,7 +1217,7 @@ export class Battle {
       const t0 = performance.now();
       const ctl = {
         handle: (a) => {
-          if ((a === 'confirm' || a === 'cancel') && performance.now() - t0 > minMs) {
+          if ((a === 'confirm' || a === 'cancel') && performance.now() - t0 > minMs * TIME.scale) {
             this.ui.pop(ctl);
             window.removeEventListener('pointerdown', onTap);
             resolve();

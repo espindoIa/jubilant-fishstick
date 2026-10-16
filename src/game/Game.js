@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import { Stage, detectQuality } from '../render/Stage.js';
 import { Input, TouchControls } from '../core/input.js';
-import { UI, wait } from '../ui/UI.js';
+import { UI, wait, TIME } from '../ui/UI.js';
 import { GameState } from './state.js';
 import { Field } from '../field/Field.js';
 import { ScriptContext } from './Script.js';
@@ -75,6 +75,7 @@ export class Game {
     // modo de teste: texto instantâneo e esperas curtas (?fast=1)
     this.fast = params.get('fast') === '1';
     if (this.fast) this.ui.textSpeed = 60;
+    else this.ui.textSpeed *= TIME.speed;
     this.debug = {
       battle: (f, o) => this.battle(f, o),
       flag: (k, v = true) => this.state.set(k, v),
@@ -131,6 +132,15 @@ export class Game {
   frame(now) {
     const dt = Math.min(0.05, (now - this.last) / 1000);
     this.last = now;
+    // ?speed=N: N subpassos de lógica por quadro (sem passos gigantes na colisão)
+    for (let i = 0; i < TIME.speed; i++) this.step(dt);
+    this.stage.update(dt * TIME.speed, this.time);
+    this.stage.render(dt);
+    this.input.endFrame();
+    requestAnimationFrame((t) => this.frame(t));
+  }
+
+  step(dt) {
     this.time += dt;
     if (this.mode === 'field' || this.mode === 'menu' || this.mode === 'script') {
       this.state.playTime += dt;
@@ -141,10 +151,6 @@ export class Game {
       this.titleScene.update(dt, this.time);
     }
     this.tickers = this.tickers.filter((fn) => fn(dt) !== false);
-    this.stage.update(dt, this.time);
-    this.stage.render(dt);
-    this.input.endFrame();
-    requestAnimationFrame((t) => this.frame(t));
   }
 
   // -------------------------------------------------------------- telas
@@ -283,7 +289,7 @@ export class Game {
     const t0 = performance.now();
     await new Promise((resolve) => {
       this.addTicker(() => {
-        const k = Math.min(1, (performance.now() - t0) / 500);
+        const k = Math.min(1, (performance.now() - t0) / (500 * TIME.scale));
         st.zoom = z0 * (1 - k * 0.35);
         if (k >= 1) {
           resolve();

@@ -12,7 +12,14 @@ const W = spec.width || 1280, H = spec.height || 720;
 const browser = await chromium.launch({
   args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist', '--autoplay-policy=no-user-gesture-required'],
 });
-const ctx = await browser.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: 1, hasTouch: !!spec.touch, isMobile: !!spec.touch });
+// "video": "nome" grava a sessão inteira em shots/play/<nome>.webm
+const ctx = await browser.newContext({
+  viewport: { width: W, height: H },
+  deviceScaleFactor: 1,
+  hasTouch: !!spec.touch,
+  isMobile: !!spec.touch,
+  ...(spec.video ? { recordVideo: { dir: 'shots/play/video-tmp', size: { width: W, height: H } } } : {}),
+});
 const page = await ctx.newPage();
 const logs = [];
 page.on('console', (m) => {
@@ -59,4 +66,12 @@ for (const step of spec.steps) {
   }
 }
 console.log(logs.slice(-40).join('\n'));
+const video = page.video();
+await ctx.close();
+if (video && spec.video) {
+  const out = `shots/play/${spec.video}.webm`;
+  await video.saveAs(out);
+  await video.delete();
+  console.log('video', out);
+}
 await browser.close();

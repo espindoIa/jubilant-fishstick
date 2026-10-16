@@ -3,7 +3,7 @@
 import * as THREE from 'three';
 import { HERO_DATA } from '../data/heroes.js';
 import { ITEMS } from '../data/items.js';
-import { wait, h } from '../ui/UI.js';
+import { wait, h, TIME } from '../ui/UI.js';
 
 export const NAMES = {
   lio: 'Lio', sena: 'Sena', estela: 'Estela', brann: 'Brann', odessa: 'Vó Odessa', varek: 'Capitão Varek',
@@ -231,7 +231,7 @@ export class ScriptContext {
     const t0 = performance.now();
     await new Promise((resolve) => {
       this.game.addTicker(() => {
-        const k = Math.min(1, (performance.now() - t0) / 260);
+        const k = Math.min(1, (performance.now() - t0) / (260 * TIME.scale));
         a.position.x = from.x + d[0] * dist * k;
         a.position.z = from.z + d[1] * dist * k;
         a.moving = true;

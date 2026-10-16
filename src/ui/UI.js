@@ -211,7 +211,7 @@ export class UI {
         if (shown >= total) {
           done = true;
           next.classList.remove('hidden');
-          if (opts.auto) setTimeout(finish, opts.auto);
+          if (opts.auto) setTimeout(finish, opts.auto * TIME.scale);
           return;
         }
         raf = requestAnimationFrame(tick);
@@ -287,13 +287,13 @@ export class UI {
   // -------------------------------------------------------------- fades
   fadeOut(ms = 400, color = '#000') {
     this.fadeEl.style.background = color;
-    this.fadeEl.style.transitionDuration = ms + 'ms';
+    this.fadeEl.style.transitionDuration = ms * TIME.scale + 'ms';
     this.fadeEl.style.opacity = '1';
     return wait(ms);
   }
 
   fadeIn(ms = 400) {
-    this.fadeEl.style.transitionDuration = ms + 'ms';
+    this.fadeEl.style.transitionDuration = ms * TIME.scale + 'ms';
     this.fadeEl.style.opacity = '0';
     return wait(ms);
   }
@@ -310,13 +310,17 @@ export class UI {
     f.style.transition = 'none';
     f.style.opacity = String(peak);
     void f.offsetWidth;
-    f.style.transition = `opacity ${ms}ms ease-out`;
+    f.style.transition = `opacity ${ms * TIME.scale}ms ease-out`;
     f.style.opacity = '0';
     return wait(ms);
   }
 }
 
-export const TIME = { scale: new URLSearchParams(location.search).get('fast') === '1' ? 0.15 : 1 };
+// ?fast=1 encurta esperas (testes); ?speed=N acelera o jogo inteiro N vezes
+// (loop, esperas, fades e texto) — usado para assistir/testar a história rápido.
+const QS = new URLSearchParams(location.search);
+const SPEED = Math.max(1, Math.min(10, +(QS.get('speed') || 1) || 1));
+export const TIME = { speed: SPEED, scale: (QS.get('fast') === '1' ? 0.15 : 1) / SPEED };
 
 export function wait(ms) {
   return new Promise((r) => setTimeout(r, ms * TIME.scale));
