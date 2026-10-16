@@ -1020,3 +1020,42 @@ body {
     transform: translate(-50%, calc(-100% - 5px));
   }
 }
+
+/* celular deitado: menu compacto — abas em fileira no topo, painel só na altura
+   do conteúdo, para o jogo continuar visível atrás */
+@media (max-height: 560px) and (min-aspect-ratio: 1/1) {
+  .menu-root {
+    background: rgba(4, 6, 20, 0.2);
+    backdrop-filter: none;
+  }
+  .menu-tabs {
+    left: max(12px, var(--safe-l));
+    right: max(12px, var(--safe-r));
+    width: auto;
+    top: calc(8px + var(--safe-t));
+    padding: 4px 8px;
+  }
+  .menu-tabs .list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0 4px;
+  }
+  .menu-tabs .opt {
+    padding: 4px 10px 4px 24px;
+    font-size: var(--fs-small);
+  }
+  .menu-info {
+    left: max(12px, var(--safe-l));
+    bottom: calc(8px + var(--safe-b));
+    width: min(34vw, 300px);
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+  .menu-main {
+    left: max(12px, var(--safe-l));
+    right: max(12px, var(--safe-r));
+    top: calc(64px + var(--safe-t));
+    bottom: auto;
+    max-height: calc(100% - 140px - var(--safe-t) - var(--safe-b));
+  }
+}

@@ -40,7 +40,7 @@ export function buildTerrain(map, groundTex, sideTex, sideAtlasSize) {
   topGeo.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
   topGeo.setAttribute('normal', new THREE.Float32BufferAttribute(nor, 3));
   topGeo.setIndex(idx);
-  const topMat = occlude(new THREE.MeshLambertMaterial({ map: groundTex }));
+  const topMat = new THREE.MeshLambertMaterial({ map: groundTex });
   const top = new THREE.Mesh(topGeo, topMat);
   top.receiveShadow = true;
   top.name = 'terrain-top';
