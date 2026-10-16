@@ -92,3 +92,74 @@ Método da folha com `gpt-image-2` low (2 créditos/folha):
 - Retoques do Lio (linha de costas, campo/batalha na mesma escala): ~4.
 - **Total ≈ 50–70 créditos** (≈ 35 sem regerações). Saldo atual: **28** → faltam ~25–45 créditos (recarga ou plano pago). Com `quality: medium` (9/folha) seria ≈ 4,5× (~250–300).
 - As ferramentas de animação (20+ créditos cada) multiplicariam o custo por ~10 e não são necessárias para 2–3 quadros.
+
+---
+
+# Lote 2 — Sena, Estela, Brann + chefes (aprovado pelo usuário após o piloto)
+
+## Créditos
+**28 antes → 2 depois (26 gastos, 13 folhas × 2).** Parei no limite (saldo não pode cair abaixo de 2). Conta continua no free tier.
+Gasto: 6 folhas de heróis + 4 de chefes + 2 retentativas (batalha da Sena e da Estela) + 1 regeneração opcional do campo do Lio.
+
+## Método
+Igual ao piloto: uma folha 16:9 2K por grupo, `gpt-image-2` low, fundo transparente, `smart_crop: false`.
+Referência = sprites atuais em código renderizados (fundo branco) e importados; estilo = folha de batalha do Lio
+(`ef3e1b45…`) para batalha, folha de campo do Lio (`729f987b…`) para campo; na retentativa da Sena/Estela também a
+folha de batalha do Brann (`6dd74fea…`, a de grade mais fina). Chefes: só a referência em código, sem estilo.
+Pós-processamento (node + pngjs): alfa binário, componentes conectados por faixa (fragmentos pequenos — astrolábio,
+faíscas, ponta da lança — anexados ao sprite mais próximo), alinhamento pelo centróide dos pés, base comum. Glow dos
+chefes: pixels saturados/claros da cor do brilho, só aglomerados com ≥5 px.
+
+## Entregue
+| Pasta | Tela (campo / batalha) | Altura (`heightPx` campo / `battleHeightPx`) |
+|---|---|---|
+| `heroes/sena` | 54×43 / 48×48 | 40 / 40 |
+| `heroes/estela` | 43×33 / 44×37 | 31 / 27 |
+| `heroes/brann` | 51×46 / 103×103 | 42 / 85 |
+| `enemies/cao_ferro` (+glow) | 64×55 | 53 |
+| `enemies/golem` (+glow) | 69×74 | 72 |
+| `enemies/varek` (sem glow) | 159×206 | 204 |
+| `enemies/tita` (+glow) | 107×139 | 137 |
+
+Todos os PNG com alfa 0/255 e tela única por grupo (verificado). Brutos (`*_pixel.png`, 1,2 MB no total) em `spritecook_raw/`.
+
+## Asset IDs
+| Asset | ID |
+|---|---|
+| Ref código: Sena batalha / campo | `7ed9ed8a-baba-48dd-8c56-0ac86c29ed77` / `3de5fb41-62b0-4540-bf5e-752d13084dab` |
+| Ref código: Estela batalha / campo | `f612528c-6b3f-49e5-a218-900ec305c973` / `d60b1091-f3e7-499c-9cf0-7057b8f3d177` |
+| Ref código: Brann batalha / campo | `75237bd2-ebc6-4c2d-8cfa-4ce705e1bc32` / `2e4a3abb-27bf-4ff4-95ec-2c05b6cca5bc` |
+| Ref código: cao_ferro / golem / varek / tita | `9ac41b4c-9d99-46b5-bdb1-1f66af0d2934` / `730d2107-69f0-4598-89b0-7a81dc6dca84` / `0b1a0c89-e27c-4c7c-97e4-a3cdee339c97` / `d7d36a05-3657-4f09-a257-92e4f1ec0cc0` |
+| Sena batalha 1ª (descartada, grade grossa) | `b17e55bb-c70e-4971-a8ec-c342ea94c724` |
+| **Sena batalha (usada, retentativa)** | `2744dfcf-0059-4780-99e4-ab9aec86209c` |
+| **Sena campo** | `c474a28f-0724-4c93-9fab-d1cf94b569f8` |
+| Estela batalha 1ª (descartada) | `280049b7-4b48-447c-b503-fad6a892258f` |
+| **Estela batalha (usada, retentativa)** | `5e8d012a-332f-41f1-8108-82cb14e68a7a` |
+| **Estela campo** | `c8a2764a-f892-460f-86b4-e20ef1967762` |
+| **Brann batalha** | `6dd74fea-f1db-4c7e-8299-a05a8cb7f953` |
+| **Brann campo** | `37df87da-0f03-4348-a019-8755332ba6e1` |
+| **cao_ferro / golem / varek / tita** | `015ec0a7-4875-418c-bb87-3dba580e40f8` / `b87dfc50-b2dc-4f02-b93c-6ac93b21c4d6` / `25ec64cf-7a88-408f-b75e-835ac224b261` / `083088a7-cd86-4be8-b26a-e0b2585d07f5` |
+| Lio campo regenerado (NÃO usado) | `77549617-6b99-415c-851b-c815ee49ae7e` |
+
+## Problemas / observações
+- **Escala inconsistente entre folhas** é o maior problema: a grade de pixel que o modelo escolhe varia por geração,
+  mesmo com a folha do Lio como estilo. Ex.: Brann batalha 85 px vs Brann campo 42 px; Lio campo 67 px vs Sena campo 40 px.
+  O jogo precisa escalar cada grupo pelo próprio `heightPx`/`battleHeightPx` (as proporções relativas entre heróis
+  não saem das imagens). Na prática, a Sena, a Estela e os campos dos novos heróis estão numa grade mais grossa
+  (menos detalhe) que o Lio e o Brann de batalha.
+- Retentativa da Sena/Estela pedindo sprites "grandes e de pixel fino" melhorou pouco (Sena 36→40 px, poses
+  melhores; Estela 26→27 px, poses melhores). Usei as retentativas.
+- **Estela**: flutuar não sobrevive ao alinhamento pela base — os quadros ficam apoiados na linha de base; o jogo deve
+  aplicar o deslocamento de flutuação. Os quadros de "passo" do campo dela são variações de capa (como pedido).
+- Brann campo de costas mostra o escudo-torre nas costas (bom); passos de costas diferem pouco.
+- **Lio campo regenerado** (para costas mais distintas) saiu numa grade bem mais grossa (~33 px de altura contra 67),
+  então mantive o conjunto original; os passos de costas do Lio continuam fracos.
+- **Varek**: sem glow (os olhos vermelhos são 2–3 px e o vermelho se confunde com a faixa carmim). Está de frente/3/4
+  para a direita, bem maior que os outros (204 px).
+- Glows: golem bom (cristais + núcleo); tita pega o núcleo da fornalha mas também alguns realces laranja da armadura;
+  cao_ferro pega só parte da fornalha do peito. Servem como base, podem precisar de retoque manual.
+- Quadros `alt` dos chefes diferem pouco do `idle` (respiração sutil, como pedido).
+
+## Pendente (sem créditos)
+Inimigos comuns: goticula, cogumelo, vespa, morcego, lodo, aranha, tatu, soldado, drone, cao_ferro2, mago
+(11 folhas ≈ 22 créditos, ~33 com retentativas). Opcional: regerar o campo do Lio e uniformizar as escalas dos heróis.
