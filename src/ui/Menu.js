@@ -6,6 +6,8 @@ import { ITEMS } from '../data/items.js';
 import { SKILLS, ELEMENTS, WEAPON_TYPES } from '../data/skills.js';
 import { formatTime } from '../game/state.js';
 import { MAPS } from '../data/maps/index.js';
+import { unlockedCodex, recap } from '../data/codex.js';
+import { CAMP_SCENES, bondsOf } from '../data/camp.js';
 
 const STAT_NAMES = { hp: 'HP', mp: 'MP', atk: 'Ataque', def: 'Defesa', mag: 'Magia', res: 'Resistência', spd: 'Agilidade' };
 
@@ -61,6 +63,7 @@ export class Menu {
         { label: 'Técnicas', v: 'skills' },
         { label: 'Equipar', v: 'equip' },
         { label: 'Status', v: 'status' },
+        { label: 'Crônica', v: 'chronicle' },
         { label: 'Opções', v: 'config' },
         { label: 'Fechar', v: 'close' },
       ];
@@ -98,6 +101,7 @@ export class Menu {
   preview(v) {
     this.clearMain();
     if (v === 'party' || v === 'items' || v === 'skills' || v === 'equip' || v === 'status') this.renderParty();
+    if (v === 'chronicle') this.main.appendChild(h('div', 'desc', 'Objetivo, resumo da história, códice e vínculos do grupo.'));
     if (v === 'config') this.main.appendChild(h('div', 'desc', 'Ajuste gráficos, volume e velocidade do texto.'));
   }
 
@@ -141,6 +145,7 @@ export class Menu {
     if (v === 'skills') return this.openSkills();
     if (v === 'equip') return this.openEquip();
     if (v === 'status') return this.openStatus();
+    if (v === 'chronicle') return this.openChronicle();
     if (v === 'config') return this.openConfig();
   }
 
@@ -385,6 +390,95 @@ export class Menu {
     this.preview('status');
   }
 
+  // Crônica: objetivo atual, resumo por capítulo, códice e vínculos
+  async openChronicle() {
+    for (;;) {
+      this.clearMain();
+      this.main.appendChild(h('div', 'section-title', 'Crônica'));
+      const codex = unlockedCodex(this.st);
+      const pair = CAMP_SCENES.filter((c) => this.st.flag('camp_' + c.id)).length;
+      const opts = [
+        { label: '★ Objetivo e resumo', k: 'recap' },
+        { label: `📖 Códice (${codex.length})`, k: 'codex' },
+        { label: `💞 Vínculos (${pair}/${CAMP_SCENES.length})`, k: 'bonds' },
+        { label: 'Voltar', k: 'back' },
+      ];
+      const pick = await new Promise((resolve) => {
+        const ctl = new ListCtl(this.main, opts, {
+          sound: this.sound,
+          onSelect: (it) => {
+            this.ui.pop(ctl);
+            resolve(it.k);
+          },
+          onCancel: () => {
+            this.ui.pop(ctl);
+            resolve('back');
+          },
+        });
+        this.ui.push(ctl);
+      });
+      if (pick === 'back') break;
+      if (pick === 'recap') {
+        await this.readPage((box) => {
+          const obj = this.st.flags.objetivo;
+          box.innerHTML = `<div class="section-title">Objetivo atual</div><div class="desc" style="color:var(--gold)">${obj ? '★ ' + obj : 'Explore e converse com as pessoas.'}</div>` +
+            recap(this.st).reverse().map((c) => `<div class="section-title">${c.title}</div><div class="desc">${c.text}</div>`).join('');
+        });
+      } else if (pick === 'codex') {
+        await this.pickCodex(codex);
+      } else if (pick === 'bonds') {
+        await this.readPage((box) => {
+          const done = (c) => this.st.flag('camp_' + c.id);
+          box.innerHTML = '<div class="section-title">Vínculos</div><div class="desc">Converse ao redor dos cristais de luz para fortalecer o vínculo entre dois heróis: técnicas duplas +25% e +4% de HP máximo para os dois.</div>' +
+            CAMP_SCENES.map((c) => `<div class="hero-card" style="padding:4px 0"><div class="info"><div><span class="nm">${HERO_DATA[c.pair[0]].name} ♥ ${HERO_DATA[c.pair[1]].name}</span></div><div class="desc">${done(c) ? '✦ ' + c.title : this.st.party.includes(c.pair[0]) && this.st.party.includes(c.pair[1]) && c.cond(this.st) ? '❔ Nova conversa disponível no cristal!' : '🔒 Ainda não conhecem bem um ao outro.'}</div></div></div>`).join('') +
+            `<div class="desc" style="margin-top:6px">${Object.keys(HERO_DATA).filter((k) => this.st.heroes[k]).map((k) => HERO_DATA[k].name + ': ' + '♥'.repeat(bondsOf(this.st, k)) + '♡'.repeat(3 - bondsOf(this.st, k))).join('  ·  ')}</div>`;
+        });
+      }
+    }
+    this.preview('chronicle');
+  }
+
+  async pickCodex(list) {
+    for (;;) {
+      this.clearMain();
+      this.main.appendChild(h('div', 'section-title', 'Códice'));
+      const pick = await new Promise((resolve) => {
+        const ctl = new ListCtl(this.main, list.map((e) => ({ label: e.title, e })), {
+          sound: this.sound,
+          onSelect: (it) => {
+            this.ui.pop(ctl);
+            resolve(it.e);
+          },
+          onCancel: () => {
+            this.ui.pop(ctl);
+            resolve(null);
+          },
+        });
+        this.ui.push(ctl);
+      });
+      if (!pick) return;
+      await this.readPage((box) => {
+        box.innerHTML = `<div class="section-title">${pick.title}</div><div class="desc">${pick.text}</div>`;
+      });
+    }
+  }
+
+  // página só de leitura: qualquer toque/voltar fecha
+  async readPage(fill) {
+    this.clearMain();
+    const box = h('div', '');
+    fill(box);
+    this.main.appendChild(box);
+    await new Promise((resolve) => {
+      const ctl = { handle: (a) => (a === 'cancel' || a === 'confirm' || a === 'menu') && (this.ui.pop(ctl), resolve()) };
+      box.addEventListener('click', () => {
+        this.ui.pop(ctl);
+        resolve();
+      });
+      this.ui.push(ctl);
+    });
+  }
+
   async openConfig() {
     const set = this.st.settings;
     for (;;) {
@@ -396,6 +490,7 @@ export class Menu {
         { label: 'Música', right: Math.round(set.music * 10) + '/10', k: 'music' },
         { label: 'Efeitos', right: Math.round(set.sfx * 10) + '/10', k: 'sfx' },
         { label: 'Texto', right: set.textSpeed >= 1.5 ? 'Rápido' : set.textSpeed <= 0.75 ? 'Lento' : 'Normal', k: 'text' },
+        { label: 'Dificuldade', right: { calma: 'Calma', normal: 'Normal', desafio: 'Desafio' }[set.difficulty] || 'Normal', k: 'diff' },
         { label: 'Tela cheia', right: '', k: 'full' },
         { label: 'Voltar', k: 'back' },
       ];
@@ -430,6 +525,10 @@ export class Menu {
       } else if (pick === 'text') {
         set.textSpeed = set.textSpeed >= 1.5 ? 0.75 : set.textSpeed <= 0.75 ? 1 : 1.6;
         this.ui.textSpeed = set.textSpeed;
+      } else if (pick === 'diff') {
+        const order = ['calma', 'normal', 'desafio'];
+        set.difficulty = order[(order.indexOf(set.difficulty || 'normal') + 1) % 3];
+        this.ui.toast({ calma: 'Calma: inimigos mais fracos, para curtir a história.', normal: 'Normal: o equilíbrio planejado.', desafio: 'Desafio: inimigos mais fortes, mais EXP e moedas.' }[set.difficulty]);
       } else if (pick === 'full') {
         try {
           if (!document.fullscreenElement) await document.documentElement.requestFullscreen({ navigationUI: 'hide' });

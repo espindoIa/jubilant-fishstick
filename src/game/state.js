@@ -1,6 +1,7 @@
 // Estado do jogo: grupo, inventário, ouro, flags e save/load.
 import { HERO_DATA, expToNext } from '../data/heroes.js';
 import { ITEMS } from '../data/items.js';
+import { bondsOf, BOND_HP_BONUS } from '../data/camp.js';
 
 const SAVE_KEY = 'ecos-da-aurora-save-v1';
 const STATS = ['hp', 'mp', 'atk', 'def', 'mag', 'res', 'spd'];
@@ -17,7 +18,7 @@ export class GameState {
     this.playTime = 0;
     this.opened = {};
     this.defeated = {};
-    this.settings = { music: 0.7, sfx: 0.8, quality: null, textSpeed: 1 };
+    this.settings = { music: 0.7, sfx: 0.8, quality: null, textSpeed: 1, difficulty: 'normal' };
   }
 
   // ------------------------------------------------------------- heróis
@@ -73,6 +74,8 @@ export class GameState {
       if (!it) continue;
       for (const [k, v] of Object.entries(it.stats || {})) s[k] = (s[k] || 0) + v;
     }
+    // cada Vínculo concluído dá +4% de HP máximo
+    s.hp = Math.round(s.hp * (1 + BOND_HP_BONUS * bondsOf(this, id)));
     return s;
   }
 

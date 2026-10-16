@@ -1,3 +1,5 @@
+import { pendingScenes, playCamp } from './camp.js';
+
 // Roteiro — Ecos da Aurora, Crônica I: "A Estrela que Canta".
 // Cada script é uma função async(ctx). Coordenadas = tiles do mapa original.
 
@@ -85,11 +87,39 @@ export const SCRIPTS = {
   },
 
   async tito(ctx) {
+    if (ctx.flag('cap2') && !ctx.flag('tito_licao')) {
+      ctx.set('tito_licao');
+      await ctx.say({ name: 'Tito', portrait: 'crianca' }, 'Lio! Eu vi os soldados. Agora eu quero ser forte DE VERDADE. Qual é a regra mais importante de um cavaleiro?');
+      const c = await ctx.choose(['Nunca recuar.', 'Cuidar de quem está atrás de você.'], { cancel: 1 });
+      if (c === 1) {
+        await ctx.say({ name: 'Tito', portrait: 'crianca' }, 'Ahhh… então o cavaleiro de verdade é o escudo! Vou proteger a Lina e a minha mãe!');
+        await ctx.say('lio:happy', 'Isso. E o resto a gente aprende apanhando.');
+        ctx.give('tonico', 2);
+      } else {
+        await ctx.say({ name: 'Tito', portrait: 'crianca' }, 'Nunca recuar! …Mesmo se o monstro for GIGANTE?');
+        await ctx.say('lio:surprised', 'Hm. Na verdade, recuar para cuidar de alguém também vale. Esquece o que eu disse.');
+        ctx.give('antidoto', 2);
+      }
+      return;
+    }
     if (ctx.flag('ataque_fim')) return ctx.say({ name: 'Tito', portrait: 'crianca' }, 'Eu vi o grandão de armadura… quer dizer, os soldados! Eu não chorei. Só um pouquinho.');
     await ctx.say({ name: 'Tito', portrait: 'crianca' }, 'Quando eu crescer vou ser cavaleiro! Tchá! Tchá! …Lio, me ensina a usar espada de verdade?');
   },
 
   async lina(ctx) {
+    if (ctx.flag('cap2') && !ctx.flag('lina_lanterna') && ctx.state.party.includes('estela')) {
+      ctx.set('lina_lanterna');
+      await ctx.say({ name: 'Lina', portrait: 'menina', expr: 'sad' }, 'Minha lanterna-estrela queimou toda no ataque. Olha. Só sobrou o arame.');
+      await ctx.say('estela', 'Posso segurar?');
+      ctx.sfx('star');
+      await ctx.flash(500, '#fff0b0', 0.6);
+      await ctx.say(null, 'O arame queimado se acende devagar, com uma luz dourada que não vem de nenhuma vela.');
+      await ctx.say({ name: 'Lina', portrait: 'menina', expr: 'surprised' }, 'Ela brilha SOZINHA! Moça-estrela, você é mágica!');
+      await ctx.say('estela:happy', 'Não sou. Eu só lembrei como se faz. Sua lanterna é que sabia o caminho.');
+      await ctx.say({ name: 'Lina', portrait: 'menina', expr: 'happy' }, 'Quando você voltar eu vou ter feito mil! Uma pra cada estrela que você salvar!');
+      ctx.give('tonico', 2);
+      return;
+    }
     if (ctx.flag('ataque_fim')) return ctx.say({ name: 'Lina', portrait: 'menina' }, 'Minha lanterna queimou no ataque… mas eu vou fazer outra. Maior!');
     await ctx.say({ name: 'Lina', portrait: 'menina' }, 'Fiz minha lanterna em forma de estrela! Você acha que as estrelas de verdade vão gostar?');
   },
@@ -114,8 +144,18 @@ export const SCRIPTS = {
     ctx.sfx('star');
     await ctx.say(null, 'Um cristal azul pulsa com uma luz calma. Seu calor restaura o grupo.');
     ctx.heal();
-    const c = await ctx.choose(['Salvar o progresso', 'Não salvar'], { cancel: 1 });
-    if (c === 0) {
+    for (;;) {
+      const novas = pendingScenes(ctx.state).length;
+      const opts = ['Salvar o progresso'];
+      if (novas) opts.push(`✦ Conversar ao redor da luz (${novas})`);
+      opts.push('Seguir viagem');
+      const c = await ctx.choose(opts, { cancel: opts.length - 1 });
+      if (c === opts.length - 1) return;
+      if (novas && c === 1) {
+        await playCamp(ctx);
+        ctx.release();
+        continue;
+      }
       const ok = await ctx.saveMenu();
       await ctx.say(null, ok ? 'Progresso salvo.' : 'Não foi possível salvar neste navegador.');
     }
@@ -410,6 +450,12 @@ export const SCRIPTS = {
   },
 
   async manha_bento(ctx) {
+    if (!ctx.flag('bento_lore')) {
+      ctx.set('bento_lore');
+      await ctx.say({ name: 'Ancião Bento', portrait: 'anciao' }, 'Antes de ir, rapaz. Sua mãe me pediu uma coisa na última noite em que a vi.');
+      await ctx.say({ name: 'Ancião Bento', portrait: 'anciao' }, '“Se o céu um dia calar, cuide do menino. E não o deixe ter medo da própria voz.” Eu devia ter te dito isso antes.');
+      await ctx.say('lio:sad', 'Obrigado, Bento. Até a bobagem bonita faz mais sentido agora.');
+    }
     await ctx.say({ name: 'Ancião Bento', portrait: 'anciao' }, 'A Caverna de Cristal fica a leste do Bosque Sussurrante. Que as estrelas guiem vocês.');
   },
 
@@ -501,9 +547,37 @@ export const SCRIPTS = {
     await ctx.say('estela:happy', 'Ela… voltou para casa. Obrigada.');
     await ctx.say('sena', 'Você ouviu isso, Lio? Parecia um sino distante.');
     await ctx.say('lio', '…Ouvi.');
+    await SCRIPTS.memoria_aurora(ctx);
     await ctx.say('brann', 'O caminho para o norte está livre. O forte fica a poucas horas daqui. Descansem enquanto podem.');
     ctx.cameraFollow();
     ctx.objective('Invadir o Forte Ferrugem e resgatar a Vó Odessa.');
+  },
+
+  // Memória que o golem libertou: desperta o ECO (Ressonância) no grupo
+  async memoria_aurora(ctx) {
+    ctx.stopMusic(0.8);
+    await ctx.say(null, 'O brilho que sobrou do golem toca a mão de Lio. O mundo se apaga em branco.');
+    await ctx.fadeOut(900);
+    ctx.music('star');
+    await ctx.say(null, '— Uma noite muito antiga. O alto do Farol de Vila Maré. —');
+    await ctx.say({ name: 'Aurora' }, '…Shhh, pequenino. Está ouvindo? São elas. Estão com medo do escuro.');
+    await ctx.say({ name: 'Lio (criança)', portrait: 'lio', expr: 'sad' }, 'Mamãe, por que elas cantam tão triste?');
+    await ctx.say({ name: 'Aurora' }, 'Porque estão perdidas. Cantar de volta é como acender uma vela na janela: elas sabem que alguém está esperando.');
+    await ctx.say({ name: 'Lio (criança)', portrait: 'lio' }, 'Mas eu não sei cantar.');
+    await ctx.say({ name: 'Aurora' }, 'Sabe sim. Só precisa de alguém para cantar junto… e de coragem para desafinar.');
+    await ctx.say({ name: 'Aurora' }, 'Prometa uma coisa. Se um dia o céu esquecer o caminho de casa, cante por mim. Mesmo desafinado.');
+    await ctx.say({ name: 'Lio (criança)', portrait: 'lio', expr: 'happy' }, 'Prometo!');
+    await ctx.say(null, 'Uma sombra cinzenta escorre pela lua, atrás dela. Aurora olha para cima e, pela primeira vez, para de sorrir.');
+    await ctx.say({ name: 'Aurora' }, 'Já chegou… tão cedo.');
+    ctx.music('cave');
+    await ctx.fadeIn(900);
+    await ctx.say('estela', 'Você cantou dormindo. Só um pedacinho. Mas as estrelas ouviram.');
+    await ctx.say('lio:sad', 'Eu me lembrei da voz dela. Ela me fez prometer uma coisa.');
+    await ctx.say('estela:happy', 'A canção ficou em você, Lio. Quando a batalha esquentar, eu consigo ouvir o eco dela entre nós.');
+    ctx.set('eco_despertou');
+    ctx.sfx('levelup');
+    await ctx.say(null, 'A canção de Aurora despertou! Em batalha, o grupo acumula *ECO* 🎵. Com a barra cheia, cada herói pode soltar sua *Ressonância*: um golpe de limite único.');
+    await ctx.say(null, 'Dica: converse ao redor dos cristais de luz. Cada dupla tem uma história — e um *Vínculo* que fortalece as técnicas duplas.');
   },
 
   // ================================================================ FORTE
@@ -563,10 +637,26 @@ export const SCRIPTS = {
     await ctx.say('varek', 'A guardiã fugiu. A estrela veio por conta própria. E o traidor Brann… que reunião comovente.');
     await ctx.say('brann:angry', 'Varek.');
     await ctx.say('varek', 'Capitão Varek, soldado.');
+    await ctx.say('brann:sad', 'Você tinha quinze anos e medo do escuro quando te ensinei a segurar uma lança.');
+    await ctx.say('varek', 'E eu tinha uma irmã. Isso foi o que o inverno me deixou: o escuro e a lança.');
+    await ctx.say('brann', 'Eu também enterrei alguém, rapaz. E mesmo assim não queimo gente.');
+    await ctx.say('varek:happy', 'Por isso você é um desertor e eu, um capitão. Você pode se dar ao luxo da dor. Eu preciso de resultados.');
     await ctx.say('lio:angry', 'Solta a estrela!');
     await ctx.say('varek', 'Você ainda não entende. O Império aquece cem mil lares com aquilo que vocês chamam de céu.');
     await ctx.say('varek', 'As estrelas cantam. Nós as fazemos trabalhar. Lembranças são um luxo, garoto. Calor, não.');
     await ctx.say('sena:angry', 'Um mundo que esquece não tem lar nenhum para aquecer.');
+    const resp = await ctx.choose(['“Entendo a sua dor. Mas não é assim.”', '“Você escolheu queimar. Escolheu errado.”'], { cancel: 0 });
+    if (resp === 0) {
+      ctx.set('varek_compaixao');
+      await ctx.say('lio:sad', 'Entendo a sua dor, Varek. O Brann me contou do Vale Branco. Mas ninguém merece pagar por isso.');
+      await ctx.say('varek:surprised', '…Ele contou. Hmpf. Então você sabe que eu não tenho mais nada a perder.');
+      await ctx.say('estela:sad', 'Tem sim. Eu ouço daqui: você ainda guarda um nome.');
+      await ctx.say('varek:angry', 'CHEGA!');
+    } else {
+      ctx.set('varek_firmeza');
+      await ctx.say('lio:angry', 'Você escolheu queimar gente. Ninguém te obrigou a isso, Varek.');
+      await ctx.say('varek:happy', 'Nunca disse que me obrigaram. Gosto da sua franqueza, garoto.');
+    }
     await ctx.say('varek:happy', 'Que bonito. Vejamos se a fé segura uma lâmina.');
     const r = await ctx.battle(['varek'], { bg: 'fort', music: 'boss', noFlee: true });
     if (r !== 'win') return;
@@ -596,6 +686,10 @@ export const SCRIPTS = {
     await ctx.say(null, 'A Armadura Titã desaba. De dentro dela, Varek se arrasta para fora, ferido.');
     ctx.spawn({ id: 'varek', char: 'varek', x: 21, y: 6, dir: 'left' });
     await ctx.say('varek:angry', 'Isto… não acabou. Vocês não fazem ideia do que está vindo.');
+    if (ctx.flag('varek_compaixao')) {
+      await ctx.say('varek:sad', '…Lena. Minha irmã se chamava Lena. Faz vinte anos que ninguém me pergunta.');
+      await ctx.say('lio:sad', 'Então vou lembrar por você.');
+    }
     await ctx.say('varek', 'A Lua Cinzenta já está acordando. E quando ela abrir os olhos… nem a sua canção vai bastar.');
     ctx.sfx('steam');
     await ctx.move('varek', [[25, 4], [28, 3]], 3.5);
@@ -630,6 +724,17 @@ export const SCRIPTS = {
     await ctx.say('lio', 'Então a gente descobre o que é. E traz as estrelas — e a minha mãe — de volta pra casa.');
     await ctx.say('estela:happy', 'Juntos?');
     await ctx.say('lio:happy', 'Juntos.');
+    if (ctx.flag('camp_lio_sena')) {
+      await ctx.say('lio', 'Sena, a sua fita. Eu prometi devolver.');
+      await ctx.say('sena:happy', 'Fica com você. Prometeu voltar “os dois”. Isso ainda está em aberto.');
+    }
+    if (ctx.flag('camp_brann_sena')) {
+      await ctx.say('brann', 'O Santuário de Âmbar fica a dois dias ao norte. Eu conheço o caminho.');
+      await ctx.say('sena', 'Então a gente passa lá primeiro.');
+    }
+    if (ctx.flag('camp_sena_estela')) {
+      await ctx.say(null, 'Sena abre o caderninho e escreve com a ponta de carvão: « Palavra do dia: juntos. »');
+    }
     await ctx.say(null, 'No horizonte, por um instante, uma lua pálida e cinzenta abriu um olho de luz.');
     await ctx.chapter('Fim da Crônica I', 'OBRIGADO POR JOGAR');
     await ctx.say(null, 'ECOS DA AURORA\n\nContinua na Crônica II — « A Lua Cinzenta ».');

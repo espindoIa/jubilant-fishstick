@@ -13,6 +13,11 @@ import { Effects } from './effects.js';
 import { h, ListCtl, wait, TIME } from '../ui/UI.js';
 import { portraitURL } from '../ui/portraits.js';
 import { updateOcclusion } from '../render/occlusion.js';
+import { Barks } from './barks.js';
+import { RESONANCE, doResonance } from './resonance.js';
+import { bondRank, BOND_DUAL_BONUS } from '../data/camp.js';
+
+const DIFFICULTY = { calma: { hp: 0.8, atk: 0.82, rew: 0.9 }, normal: { hp: 1, atk: 1, rew: 1 }, desafio: { hp: 1.3, atk: 1.18, rew: 1.25 } };
 
 const HERO_SLOTS = [[2.7, -2.9], [4.5, -1.1], [2.7, 0.7], [4.5, 2.5]];
 const ENEMY_SLOTS = {
@@ -45,6 +50,26 @@ export class Battle {
     this.done = false;
     this.time = 0;
     this.dom = [];
+    // ECO: a barra do grupo, liberada pelo flashback que desperta a canção de Aurora
+    this.ecoOn = game.state.flag('eco_despertou');
+    this.eco = this.ecoOn ? 30 : 0;
+    this.lastAction = {};
+    this.diff = DIFFICULTY[game.state.settings.difficulty] || DIFFICULTY.normal;
+    this.barks = new Barks(this);
+  }
+
+  addEco(n) {
+    if (!this.ecoOn || this.done) return;
+    const was = this.eco;
+    this.eco = Math.min(100, this.eco + n);
+    if (was < 100 && this.eco >= 100) {
+      this.game.sfx('star');
+      const lio = this.heroes.find((x) => x.id === 'lio' && x.hp > 0) || this.heroes.find((x) => x.hp > 0);
+      if (lio) {
+        this.popup(lio, 'ECO CHEIO!', 'label');
+        this.barks.say(lio, 'eco', { force: true });
+      }
+    }
   }
 
   get all() {
@@ -112,8 +137,8 @@ export class Battle {
       const letter = sameKind ? ' ' + 'ABCD'[this.formation.slice(0, i + 1).filter((k) => k === kind).length - 1] : '';
       const c = {
         side: 'enemy', id: kind, kind, name: e.name + letter, actor: a, home, data: e,
-        hp: e.hp, maxhp: e.hp, mp: 99, maxmp: 99,
-        base: { atk: e.atk, def: e.def, mag: e.mag, res: e.res, spd: e.spd },
+        hp: Math.round(e.hp * this.diff.hp), maxhp: Math.round(e.hp * this.diff.hp), mp: 99, maxmp: 99,
+        base: { atk: e.atk * this.diff.atk, def: e.def, mag: e.mag * this.diff.atk, res: e.res, spd: e.spd },
         atb: rnd(0, 30), buffs: {}, status: {}, immune: new Set(e.boss ? ['sono'] : []),
         shield: e.shield, maxShield: e.shield, broken: 0, weak: e.weak, revealed: new Set(),
         boss: !!e.boss, alt: 0,
@@ -148,6 +173,10 @@ export class Battle {
       this.dom.push(t);
       return t;
     });
+    this.ecoWin = h('div', 'eco-gauge' + (this.ecoOn ? '' : ' hidden'));
+    this.ecoWin.innerHTML = '<span>ECO</span><div class="bar eco"><i></i></div>';
+    root.appendChild(this.ecoWin);
+    this.dom.push(this.ecoWin);
     this.helpWin = h('div', 'win thin battle-help hidden');
     root.appendChild(this.helpWin);
     this.dom.push(this.helpWin);
@@ -168,6 +197,10 @@ export class Battle {
   }
 
   updateHUD(full = false) {
+    if (this.ecoOn) {
+      this.ecoWin.querySelector('i').style.width = this.eco + '%';
+      this.ecoWin.classList.toggle('full', this.eco >= 100);
+    }
     this.heroes.forEach((c, i) => {
       const r = this.partyRows[i];
       r.querySelector('.hpn').textContent = `${c.hp}/${c.maxhp}`;
@@ -219,7 +252,7 @@ export class Battle {
     el.style.left = p.x + (Math.random() - 0.5) * 20 + 'px';
     el.style.top = p.y + 'px';
     this.ui.root.appendChild(el);
-    setTimeout(() => el.remove(), 1500);
+    setTimeout(() => el.remove(), cls === 'bark' ? 2300 : 1500);
   }
 
   async banner(text, ms = 900) {
@@ -252,6 +285,7 @@ export class Battle {
     }
     if (this.opts.introScript) await this.opts.introScript(this);
     this.busy = false;
+    this.barks.start();
     if (this.game.debug?.autoWin) {
       await wait(400);
       for (const e of this.enemies) {
@@ -477,10 +511,14 @@ export class Battle {
     for (;;) {
       const duals = this.availableDuals(c);
       const canFlee = !this.enemies.some((e) => e.boss) && !this.opts.noFlee;
-      const items = [
+      const items = [];
+      if (this.ecoOn && this.eco >= 100 && RESONANCE[c.id]) items.push({ label: '🎵 ' + RESONANCE[c.id].name, v: 'reso', desc: RESONANCE[c.id].desc });
+      const rep = this.repeatable(c);
+      if (rep) items.push({ label: '🔁 Repetir', right: rep.label, v: 'repeat', desc: 'Repete a última ação deste herói.' });
+      items.push(
         { label: '⚔ Atacar', v: 'attack', desc: `Ataque com ${WEAPON_TYPES[c.weaponType].name.toLowerCase()} ${WEAPON_TYPES[c.weaponType].icon}` },
         { label: '✦ Técnicas', v: 'skill', desc: 'Usa MP.' },
-      ];
+      );
       if (duals.length) items.push({ label: '✧ Duplas', v: 'dual', disabled: !duals.some((d) => d.ok), desc: 'Técnica em dupla: o parceiro precisa estar com a barra ATB quase cheia (75%).' });
       items.push({ label: '🎒 Itens', v: 'item', desc: '' });
       items.push({ label: '🛡 Defender', v: 'defend', desc: 'Reduz o dano pela metade até o próximo turno.' });
@@ -488,7 +526,12 @@ export class Battle {
       this.help(`<span style="color:var(--gold)">${c.name}</span> — o que fazer?`);
       const pick = await this.listMenu(c.name, items, { noCancel: true, index: this.lastCmd?.[c.id] || 0 });
       this.lastCmd = { ...(this.lastCmd || {}), [c.id]: items.indexOf(pick) };
-      if (pick.v === 'attack') {
+      if (pick.v === 'reso') {
+        const targets = await this.chooseTargets(c, RESONANCE[c.id].target);
+        if (targets) return this.finishCmd({ actor: c, type: 'resonance', targets });
+      } else if (pick.v === 'repeat') {
+        return this.finishCmd(rep.act());
+      } else if (pick.v === 'attack') {
         const t = await this.chooseEnemy(c);
         if (t) return this.finishCmd({ actor: c, type: 'attack', targets: [t] });
       } else if (pick.v === 'skill') {
@@ -527,7 +570,20 @@ export class Battle {
     }
   }
 
+  // última ação do herói, reaproveitável se ainda for possível
+  repeatable(c) {
+    const a = this.lastAction[c.id];
+    if (!a) return null;
+    const alive = this.enemies.filter((e) => e.hp > 0);
+    const fresh = (t) => t.map((x) => (x.hp > 0 || x.side === 'hero' ? x : alive[0])).filter(Boolean);
+    if (a.type === 'attack' && alive.length) return { label: 'Atacar', act: () => ({ ...a, targets: fresh(a.targets) }) };
+    if (a.type === 'skill' && c.mp >= a.skill.mp && (a.skill.target !== 'enemy' || alive.length)) return { label: a.skill.name, act: () => ({ ...a, targets: a.skill.target === 'enemies' ? alive : fresh(a.targets) }) };
+    if (a.type === 'item' && this.state.inventory[a.item] > 0) return { label: ITEMS[a.item].name, act: () => ({ ...a }) };
+    return null;
+  }
+
   finishCmd(act) {
+    if (['attack', 'skill', 'item'].includes(act.type)) this.lastAction[act.actor.id] = act;
     this.closeCmd();
     this.help(null);
     return act;
@@ -694,6 +750,9 @@ export class Battle {
       case 'dual':
         await this.doDual(c, act);
         break;
+      case 'resonance':
+        await doResonance(this, c, act);
+        break;
       case 'item':
         await this.doItem(c, act.item, act.targets);
         break;
@@ -829,6 +888,12 @@ export class Battle {
     if (weakHit) this.popup(t, 'FRACO!', 'label');
     if (crit) this.game.sfx('crit');
     this.knock(t);
+    if (src.side === 'hero' && t.side === 'enemy') this.addEco(2 + (weakHit ? 3 : 0));
+    if (t.side === 'hero') {
+      this.addEco(4 + (t.hp <= 0 ? 10 : 0));
+      if (t.hp > 0 && t.hp < t.maxhp * 0.25) this.barks.say(t, 'low', { key: 'low_' + t.id });
+      if (t.hp <= 0) setTimeout(() => this.barks.say(this.barks.alive(t)[0], 'ko', { force: true }), 700);
+    }
     if (t.hp <= 0) this.onDeath(t);
     return dmg;
   }
@@ -847,6 +912,8 @@ export class Battle {
     this.game.sfx('break');
     this.effects.play('break', t.actor.position);
     this.popup(t, 'QUEBRA!', 'break');
+    this.addEco(8);
+    this.barks.say(this.barks.alive()[Math.floor(Math.random() * this.barks.alive().length)], 'brk');
     this.stage.shake = 0.5;
     this._hudDirty = true;
   }
@@ -982,6 +1049,8 @@ export class Battle {
   async doDual(c, act) {
     const d = act.dual;
     const p = act.partner;
+    const bond = 1 + BOND_DUAL_BONUS * bondRank(this.state, c.id, p.id);
+    if (bond > 1) this.popup(c, '♥ Vínculo', 'label');
     c.mp -= act.mp[0];
     p.mp -= act.mp[1];
     p.waiting = false;
@@ -1001,7 +1070,7 @@ export class Battle {
       c.anim = false;
       p.actor.setFrame('attack');
       for (const t of act.targets) {
-        await this.doAttack(c, t, { power: d.power, hits: d.hits || 1, type: c.weaponType, element: d.element, fx: d.fx, shieldHits: d.shieldHits || 1, multiType: d.multiType });
+        await this.doAttack(c, t, { power: d.power * bond, hits: d.hits || 1, type: c.weaponType, element: d.element, fx: d.fx, shieldHits: d.shieldHits || 1, multiType: d.multiType });
       }
     } else if (d.kind === 'mag') {
       const caster = { ...c, base: { ...c.base, mag: Math.max(this.stat(c, 'mag'), this.stat(p, 'mag')) * 1.15 } };
@@ -1009,15 +1078,15 @@ export class Battle {
         if (t.hp <= 0) continue;
         this.effects.play(d.fx, t.actor.position, c.actor.position);
         this.game.sfx(elementSfx(d.element));
-        this.applyDamage(caster, t, this.calcMag(caster, t, d.power), { element: d.element, shieldHits: 1 });
-        if (d.extraElement && t.hp > 0 && t.weak.includes(d.extraElement)) this.applyDamage(caster, t, this.calcMag(caster, t, d.power * 0.3), { element: d.extraElement });
+        this.applyDamage(caster, t, this.calcMag(caster, t, d.power * bond), { element: d.element, shieldHits: 1 });
+        if (d.extraElement && t.hp > 0 && t.weak.includes(d.extraElement)) this.applyDamage(caster, t, this.calcMag(caster, t, d.power * bond * 0.3), { element: d.extraElement });
         await wait(140);
       }
-      if (d.healAll) for (const hh of this.heroes) if (hh.hp > 0) this.heal(hh, Math.round(d.healAll + this.stat(c, 'mag')));
+      if (d.healAll) for (const hh of this.heroes) if (hh.hp > 0) this.heal(hh, Math.round(d.healAll * bond + this.stat(c, 'mag')));
     } else if (d.kind === 'heal') {
       for (const hh of this.heroes) {
         if (hh.hp <= 0) continue;
-        this.heal(hh, Math.round(d.power + Math.max(this.stat(c, 'mag'), this.stat(p, 'mag')) * 1.6));
+        this.heal(hh, Math.round(d.power * bond + Math.max(this.stat(c, 'mag'), this.stat(p, 'mag')) * 1.6));
         if (d.buff) hh.buffs[d.name] = { ...d.buff, turns: (d.turns || 3) + 1 };
       }
       this.game.sfx('buff');
@@ -1186,8 +1255,10 @@ export class Battle {
         c.actor.setFrame('win');
       }
     }
-    const exp = this.enemies.reduce((a, e) => a + e.data.exp, 0);
-    const gold = this.enemies.reduce((a, e) => a + e.data.gold, 0);
+    const exp = Math.round(this.enemies.reduce((a, e) => a + e.data.exp, 0) * this.diff.rew);
+    const gold = Math.round(this.enemies.reduce((a, e) => a + e.data.gold, 0) * this.diff.rew);
+    const wl = this.heroes.filter((x) => x.hp > 0);
+    if (wl.length) this.barks.say(wl[Math.floor(Math.random() * wl.length)], 'win', { force: true });
     const drops = [];
     for (const e of this.enemies) for (const [item, ch] of e.data.drops || []) if (Math.random() < ch) drops.push(item);
     this.syncState();
