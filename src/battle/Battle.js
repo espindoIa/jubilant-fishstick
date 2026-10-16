@@ -610,6 +610,7 @@ export class Battle {
   chooseEnemy(c) {
     return new Promise((resolve) => {
       const alive = this.enemies.filter((e) => e.hp > 0);
+      if (!alive.length) return resolve(null);
       let idx = 0;
       this.targeting = alive;
       this._hudDirty = true;
@@ -620,6 +621,7 @@ export class Battle {
       const place = () => {
         if (!alive2) return false;
         const t = alive[idx];
+        if (!t) return false;
         const pos = t.actor.position.clone();
         pos.y += ((t.actor.sheet.fh * t.actor.scale) / 16) * 1.18 * (t.actor.group.scale.y || 1) + 1.1;
         const p = this.project(pos);
