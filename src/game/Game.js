@@ -61,6 +61,25 @@ export class Game {
         /* ignore */
       }
     });
+    const suspend = () => {
+      this.paused = true;
+      this.input.reset();
+      this.touch.resetStick();
+      this.audio?.pauseMusic?.();
+      if (!this.pauseEl) {
+        const el = document.createElement('button');
+        el.className = 'pause-overlay';
+        el.textContent = 'Jogo pausado · Toque para continuar';
+        el.addEventListener('pointerdown', e => {
+          e.stopPropagation();e.preventDefault();
+          this.paused = false;this.last = performance.now();
+          this.audio?.resumeMusic?.();el.remove();this.pauseEl = null;
+        });
+        this.pauseEl = el;this.uiRoot.appendChild(el);
+      }
+    };
+    window.addEventListener('blur', suspend);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) suspend(); });
     // perda do contexto WebGL (comum em celulares): oferece recarregar
     this.canvas.addEventListener('webglcontextlost', (e) => {
       e.preventDefault();
@@ -133,6 +152,11 @@ export class Game {
   frame(now) {
     const dt = Math.min(0.05, (now - this.last) / 1000);
     this.last = now;
+    if (this.paused || document.hidden) {
+      this.input.endFrame();
+      requestAnimationFrame(t => this.frame(t));
+      return;
+    }
     // ?speed=N: N subpassos de lógica por quadro (sem passos gigantes na colisão)
     for (let i = 0; i < TIME.speed; i++) this.step(dt);
     this.stage.update(dt * TIME.speed, this.time);

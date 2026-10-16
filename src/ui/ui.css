@@ -1241,3 +1241,46 @@ body {
   white-space: normal;
   max-width: min(70vw, 420px);
 }
+
+/* Touch targets and safe-area layout. These dimensions are actual hit boxes. */
+.opt, .menu-tabs .opt, .battle-cmd .opt {
+  min-width: 44px;
+  min-height: 44px;
+  touch-action: pan-y;
+}
+.menu-close, .interact-hint, .obj-chip { min-width: 44px; min-height: 44px; }
+.obj-chip { display: flex; align-items: center; }
+.interact-hint { border-radius: 22px; }
+.menu-main, .battle-cmd, .choices { touch-action: pan-y; overscroll-behavior: contain; }
+.menu-main > .section-title, .battle-cmd > .title { min-height: 44px; padding-right: 48px; }
+.menu-main { padding-top: 48px; }
+.choices { max-height: calc(65dvh - var(--safe-t) - var(--safe-b)); overflow-y: auto; }
+.pause-overlay {
+  position: fixed; inset: 0; z-index: 200; border: 0;
+  background: rgba(8, 12, 30, .94); color: #fff;
+  font: inherit; pointer-events: auto; padding: 32px;
+}
+@media (max-height: 560px) and (min-aspect-ratio: 1/1) {
+  .menu-tabs .list { flex-wrap: nowrap; overflow-x: auto; touch-action: pan-x; }
+  .menu-tabs .opt { flex: 0 0 auto; }
+  .menu-main { top: calc(72px + var(--safe-t)); max-height: calc(100dvh - 148px - var(--safe-t) - var(--safe-b)); }
+  .battle-cmd { width: min(47vw, 420px); }
+}
+@media (max-aspect-ratio: 1/1) {
+  .menu-tabs { right: max(12px, var(--safe-r)); }
+  .menu-tabs .list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .menu-tabs .opt { padding-left: 18px; gap: 4px; }
+  .menu-main { left: max(12px, var(--safe-l)); top: calc(172px + var(--safe-t)); }
+  .obj-chip { max-width: calc(100vw - 92px - var(--safe-l) - var(--safe-r)); }
+  .rotate-hint { max-width: calc(100vw - 24px - var(--safe-l) - var(--safe-r)); white-space: normal; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tbtn-a.ready, .eco-gauge.full, .interact-hint { animation: none; }
+}
+.stick-zone {
+  left: var(--safe-l);
+  top: max(18%, calc(70px + var(--safe-t)));
+  width: calc(55% - var(--safe-l));
+  bottom: var(--safe-b);
+}
+.enemy-tag { min-width: 44px; min-height: 44px; }

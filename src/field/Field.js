@@ -117,6 +117,18 @@ export class Field {
     this.invuln = 1.2;
   }
 
+  reorderParty() {
+    const previous = this.player;
+    const actors = new Map([previous, ...this.followers].map(a => [a.id, a]));
+    const ordered = this.state.party.map(id => actors.get(id));
+    if (ordered.some(a => !a)) return;
+    const position = previous.position.clone(), facing = previous.facing;
+    this.player = ordered[0];this.followers = ordered.slice(1);
+    this.player.position.copy(position);this.player.facing = facing;
+    this.trail = Array.from({length:60}, () => ({x:position.x,z:position.z,dir:facing}));
+    this.followers.forEach(a => { a.position.copy(position);a.facing = facing; });
+  }
+
   makeActor(id) {
     const sheet = fieldSheet(id);
     const a = new Actor(sheet, { floats: sheet.floats });

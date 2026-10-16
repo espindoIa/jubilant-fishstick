@@ -158,7 +158,7 @@ export class Menu {
       p.unshift(id);
       this.game.sfx('confirm');
       this.ui.toast(`${HERO_DATA[id].name} agora lidera o grupo.`);
-      this.game.field.pendingReload = true;
+      this.game.field.reorderParty();
     }
     this.preview('party');
   }

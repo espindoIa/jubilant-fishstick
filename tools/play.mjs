@@ -34,7 +34,8 @@ await page.goto(base + (spec.url || '/'), { waitUntil: 'load' });
 fs.mkdirSync('shots/play', { recursive: true });
 let n = 0, timeouts = 0;
 try {
-for (const step of spec.steps) {
+for (const [stepIndex, step] of spec.steps.entries()) {
+  if (process.env.TRACE_STEPS) console.log('STEP', stepIndex, JSON.stringify(step).slice(0,180));
   if (step.wait) await page.waitForTimeout(step.wait);
   if (step.key) await page.keyboard.press(step.key);
   if (step.keys) {

@@ -1,0 +1,155 @@
+{
+  "url": "/?q=low&fast=1&start=vila&party=lio,sena,estela,brann&flags=intro_feita",
+  "width": 390,
+  "height": 844,
+  "touch": true,
+  "steps": [
+    {
+      "until": "window.__game?.mode==='title'",
+      "timeout": 60000
+    },
+    {
+      "tap": [
+        195,
+        422
+      ]
+    },
+    {
+      "wait": 300
+    },
+    {
+      "tapSelector": ".title-menu .opt:first-child"
+    },
+    {
+      "until": "__game.mode==='field'",
+      "timeout": 60000
+    },
+    {
+      "eval": "document.documentElement.style.setProperty('--safe-t','24px');document.documentElement.style.setProperty('--safe-b','20px');document.documentElement.style.setProperty('--safe-l','44px');document.documentElement.style.setProperty('--safe-r','12px');__game.state.addItem('espada_ferro',1);__game.state.heroes.lio.hp=10;"
+    },
+    {
+      "tapSelector": ".tbtn-menu"
+    },
+    {
+      "eval": "[...document.querySelectorAll('button,.opt,.menu-close,.obj-chip,.stick-zone')].filter(e=>e.getBoundingClientRect().width>0).map(e=>{const r=e.getBoundingClientRect();return{label:e.textContent.slice(0,32),w:r.width,h:r.height,x:r.x,y:r.y}})"
+    },
+    {
+      "tapSelector": ".menu-tabs .opt:has-text(\"Itens\")"
+    },
+    {
+      "tapSelector": ".menu-main .opt:has-text(\"Poção\"):first-child"
+    },
+    {
+      "tapSelector": ".menu-main .opt:has(.nm:text-is(\"Lio\"))"
+    },
+    {
+      "assert": "__game.state.heroes.lio.hp>10"
+    },
+    {
+      "tapSelector": ".menu-close"
+    },
+    {
+      "tapSelector": ".menu-tabs .opt:has-text(\"Equipar\")"
+    },
+    {
+      "tapSelector": ".menu-main .opt:has(.nm:text-is(\"Lio\"))"
+    },
+    {
+      "tapSelector": ".menu-main .opt:first-child"
+    },
+    {
+      "shot": "batch2-equip-preview-portrait"
+    },
+    {
+      "tapSelector": ".menu-main .opt:has-text(\"Espada de Ferro\")"
+    },
+    {
+      "assert": "__game.state.heroes.lio.equip.weapon==='espada_ferro'"
+    },
+    {
+      "tapSelector": ".menu-close"
+    },
+    {
+      "tapSelector": ".menu-tabs .opt:has-text(\"Técnicas\")"
+    },
+    {
+      "tapSelector": ".menu-main .opt:has(.nm:text-is(\"Sena\"))"
+    },
+    {
+      "shot": "batch2-skills-portrait"
+    },
+    {
+      "tapSelector": ".menu-close"
+    },
+    {
+      "tapSelector": ".menu-tabs .opt:has-text(\"Crônica\")"
+    },
+    {
+      "shot": "batch2-chronicle-portrait"
+    },
+    {
+      "tapSelector": ".menu-close"
+    },
+    {
+      "tapSelector": ".menu-tabs .opt:has-text(\"Opções\")"
+    },
+    {
+      "tapSelector": ".menu-main .opt:has-text(\"Dificuldade\")"
+    },
+    {
+      "assert": "__game.state.settings.difficulty==='desafio'"
+    },
+    {
+      "tapSelector": ".menu-main .opt:has-text(\"Dificuldade\")"
+    },
+    {
+      "assert": "__game.state.settings.difficulty==='calma'"
+    },
+    {
+      "tapSelector": ".menu-main .opt:has-text(\"Dificuldade\")"
+    },
+    {
+      "assert": "__game.state.settings.difficulty==='normal'"
+    },
+    {
+      "shot": "batch2-options-portrait"
+    },
+    {
+      "tapSelector": ".menu-main .opt:has-text(\"Voltar\")"
+    },
+    {
+      "tapSelector": ".menu-tabs .opt:has-text(\"Grupo\")"
+    },
+    {
+      "tapSelector": ".menu-main .opt:has(.nm:text-is(\"Sena\"))"
+    },
+    {
+      "assert": "__game.state.party[0]==='sena' && __game.field.player.id==='sena'"
+    },
+    {
+      "tapSelector": ".menu-tabs .opt:has-text(\"Fechar\")"
+    },
+    {
+      "until": "__game.mode==='field'&&!__game.ui.busy",
+      "timeout": 20000
+    },
+    {
+      "eval": "window.dispatchEvent(new Event('blur'));window.__pauseTime=__game.time"
+    },
+    {
+      "wait": 400
+    },
+    {
+      "assert": "__game.paused&&__game.time===__pauseTime&&!__game.input.stick.active"
+    },
+    {
+      "tapSelector": ".pause-overlay"
+    },
+    {
+      "assert": "!__game.paused"
+    },
+    {
+      "shot": "batch2-safe-field-portrait"
+    }
+  ]
+}

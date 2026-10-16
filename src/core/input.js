@@ -28,7 +28,13 @@ export class Input {
       }
     });
     window.addEventListener('keyup', (e) => this.keys.delete(e.key.toLowerCase()));
-    window.addEventListener('blur', () => this.keys.clear());
+    window.addEventListener('blur', () => this.reset());
+  }
+
+  reset() {
+    this.keys.clear();
+    this.pressed.clear();
+    Object.assign(this.stick, { x: 0, y: 0, active: false, run: false });
   }
 
   press(a) {
@@ -119,6 +125,7 @@ export class TouchControls {
     let id = null, ox = 0, oy = 0;
     const R = 46;
     const start = (e) => {
+      if (id !== null) return;
       const t = e.changedTouches ? e.changedTouches[0] : e;
       id = t.identifier ?? 'mouse';
       ox = t.clientX;
@@ -145,13 +152,22 @@ export class TouchControls {
       const k = Math.min(1, l / R);
       const dead = 0.18;
       const m = k < dead ? 0 : (k - dead) / (1 - dead);
-      input.stick.x = l ? (dx / Math.max(l, 1)) * m : 0;
-      input.stick.y = l ? (dy / Math.max(l, 1)) * m : 0;
+      input.stick.x = l ? (dx / Math.max(Math.min(l, R), 1)) * m : 0;
+      input.stick.y = l ? (dy / Math.max(Math.min(l, R), 1)) * m : 0;
       // empurrar o joystick até a borda = correr (o botão acende)
       input.stick.run = k >= 0.97;
       knob.classList.toggle('run', input.stick.run);
       e.preventDefault();
     };
+    const resetStick = () => {
+      id = null;
+      base.classList.remove('on');
+      knob.style.transform = '';
+      knob.classList.remove('run');
+      Object.assign(input.stick, {active:false,run:false,x:0,y:0});
+    };
+    this.resetStick = resetStick;
+    window.addEventListener('blur', resetStick);
     const end = (e) => {
       const list = e.changedTouches ? [...e.changedTouches] : [e];
       if (!list.some((tt) => (tt.identifier ?? 'mouse') === id)) return;
@@ -188,9 +204,6 @@ export class TouchControls {
 
   show(v) {
     this.el.style.display = v ? '' : 'none';
-    if (!v) {
-      this.input.stick.active = false;
-      this.input.stick.x = this.input.stick.y = 0;
-    }
+    if (!v) this.resetStick();
   }
 }
