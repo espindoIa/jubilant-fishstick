@@ -14,7 +14,8 @@
     "build:single": "SINGLE=1 vite build",
     "shot": "node tools/screenshot.mjs",
     "play": "node tools/play.mjs",
-    "build:page": "SINGLE=1 vite build && node tools/make-page.mjs"
+    "build:page": "SINGLE=1 vite build && node tools/make-page.mjs",
+    "test:story": "node tools/play.mjs tools/tests/historia.json"
   },
   "dependencies": {
     "@fontsource/dotgothic16": "^5.3.1",

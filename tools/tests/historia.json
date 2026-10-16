@@ -1,0 +1,191 @@
+{
+ "url": "/?q=low&speed=5",
+ "steps": [
+  {
+   "wait": 3000
+  },
+  {
+   "tap": [
+    480,
+    270
+   ]
+  },
+  {
+   "wait": 800
+  },
+  {
+   "key": "Enter"
+  },
+  {
+   "eval": "window.__game.debug.autoWin=true; 1"
+  },
+  {
+   "until": "window.__game && window.__game.state.flags.intro_feita && window.__game.mode==='field' && !window.__game.ui.busy",
+   "press": "Enter",
+   "every": 200,
+   "timeout": 120000
+  },
+  {
+   "eval": "(()=>{const g=window.__game; if (g.mode==='field') { g.runScript('santuario_cena'); return 'run santuario_cena'; } return 'gatilho ja rodou santuario_cena'; })()"
+  },
+  {
+   "until": "window.__game.state.flags.objetivo && window.__game.state.flags.objetivo.includes('Bosque') && window.__game.mode==='field'",
+   "press": "Enter",
+   "every": 200,
+   "timeout": 120000
+  },
+  {
+   "eval": "window.__game.state.set('estrela_caiu'); window.__game.changeMap('bosque','clearing'); 1"
+  },
+  {
+   "until": "window.__game.field.mapId==='bosque' && window.__game.mode!=='loading'",
+   "timeout": 60000
+  },
+  {
+   "wait": 2000
+  },
+  {
+   "until": "(window.__game.mode==='field' && !window.__game.ui.busy) || window.__game.state.flags.cao_derrotado",
+   "press": "Enter",
+   "every": 200,
+   "timeout": 120000
+  },
+  {
+   "eval": "(()=>{const g=window.__game; if (!g.state.flags.cao_derrotado && g.mode==='field') { g.runScript('clareira'); return 'run clareira'; } return 'ja feito/rodando clareira'; })()"
+  },
+  {
+   "until": "window.__game.state.flags.cap2 && window.__game.mode==='field' && !window.__game.ui.busy",
+   "press": "Enter",
+   "every": 200,
+   "timeout": 400000
+  },
+  {
+   "shot": "cap2-manha"
+  },
+  {
+   "eval": "JSON.stringify({party: window.__game.state.party, lv: Object.values(window.__game.state.heroes).map(h=>h.level)})"
+  },
+  {
+   "eval": "window.__game.changeMap('caverna','camp'); 1"
+  },
+  {
+   "until": "window.__game.field.mapId==='caverna' && window.__game.mode!=='loading'",
+   "timeout": 60000
+  },
+  {
+   "wait": 2500
+  },
+  {
+   "shot": "caverna-camp"
+  },
+  {
+   "until": "(window.__game.mode==='field' && !window.__game.ui.busy) || window.__game.state.flags.brann_juntou",
+   "press": "Enter",
+   "every": 200,
+   "timeout": 120000
+  },
+  {
+   "eval": "(()=>{const g=window.__game; if (!g.state.flags.brann_juntou && g.mode==='field') { g.runScript('brann_encontro'); return 'run brann_encontro'; } return 'ja feito/rodando brann_encontro'; })()"
+  },
+  {
+   "until": "window.__game.state.flags.brann_juntou && window.__game.mode==='field' && !window.__game.ui.busy",
+   "press": "Enter",
+   "every": 200,
+   "timeout": 240000
+  },
+  {
+   "shot": "brann-juntou"
+  },
+  {
+   "until": "(window.__game.mode==='field' && !window.__game.ui.busy) || window.__game.state.flags.golem_derrotado",
+   "press": "Enter",
+   "every": 200,
+   "timeout": 120000
+  },
+  {
+   "eval": "(()=>{const g=window.__game; if (!g.state.flags.golem_derrotado && g.mode==='field') { g.runScript('golem_luta'); return 'run golem_luta'; } return 'ja feito/rodando golem_luta'; })()"
+  },
+  {
+   "wait": 2500
+  },
+  {
+   "shot": "golem"
+  },
+  {
+   "until": "window.__game.state.flags.golem_derrotado && window.__game.mode==='field' && !window.__game.ui.busy",
+   "press": "Enter",
+   "every": 200,
+   "timeout": 240000
+  },
+  {
+   "eval": "window.__game.changeMap('forte','south'); 1"
+  },
+  {
+   "until": "window.__game.field.mapId==='forte' && window.__game.mode!=='loading'",
+   "timeout": 60000
+  },
+  {
+   "wait": 2500
+  },
+  {
+   "shot": "forte"
+  },
+  {
+   "until": "(window.__game.mode==='field' && !window.__game.ui.busy) || window.__game.state.flags.odessa_resgatada",
+   "press": "Enter",
+   "every": 200,
+   "timeout": 120000
+  },
+  {
+   "eval": "(()=>{const g=window.__game; if (!g.state.flags.odessa_resgatada && g.mode==='field') { g.runScript('odessa_cela'); return 'run odessa_cela'; } return 'ja feito/rodando odessa_cela'; })()"
+  },
+  {
+   "until": "window.__game.state.flags.odessa_resgatada && window.__game.mode==='field' && !window.__game.ui.busy",
+   "press": "Enter",
+   "every": 200,
+   "timeout": 240000
+  },
+  {
+   "eval": "window.__game.changeMap('forte','hall'); 1"
+  },
+  {
+   "until": "window.__game.field.mapId==='forte' && window.__game.mode!=='loading'",
+   "timeout": 60000
+  },
+  {
+   "wait": 2500
+  },
+  {
+   "until": "(window.__game.mode==='field' && !window.__game.ui.busy) || window.__game.state.flags.varek_derrotado",
+   "press": "Enter",
+   "every": 200,
+   "timeout": 120000
+  },
+  {
+   "eval": "(()=>{const g=window.__game; if (!g.state.flags.varek_derrotado && g.mode==='field') { g.runScript('varek_luta'); return 'run varek_luta'; } return 'ja feito/rodando varek_luta'; })()"
+  },
+  {
+   "wait": 3000
+  },
+  {
+   "shot": "varek-salao"
+  },
+  {
+   "until": "window.__game.state.flags.final",
+   "press": "Enter",
+   "every": 200,
+   "timeout": 400000
+  },
+  {
+   "wait": 2500
+  },
+  {
+   "shot": "final"
+  },
+  {
+   "eval": "JSON.stringify({flags: Object.keys(window.__game.state.flags), party: window.__game.state.party, inv: window.__game.state.inventory, lio: window.__game.state.heroes.lio.equip})"
+  }
+ ],
+ "width": 960,
+ "height": 540
+}
