@@ -1,3 +1,4 @@
+import { shardInteractables } from '../shards.js';
 // FORTE FERRUGEM — fortaleza imperial de aço e vapor, à noite.
 import { Grid, DEFAULT_LEGEND } from './mapkit.js';
 
@@ -100,5 +101,6 @@ export default {
   ],
   interactables: [
     { x: 17, y: 35, script: 'cristal_save', r: 1.1 },
+    ...shardInteractables('forte'),
   ],
 };

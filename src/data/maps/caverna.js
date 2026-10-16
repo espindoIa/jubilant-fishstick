@@ -1,3 +1,4 @@
+import { shardInteractables } from '../shards.js';
 // CAVERNA DE CRISTAL — túneis de ametista, lago subterrâneo, o acampamento
 // dos mineiros refugiados e o salão do Golem.
 import { Grid, DEFAULT_LEGEND } from './mapkit.js';
@@ -117,5 +118,6 @@ export default {
   ],
   interactables: [
     { x: 27, y: 29, script: 'cristal_save', r: 1.1 },
+    ...shardInteractables('caverna'),
   ],
 };

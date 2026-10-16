@@ -1,4 +1,6 @@
 // Códice e resumo de capítulo (menu Crônica). Entradas surgem conforme as flags da história.
+import { ALL_SHARDS, shardFlag } from './shards.js';
+
 export const CODEX = [
   { id: 'mare', title: 'Vila Maré', cond: () => true,
     text: 'Vila de pescadores sob o Farol Velho. A cada ano o Festival das Estrelas solta centenas de lanternas de papel: quem faz um pedido “é lembrado” pelo céu.' },
@@ -32,6 +34,8 @@ export const CODEX = [
     text: 'Palavras do dia de Estela: banho, lareira, doce de coco, casa. “Eu guardo as lembranças que o céu soltar. É o trabalho de uma faroleira.”' },
   { id: 'eco', title: 'Ecos e Ressonância', cond: (s) => s.flag('eco_despertou'),
     text: 'A canção de Aurora vive em Lio. Quando a batalha esquenta, o grupo acumula ECO; com a barra cheia, cada herói pode soltar sua Ressonância.' },
+  { id: 'memorias', title: 'Memórias de Estela', cond: (s) => ALL_SHARDS.some((x) => s.flag(shardFlag(x.id))),
+    text: (s) => `Estilhaços coletados: ${ALL_SHARDS.filter((x) => s.flag(shardFlag(x.id))).length}/${ALL_SHARDS.length}.\n\n` + ALL_SHARDS.filter((x) => s.flag(shardFlag(x.id))).map((x) => `« ${x.title} » — ${x.text}`).join('\n\n') },
   { id: 'lua', title: 'A Lua Cinzenta', cond: (s) => s.flag('varek_derrotado'),
     text: 'Uma lua que não existia antes da noite em que Aurora sumiu. Varek diz que ela está acordando. Nem a canção de Estela poderá bastar.' },
 ];

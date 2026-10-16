@@ -10,6 +10,7 @@ import { propTextures, sideAtlas } from '../game/assets.js';
 import { SPRITE_SCALE_Y } from './Actor.js';
 import { Particles } from './Particles.js';
 import { occlude } from './occlusion.js';
+import { shardProps } from '../data/shards.js';
 
 const PPU = 16;
 
@@ -136,7 +137,7 @@ export function buildWorld(srcMap, opts = {}) {
   const M = map.margin;
   const particlesList = dyn.particles || (typeof map.particles === 'function' ? [] : map.particles);
   const extraLights = (dyn.lights || []).map((l) => ({ ...l, x: l.x + M, y: l.y + M }));
-  const extraProps = (dyn.props || []).map((p) => ({ ...p, x: p.x + M, y: p.y + M }));
+  const extraProps = [...(dyn.props || []), ...shardProps(srcMap.id, opts.state)].map((p) => ({ ...p, x: p.x + M, y: p.y + M }));
   const root = new THREE.Group();
   root.name = 'world-' + map.id;
 

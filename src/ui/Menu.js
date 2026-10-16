@@ -458,7 +458,7 @@ export class Menu {
       });
       if (!pick) return;
       await this.readPage((box) => {
-        box.innerHTML = `<div class="section-title">${pick.title}</div><div class="desc">${pick.text}</div>`;
+        box.innerHTML = `<div class="section-title">${pick.title}</div><div class="desc" style="white-space:pre-line">${typeof pick.text === 'function' ? pick.text(this.st) : pick.text}</div>`;
       });
     }
   }

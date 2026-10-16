@@ -1,3 +1,4 @@
+import { shardInteractables } from '../shards.js';
 // BOSQUE SUSSURRANTE — floresta ao entardecer, cogumelos que brilham,
 // vaga-lumes e a clareira onde a estrela caiu.
 import { Grid, DEFAULT_LEGEND } from './mapkit.js';
@@ -104,5 +105,6 @@ export default {
   ],
   interactables: [
     { x: 17, y: 2, script: 'arvore_espiritual', r: 1.4, oz: 0.6 },
+    ...shardInteractables('bosque'),
   ],
 };

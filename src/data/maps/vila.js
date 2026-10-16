@@ -1,3 +1,4 @@
+import { shardInteractables } from '../shards.js';
 // VILA MARÉ — vila costeira de Lio, na noite do Festival das Estrelas.
 import { Grid, DEFAULT_LEGEND } from './mapkit.js';
 
@@ -121,6 +122,7 @@ export default {
     { x: 14, y: 21, script: 'placa_praia', r: 0.9 },
     { x: 18, y: 1, script: 'placa_norte', r: 0.9 },
     { x: 17, y: 12, script: 'poco', r: 1.2, ox: 0.5 },
+    ...shardInteractables('vila'),
   ],
   triggers: [
     { x: 3, y: 6, w: 6, h: 3, script: 'santuario_cena', flag: 'estrela_caiu', cond: (s) => s.flag('intro_feita') },

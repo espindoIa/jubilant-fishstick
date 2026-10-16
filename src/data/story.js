@@ -1,10 +1,31 @@
 import { pendingScenes, playCamp } from './camp.js';
+import { ALL_SHARDS, shardFlag, shardCount } from './shards.js';
 
 // Roteiro — Ecos da Aurora, Crônica I: "A Estrela que Canta".
 // Cada script é uma função async(ctx). Coordenadas = tiles do mapa original.
 
 const LOJA_VILA = ['pocao', 'antidoto', 'tonico', 'eter', 'bomba', 'couraca', 'espada_ferro', 'anel_vento'];
 const LOJA_ACAMPAMENTO = ['pocao', 'hipocao', 'eter', 'tonico', 'pena', 'manto_encantado', 'bracelete_forca', 'malha_aco'];
+
+// Estilhaço de Memória: revela uma lembrança de Estela
+async function coletarEstilhaco(ctx, sh) {
+  ctx.sfx('star');
+  await ctx.flash(450, '#c8f0ff', 0.6);
+  ctx.set(shardFlag(sh.id));
+  await ctx.say(null, `✦ Estilhaço de Memória — ${sh.title}`);
+  await ctx.say(null, sh.text);
+  if (ctx.state.party.includes('estela')) await ctx.say('estela:sad', 'Isso… era meu. Obrigada por encontrar.');
+  const n = shardCount(ctx.state);
+  ctx.ui.toast(`Memórias de Estela: ${n}/${ALL_SHARDS.length}`, 2400);
+  if (n === 3) {
+    ctx.give('hipocao', 2);
+  } else if (n === ALL_SHARDS.length) {
+    await ctx.say('estela:surprised', 'Eu… lembro de tudo o que já pude lembrar. A lua. A fome. Polar.');
+    await ctx.say('lio', 'Então agora sabemos contra o que vamos lutar.');
+    ctx.give('colar_aurora', 1);
+    await ctx.say(null, 'As seis memórias se unem num colar de luz. Estela o entrega a Lio: « Para que você nunca cante sozinho. »');
+  }
+}
 
 export const SCRIPTS = {
   // ================================================================ PRÓLOGO
@@ -744,3 +765,5 @@ export const SCRIPTS = {
     location.reload();
   },
 };
+
+for (const sh of ALL_SHARDS) SCRIPTS['shard_' + sh.id] = (ctx) => coletarEstilhaco(ctx, sh);

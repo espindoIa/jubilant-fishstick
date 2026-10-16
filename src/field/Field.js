@@ -479,7 +479,29 @@ export class Field {
     return null;
   }
 
+  // Chip de objetivo: uma linha no canto, toque para expandir
+  updateObjective() {
+    const show = !this.locked && this.game.mode === 'field' && !this.game.ui.busy;
+    if (!this.objEl) {
+      this.objEl = document.createElement('div');
+      this.objEl.className = 'obj-chip';
+      this.objEl.addEventListener('pointerdown', (e) => {
+        e.stopPropagation();
+        this.objEl.classList.toggle('open');
+      });
+      this.game.uiRoot.appendChild(this.objEl);
+    }
+    const text = this.state.flags.objetivo || '';
+    if (text !== this._objText) {
+      this._objText = text;
+      this.objEl.textContent = '★ ' + text;
+      this.objEl.classList.remove('open');
+    }
+    this.objEl.style.display = show && text ? '' : 'none';
+  }
+
   updateHint() {
+    this.updateObjective();
     const target = !this.locked && this.game.mode === 'field' && !this.game.ui.busy ? this.findInteractable() : null;
     if (!this.hintEl) {
       this.hintEl = document.createElement('div');

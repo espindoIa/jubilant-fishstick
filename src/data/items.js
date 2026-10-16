@@ -35,5 +35,6 @@ export const ITEMS = {
   anel_vento: { name: 'Anel do Vento', type: 'acc', for: null, price: 260, stats: { spd: 4 }, desc: 'Deixa os passos leves.' },
   broche_estelar: { name: 'Broche Estelar', type: 'acc', for: null, price: 300, stats: { mag: 6, mp: 10 }, desc: 'Uma estrela pequena e quente.' },
   bracelete_forca: { name: 'Bracelete de Força', type: 'acc', for: null, price: 300, stats: { atk: 6 }, desc: 'Couro de javali e rebites de bronze.' },
+  colar_aurora: { name: 'Colar de Aurora', type: 'acc', for: null, price: 0, stats: { mag: 8, res: 6, spd: 3, mp: 12 }, desc: 'Reúne as seis memórias de Estela. Quente como uma canção ouvida de longe.' },
   fita_vermelha: { name: 'Fita Vermelha', type: 'acc', for: null, price: 0, stats: { def: 2, res: 2 }, immune: ['veneno', 'sono'], desc: 'Fita de cabelo da mãe de Sena. Protege de veneno e sono.' },
 };

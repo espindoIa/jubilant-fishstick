@@ -1217,3 +1217,27 @@ body {
   white-space: nowrap;
   animation-duration: 2.2s;
 }
+
+/* chip de objetivo (campo) */
+.obj-chip {
+  position: absolute;
+  left: max(12px, var(--safe-l));
+  top: calc(12px + var(--safe-t));
+  max-width: min(52vw, 360px);
+  padding: 4px 10px;
+  border-radius: 12px;
+  background: rgba(10, 12, 40, 0.62);
+  border: 1px solid rgba(255, 226, 122, 0.5);
+  color: #ffe9a8;
+  font-size: var(--fs-small);
+  text-shadow: 1px 1px 0 #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  pointer-events: auto;
+  z-index: 4;
+}
+.obj-chip.open {
+  white-space: normal;
+  max-width: min(70vw, 420px);
+}
