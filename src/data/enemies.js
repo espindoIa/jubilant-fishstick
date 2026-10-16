@@ -138,7 +138,7 @@ export const ENEMIES = {
     ai: [[S.estocada_varek, 3], [S.danca_laminas, 2], [S.ordem, 1]], fieldScale: 0.8,
   },
   tita: {
-    name: 'Armadura Titã', boss: true, hp: 2400, atk: 36, def: 24, mag: 28, res: 18, spd: 10, shield: 8,
+    name: 'Armadura Titã', boss: true, hp: 2400, atk: 32, def: 24, mag: 28, res: 18, spd: 10, shield: 8,
     weak: ['raio', 'gelo', 'luz'], exp: 0, gold: 0, drops: [],
     ai: [[S.broca, 3], [S.garra, 2], [S.superaquecer, 1]], fieldScale: 0.5,
   },
