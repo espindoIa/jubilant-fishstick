@@ -329,7 +329,7 @@ export class UI {
 // ?fast=1 encurta esperas (testes); ?speed=N acelera o jogo inteiro N vezes
 // (loop, esperas, fades e texto) — usado para assistir/testar a história rápido.
 const QS = new URLSearchParams(location.search);
-const SPEED = Math.max(1, Math.min(10, +(QS.get('speed') || 1) || 1));
+const SPEED = Math.max(1, Math.min(20, +(QS.get('speed') || 1) || 1));
 export const TIME = { speed: SPEED, scale: (QS.get('fast') === '1' ? 0.15 : 1) / SPEED };
 
 export function wait(ms) {
