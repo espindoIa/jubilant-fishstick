@@ -1,0 +1,173 @@
+[
+ {
+  "policy": "aleatória",
+  "meta": "0",
+  "runs": 6000,
+  "wins": 4,
+  "heroes": {
+   "rocca": {
+    "runs": 3000,
+    "wins": 1
+   },
+   "lume": {
+    "runs": 3000,
+    "wins": 1
+   },
+   "pena": {
+    "runs": 3000,
+    "wins": 3
+   },
+   "sino": {
+    "runs": 3000,
+    "wins": 3
+   }
+  },
+  "pairs": {
+   "rocca+lume": {
+    "runs": 1000,
+    "wins": 0,
+    "floors": 6203
+   },
+   "rocca+pena": {
+    "runs": 1000,
+    "wins": 1,
+    "floors": 8079
+   },
+   "rocca+sino": {
+    "runs": 1000,
+    "wins": 0,
+    "floors": 5656
+   },
+   "lume+pena": {
+    "runs": 1000,
+    "wins": 0,
+    "floors": 7018
+   },
+   "lume+sino": {
+    "runs": 1000,
+    "wins": 1,
+    "floors": 5853
+   },
+   "pena+sino": {
+    "runs": 1000,
+    "wins": 2,
+    "floors": 7376
+   }
+  },
+  "issueRuns": 0
+ },
+ {
+  "policy": "gulosa",
+  "meta": "0",
+  "runs": 6000,
+  "wins": 2380,
+  "heroes": {
+   "rocca": {
+    "runs": 3000,
+    "wins": 1002
+   },
+   "lume": {
+    "runs": 3000,
+    "wins": 1014
+   },
+   "pena": {
+    "runs": 3000,
+    "wins": 1537
+   },
+   "sino": {
+    "runs": 3000,
+    "wins": 1207
+   }
+  },
+  "pairs": {
+   "rocca+lume": {
+    "runs": 1000,
+    "wins": 115,
+    "floors": 13485
+   },
+   "rocca+pena": {
+    "runs": 1000,
+    "wins": 535,
+    "floors": 18830
+   },
+   "rocca+sino": {
+    "runs": 1000,
+    "wins": 352,
+    "floors": 15326
+   },
+   "lume+pena": {
+    "runs": 1000,
+    "wins": 523,
+    "floors": 19272
+   },
+   "lume+sino": {
+    "runs": 1000,
+    "wins": 376,
+    "floors": 16552
+   },
+   "pena+sino": {
+    "runs": 1000,
+    "wins": 479,
+    "floors": 18043
+   }
+  },
+  "issueRuns": 0
+ },
+ {
+  "policy": "gulosa",
+  "meta": "max",
+  "runs": 6000,
+  "wins": 5419,
+  "heroes": {
+   "rocca": {
+    "runs": 3000,
+    "wins": 2620
+   },
+   "lume": {
+    "runs": 3000,
+    "wins": 2645
+   },
+   "pena": {
+    "runs": 3000,
+    "wins": 2872
+   },
+   "sino": {
+    "runs": 3000,
+    "wins": 2701
+   }
+  },
+  "pairs": {
+   "rocca+lume": {
+    "runs": 1000,
+    "wins": 784,
+    "floors": 20447
+   },
+   "rocca+pena": {
+    "runs": 1000,
+    "wins": 963,
+    "floors": 20943
+   },
+   "rocca+sino": {
+    "runs": 1000,
+    "wins": 873,
+    "floors": 20500
+   },
+   "lume+pena": {
+    "runs": 1000,
+    "wins": 971,
+    "floors": 20946
+   },
+   "lume+sino": {
+    "runs": 1000,
+    "wins": 890,
+    "floors": 20466
+   },
+   "pena+sino": {
+    "runs": 1000,
+    "wins": 938,
+    "floors": 20843
+   }
+  },
+  "issueRuns": 0
+ }
+]
