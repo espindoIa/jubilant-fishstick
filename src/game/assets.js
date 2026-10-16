@@ -55,7 +55,7 @@ export function fieldSheet(id) {
     const def = cache.charDefs[id];
     if (!def) throw new Error('personagem desconhecido: ' + id);
     const code = buildFieldFrames(def);
-    // sprites em PNG têm prioridade quando o ciclo está completo
+    // sprites em PNG (SpriteCook) têm prioridade quando o ciclo está completo
     const img = heroFieldImages(id, code, def.scale || 1) || npcFieldImages(id, code, def.scale || 1);
     cache.fieldSheets[id] = makeSheet(img ? img.frames : code);
     cache.fieldSheets[id].floats = !!def.floats;

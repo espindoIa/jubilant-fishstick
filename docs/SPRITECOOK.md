@@ -1,6 +1,6 @@
-# Sprites em PNG — contrato de arquivos
+# Sprites do SpriteCook — contrato de arquivos
 
-Sprites gerados no de imagens externas (PNG) substituem os sprites desenhados em código
+Sprites gerados no SpriteCook substituem os sprites desenhados em código
 (`src/art/sprites/*.js`, `src/art/enemies_*.js`) quando existem em `src/assets/sprites/`.
 O jogo carrega as imagens na inicialização e cai de volta para a arte em código
 quando um quadro não existe.

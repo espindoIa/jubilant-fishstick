@@ -1,5 +1,5 @@
 // Métricas de arte: cores únicas, matizes e luminância por textura/sprite.
-// Compara a arte de referência (PNGs de referência) com texturas geradas em código.
+// Compara a arte de referência (PNGs do SpriteCook/pacote) com texturas geradas em código.
 import fs from 'node:fs';
 import path from 'node:path';
 import zlib from 'node:zlib';

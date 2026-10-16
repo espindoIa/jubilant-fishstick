@@ -170,7 +170,7 @@ export function enemyFrames(kind) {
   return r;
 }
 
-// Inimigos em PNG substituem a arte em código quando existem.
+// Inimigos em PNG (SpriteCook) substituem a arte em código quando existem.
 const framesCache = {};
 function framesFor(kind) {
   if (!framesCache[kind]) {

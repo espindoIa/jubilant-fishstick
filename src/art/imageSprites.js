@@ -1,4 +1,4 @@
-// Sprites em PNG — contrato em docs/SPRITES.md.
+// Sprites em PNG (ex.: gerados no SpriteCook) — contrato em docs/SPRITECOOK.md.
 // Quando existem, substituem a arte desenhada em código; quadros ausentes
 // continuam vindo do código.
 import { Bitmap } from './bitmap.js';
