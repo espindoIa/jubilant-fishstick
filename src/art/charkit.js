@@ -1,6 +1,7 @@
 // Kit de personagens: transforma definições ASCII (sem contorno) em frames
 // com contorno "sel-out" automático, no padrão de sprites de SNES.
 import { Bitmap, fromAscii, hexToRgb, mix, shade } from './bitmap.js';
+import { shadeMap } from './shade.js';
 
 export const FRAME_W = 32;
 export const FRAME_H = 32;
@@ -63,6 +64,8 @@ export function inkOut(bmp, ink = '#120a14') {
 // Constrói um bitmap a partir de linhas + paleta, com contorno automático.
 export function sprite(rows, palette, opts = {}) {
   const placed = opts.raw ? rows : placeRows(rows, opts);
+  // mapa de materiais com sombreamento automático (src/art/shade.js)
+  if (opts.mats) return shadeMap(placed, opts.mats, { ...(opts.shade || {}), w: opts.w || FRAME_W }).bmp;
   const bmp = fromAscii(placed, palette, opts.w || FRAME_W);
   if (opts.noOutline) return bmp;
   if (opts.ink) return inkOut(bmp, opts.ink);

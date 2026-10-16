@@ -94,7 +94,7 @@ export function heroBattleImages(id, codeFrames, codeScale = 1) {
   return { frames, scale: (heightOf(codeFrames.idle) * codeScale) / h };
 }
 
-export function enemyImages(kind, codeIdle) {
+export function enemyImages(kind, codeIdle, codeScale = 1) {
   const s = store.enemies[kind];
   if (!s || !s.frames.idle) return null;
   const f = s.frames;
@@ -104,7 +104,7 @@ export function enemyImages(kind, codeIdle) {
     alt: f.alt || f.idle,
     glow: f.glow || null,
     altGlow: f.altGlow || f.glow || null,
-    scale: heightOf(codeIdle) / h,
+    scale: (heightOf(codeIdle) * codeScale) / h,
   };
 }
 

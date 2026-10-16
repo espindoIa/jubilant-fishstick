@@ -25,7 +25,15 @@ function pad(rows, w) {
 export function buildFieldFrames(def) {
   const W = def.localW;
   const P = def.palette;
-  const opts = { w: FIELD_FRAME.w, h: FIELD_FRAME.h, localW: W, ink: def.ink, ...(def.fieldOpts || {}) };
+  const opts = {
+    w: def.frameW || FIELD_FRAME.w,
+    h: def.frameH || FIELD_FRAME.h,
+    localW: W,
+    ink: def.ink,
+    mats: def.mats, // personagens com sombreamento automático (shade.js)
+    shade: def.shade,
+    ...(def.fieldOpts || {}),
+  };
   const frames = {};
   const mk = (rows) => sprite(pad(rows, W), P, opts);
 

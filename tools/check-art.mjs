@@ -20,7 +20,7 @@ const fail = (m) => {
 for (const d of [...HEROES, ...NPCS]) {
   const f = buildFieldFrames(d);
   for (const k of ['d0', 'd1', 'd2', 'u0', 'u1', 'u2', 'l0', 'l1', 'l2', 'r0', 'r1', 'r2']) if (!f[k]) fail(`${d.id}: frame ${k} ausente`);
-  if (!d.ink) fail(`${d.id}: sem contorno ink (estilo FF6)`);
+  if (!d.ink && !d.mats) fail(`${d.id}: sem contorno (ink ou mapa de materiais)`);
   // a cabeça não pode "pular" ao virar: mesma altura de cabeça em todas as direções
   const hh = Object.values(d.dir).map((p) => p.head.length);
   if (new Set(hh).size > 1) fail(`${d.id}: alturas de cabeça diferentes entre direções (${hh.join('/')})`);

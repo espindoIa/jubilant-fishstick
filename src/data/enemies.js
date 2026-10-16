@@ -175,7 +175,8 @@ const framesCache = {};
 function framesFor(kind) {
   if (!framesCache[kind]) {
     const r = enemyFrames(kind);
-    framesCache[kind] = enemyImages(ENEMIES[kind]?.art || kind, r.idle) || { ...r, scale: 1 };
+    // arte em código pode vir em resolução maior com r.scale < 1 (mesmo tamanho no mundo)
+    framesCache[kind] = enemyImages(ENEMIES[kind]?.art || kind, r.idle, r.scale || 1) || { ...r, scale: r.scale || 1 };
   }
   return framesCache[kind];
 }
