@@ -1,0 +1,18 @@
+[e2e] OK  alvos >= 44px e sem rolagem horizontal em título
+[e2e] OK  alvos >= 44px e sem rolagem horizontal em seleção
+[e2e] OK  semente exibida na jornada — #0E2E2026
+[e2e] OK  alvos >= 44px e sem rolagem horizontal em mapa
+[e2e] OK  FPS em combate (headless, sem GPU) — 60 fps
+[e2e] OK  FPS em combate com CPU 4x mais lenta — 60 fps
+[e2e] OK  alvos >= 44px e sem rolagem horizontal em combate
+[e2e] OK  venceu o primeiro combate — tela de recompensa exibida
+[e2e] OK  o grupo morreu e a tela de fim apareceu — 3 combates vencidos antes
+[e2e] OK  meta salvo no localStorage após a morte — quedas=1 jornadas=1 ecos=6
+[e2e] OK  jornada em andamento apagada após a morte
+[e2e] OK  história avançou após a morte — 8 toques de diálogo novo
+[e2e] OK  progresso sobrevive ao recarregar — Jornadas: 1 · Vitórias: 0 · Ecos: 6
+[e2e] OK  crônicas desbloqueadas persistem — Crônicas 3/15
+[e2e] OK  jornada em andamento pode ser continuada
+[e2e] OK  com localStorage bloqueado o jogo chega ao combate
+[e2e] OK  nenhum erro de JavaScript no console
+[e2e] todas as 17 verificações passaram

@@ -1,0 +1,91 @@
+{
+ "checks": [
+  {
+   "name": "alvos >= 44px e sem rolagem horizontal em título",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "alvos >= 44px e sem rolagem horizontal em seleção",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "semente exibida na jornada",
+   "ok": true,
+   "detail": "#0E2E2026"
+  },
+  {
+   "name": "alvos >= 44px e sem rolagem horizontal em mapa",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "FPS em combate (headless, sem GPU)",
+   "ok": true,
+   "detail": "60 fps"
+  },
+  {
+   "name": "FPS em combate com CPU 4x mais lenta",
+   "ok": true,
+   "detail": "60 fps"
+  },
+  {
+   "name": "alvos >= 44px e sem rolagem horizontal em combate",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "venceu o primeiro combate",
+   "ok": true,
+   "detail": "tela de recompensa exibida"
+  },
+  {
+   "name": "o grupo morreu e a tela de fim apareceu",
+   "ok": true,
+   "detail": "3 combates vencidos antes"
+  },
+  {
+   "name": "meta salvo no localStorage após a morte",
+   "ok": true,
+   "detail": "quedas=1 jornadas=1 ecos=6"
+  },
+  {
+   "name": "jornada em andamento apagada após a morte",
+   "ok": true
+  },
+  {
+   "name": "história avançou após a morte",
+   "ok": true,
+   "detail": "8 toques de diálogo novo"
+  },
+  {
+   "name": "progresso sobrevive ao recarregar",
+   "ok": true,
+   "detail": "Jornadas: 1 · Vitórias: 0 · Ecos: 6"
+  },
+  {
+   "name": "crônicas desbloqueadas persistem",
+   "ok": true,
+   "detail": "Crônicas 3/15"
+  },
+  {
+   "name": "jornada em andamento pode ser continuada",
+   "ok": true
+  },
+  {
+   "name": "com localStorage bloqueado o jogo chega ao combate",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "nenhum erro de JavaScript no console",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "fps": 60,
+ "fpsThrottled4x": 60,
+ "battlesWon": 3,
+ "usedTech": false
+}
