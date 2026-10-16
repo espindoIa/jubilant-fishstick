@@ -51,6 +51,26 @@ export class Game {
     };
     window.addEventListener('pointerdown', unlock);
     window.addEventListener('keydown', unlock);
+    // pausa a música quando o app vai para segundo plano
+    document.addEventListener('visibilitychange', () => {
+      try {
+        if (document.hidden) this.audio?.pauseMusic?.();
+        else this.audio?.resumeMusic?.();
+      } catch (e) {
+        /* ignore */
+      }
+    });
+    // perda do contexto WebGL (comum em celulares): oferece recarregar
+    this.canvas.addEventListener('webglcontextlost', (e) => {
+      e.preventDefault();
+      if (this.mode !== 'title' && this.mode !== 'boot') this.saveGame?.();
+      const el = document.createElement('div');
+      el.className = 'win';
+      el.style.cssText = 'left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;pointer-events:auto;z-index:99';
+      el.innerHTML = 'O gráfico foi interrompido pelo sistema.<br><br><b>Toque para continuar</b>';
+      el.addEventListener('click', () => location.reload());
+      this.uiRoot.appendChild(el);
+    });
     window.__game = this;
     // modo de teste: texto instantâneo e esperas curtas (?fast=1)
     this.fast = params.get('fast') === '1';
@@ -82,9 +102,9 @@ export class Game {
     }
   }
 
-  music(id) {
+  music(id, fade = 1.2) {
     try {
-      if (id) this.audio?.playMusic(id, { fade: 1.2 });
+      if (id) this.audio?.playMusic(id, { fade });
     } catch (e) {
       /* ignore */
     }
@@ -283,7 +303,8 @@ export class Game {
     const el = document.createElement('div');
     el.className = 'title-screen';
     el.innerHTML = `<div class="logo"><div class="a" style="font-size:clamp(28px,5vw,64px)">Fim de Jogo</div><div class="b">a luz se apagou… por enquanto</div></div>`;
-    this.ui.setFade(1);
+    el.style.background = 'radial-gradient(ellipse at 50% 40%, #1a0e24 0%, #000 75%)';
+    this.ui.setFade(0);
     root.appendChild(el);
     await wait(500);
     const menu = document.createElement('div');

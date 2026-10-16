@@ -13,7 +13,8 @@
     "icons": "node tools/make-icons.mjs",
     "build:single": "SINGLE=1 vite build",
     "shot": "node tools/screenshot.mjs",
-    "play": "node tools/play.mjs"
+    "play": "node tools/play.mjs",
+    "build:page": "SINGLE=1 vite build && node tools/make-page.mjs"
   },
   "dependencies": {
     "@fontsource/dotgothic16": "^5.3.1",

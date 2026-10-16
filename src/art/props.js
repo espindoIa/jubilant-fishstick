@@ -674,6 +674,27 @@ function rug() {
   return b;
 }
 
+// ---------------------------------------------------------------- fogo
+function flame(seed, phase) {
+  const w = 24, hh = 30;
+  const b = new Bitmap(w, hh);
+  const g = new Bitmap(w, hh);
+  for (let y = 0; y < hh; y++) {
+    for (let x = 0; x < w; x++) {
+      const t = 1 - y / hh; // 1 no topo
+      const n = valueNoise(x / 3.2 + seed, y / 3 + phase * 2.3, seed);
+      const half = (0.5 - t * 0.38) * w * (0.75 + n * 0.5);
+      const d = Math.abs(x + 0.5 - w / 2) / Math.max(1, half);
+      if (d > 1 || t > 0.95 - n * 0.25) continue;
+      const heat = (1 - d) * 0.7 + (1 - t) * 0.5 + n * 0.2;
+      const c = heat > 1.0 ? '#fff6c0' : heat > 0.8 ? '#ffd04a' : heat > 0.55 ? '#ff8a20' : '#d8401c';
+      b.set(x, y, C(c));
+      g.set(x, y, C(c));
+    }
+  }
+  return { bmp: b, glow: g };
+}
+
 // ---------------------------------------------------------------- catálogo
 // size: largura/altura do sprite em px; solid: raio de colisão (em tiles)
 export function buildProps() {
@@ -740,5 +761,7 @@ export function buildProps() {
   add('shelf', shelf(), { solid: 0.8 });
   add('fireplace', fireplace(), { solid: 0.9, light: { color: '#ff8a40', intensity: 2.8, distance: 7, flicker: true, y: 0.6 } });
   add('rug', rug(), { flat: true });
+  add('fire0', flame(3, 0), { light: { color: '#ff7020', intensity: 2.8, distance: 6, flicker: true, y: 1 }, glowIntensity: 1.6, anim: 'fire' });
+  add('fire1', flame(3, 1), { glowIntensity: 1.6, anim: 'fire' });
   return P;
 }

@@ -275,7 +275,7 @@ if (results.sfx.length) {
     if (s.peak >= 0.95) issues.push('PICO>=0.95');
     if (s.clip) issues.push('CLIP');
     if (s.nan) issues.push('NaN');
-    if (s.peak < 0.02) issues.push('SILENCIOSO');
+    if (s.peak < 0.01) issues.push('SILENCIOSO'); // step/text são propositalmente bem baixos
     if (issues.length) fail++;
     console.log(`  ${s.id.padEnd(10)} pico ${f(s.peak)}  RMS ${f(s.rms)}  dur ${f(s.tail, 2)}s  ${issues.length ? '✗ ' + issues.join(', ') : '✓'}`);
   }

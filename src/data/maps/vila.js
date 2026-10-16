@@ -130,6 +130,10 @@ export default {
     if (s.flag('ataque') && !s.flag('ataque_fim')) {
       return {
         particles: ['embers'],
+        props: [[13.5, 7.4], [21, 7.4], [4, 14.4], [26.5, 11.4], [3.5, 20.4], [14.5, 12], [22.5, 12]].flatMap(([x, y]) => [
+          { prop: 'fire0', x, y, noCollide: true },
+          { prop: 'fire1', x, y, noCollide: true },
+        ]),
         lights: [
           { x: 13, y: 5, color: '#ff6020', intensity: 4, distance: 9, flicker: true, z: 2.5 },
           { x: 21, y: 5, color: '#ff6020', intensity: 4, distance: 9, flicker: true, z: 2.5 },

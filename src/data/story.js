@@ -210,6 +210,7 @@ export const SCRIPTS = {
   },
 
   async clareira(ctx) {
+    ctx.autosave();
     ctx.gather();
     ctx.stopMusic(1);
     ctx.spawn({ id: 'estela', char: 'estela', x: 17, y: 6, dir: 'down', pose: 'ko' });
@@ -480,6 +481,7 @@ export const SCRIPTS = {
       await ctx.stepBack('down', 1.2);
       return;
     }
+    ctx.autosave();
     ctx.gather();
     ctx.stopMusic(0.6);
     const g = ctx.showEnemy('golem', 24, 4, 0.75);
@@ -552,6 +554,7 @@ export const SCRIPTS = {
   },
 
   async varek_luta(ctx) {
+    ctx.autosave();
     ctx.gather();
     ctx.stopMusic(0.8);
     ctx.spawn({ id: 'varek', char: 'varek', x: 18, y: 8, dir: 'down' });

@@ -100,7 +100,7 @@ export default {
   npcs: [],
   triggers: [
     { x: 14, y: 36, w: 5, h: 2, script: 'bosque_entrada', flag: 'bosque_entrada' },
-    { x: 13, y: 10, w: 9, h: 2, script: 'clareira', flag: 'clareira_vista', cond: (s) => !s.flag('cao_derrotado') },
+    { x: 13, y: 10, w: 9, h: 2, script: 'clareira', cond: (s) => !s.flag('cao_derrotado') },
   ],
   interactables: [
     { x: 17, y: 2, script: 'arvore_espiritual', r: 1.4, oz: 0.6 },

@@ -231,6 +231,14 @@ export function buildWorld(srcMap, opts = {}) {
     root.add(inst);
     propMeshes[name] = inst;
   }
+  // animação de 2 frames para fogo (fire0/fire1 nas mesmas posições)
+  if (propMeshes.fire0 && propMeshes.fire1) {
+    updaters.push((dt, t) => {
+      const k = Math.floor(t * 7) % 2;
+      propMeshes.fire0.visible = k === 0;
+      propMeshes.fire1.visible = k === 1;
+    });
+  }
 
   // luzes extras do mapa
   for (const l of [...map.lights, ...extraLights]) lights.push({ ...l, x: l.x + 0.5, z: l.y + 0.5, y: (groundHeight(map, Math.floor(l.x), Math.floor(l.y)) ?? 0) + (l.z ?? 1.5) });

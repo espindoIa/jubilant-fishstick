@@ -55,7 +55,7 @@ export class Title {
       scr.addEventListener('pointerdown', go);
       const off = g.input.onPress((a) => a === 'confirm' && go());
     });
-    hint.textContent = 'v0.1 · feito com pixel art e carinho';
+    hint.textContent = window.innerHeight > window.innerWidth ? 'Dica: gire o celular para jogar na horizontal' : 'v0.1 · feito com pixel art e carinho';
     g.music('title');
     g.sfx('confirm');
 

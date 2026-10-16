@@ -233,7 +233,7 @@ export class Battle {
   run() {
     this.build();
     const music = this.opts.music || (this.enemies.some((e) => e.boss) ? 'boss' : 'battle');
-    this.game.music(music);
+    this.game.music(music, 0.25);
     this.ui.fadeIn(350);
     return new Promise((resolve) => {
       this.resolve = resolve;
@@ -466,7 +466,8 @@ export class Battle {
       const other = this.heroes.find((x) => x.id === otherId);
       if (!other) continue;
       const myMp = d.mp[d.users.indexOf(c.id)], oMp = d.mp[d.users.indexOf(otherId)];
-      const ok = other.hp > 0 && other.waiting && !other.queued && c.mp >= myMp && other.mp >= oMp && !other.status.sono;
+      // parceiro pronto ou quase (≥75% de ATB): ambos gastam o turno
+      const ok = other.hp > 0 && (other.waiting || other.atb >= 75) && !other.queued && c.mp >= myMp && other.mp >= oMp && !other.status.sono;
       out.push({ k, d, other, ok, myMp, oMp });
     }
     return out;
@@ -480,7 +481,7 @@ export class Battle {
         { label: '⚔ Atacar', v: 'attack', desc: `Ataque com ${WEAPON_TYPES[c.weaponType].name.toLowerCase()} ${WEAPON_TYPES[c.weaponType].icon}` },
         { label: '✦ Técnicas', v: 'skill', desc: 'Usa MP.' },
       ];
-      if (duals.length) items.push({ label: '✧ Duplas', v: 'dual', disabled: !duals.some((d) => d.ok), desc: 'Técnica em dupla (os dois precisam estar prontos).' });
+      if (duals.length) items.push({ label: '✧ Duplas', v: 'dual', disabled: !duals.some((d) => d.ok), desc: 'Técnica em dupla: o parceiro precisa estar com a barra ATB quase cheia (75%).' });
       items.push({ label: '🎒 Itens', v: 'item', desc: '' });
       items.push({ label: '🛡 Defender', v: 'defend', desc: 'Reduz o dano pela metade até o próximo turno.' });
       if (canFlee) items.push({ label: '💨 Fugir', v: 'flee', desc: 'Tentar escapar.' });
@@ -1178,7 +1179,7 @@ export class Battle {
     this.closeCmd();
     this.help(null);
     await wait(600);
-    this.game.music('victory');
+    this.game.music('victory', 0.2);
     for (const c of this.heroes) {
       if (c.hp > 0) {
         c.anim = true;

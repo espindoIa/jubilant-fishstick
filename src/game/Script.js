@@ -325,4 +325,9 @@ export class ScriptContext {
   saveMenu() {
     return this.game.openSave();
   }
+
+  // salvamento automático (antes de chefes)
+  autosave() {
+    if (this.game.saveGame()) this.ui.toast('💾 Progresso salvo automaticamente', 1600);
+  }
 }

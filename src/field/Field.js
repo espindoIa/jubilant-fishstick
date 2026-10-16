@@ -45,6 +45,9 @@ export class Field {
     const atmKey = typeof src.atmosphere === 'function' ? src.atmosphere(st) : src.atmosphere;
     const atm = ATMOSPHERES[atmKey] || ATMOSPHERES.day;
     this.atm = atm;
+    this.stage.pitchOverride = null;
+    this.stage.zoom = 1;
+    this.cameraLocked = false;
     this.stage.setAtmosphere(atm);
     const W = buildWorld(src, { night: atm.night, state: st });
     this.world = W;

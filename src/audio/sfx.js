@@ -275,7 +275,7 @@ export const SFX = {
   },
   step(s) {
     const k = 0.8 + s.rnd() * 0.4;
-    s.noise({ lp: 650 * k, hp: 120, r: 0.05, g: 0.16 });
+    s.noise({ lp: 650 * k, hp: 120, r: 0.05, g: 0.2 });
     s.tone({ w: 'sine', f: 95 * k, f2: 60, r: 0.04, g: 0.09 });
   },
   text(s) {
