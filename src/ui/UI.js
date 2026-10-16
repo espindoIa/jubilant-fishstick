@@ -107,8 +107,10 @@ export class UI {
     this.focus = [];
     this.fadeEl = h('div', 'fade');
     this.flashEl = h('div', 'flash');
-    document.body.appendChild(this.fadeEl);
-    document.body.appendChild(this.flashEl);
+    // dentro do #ui e antes de tudo: cobre o cenário 3D, mas diálogos, menus e
+    // o título continuam visíveis por cima do preto (narração sobre fundo escuro)
+    root.prepend(this.flashEl);
+    root.prepend(this.fadeEl);
     this.bannerEl = h('div', 'banner', '<div class="s"></div><div class="line"></div><div class="t"></div><div class="line"></div>');
     root.appendChild(this.bannerEl);
     this.textSpeed = 1;
@@ -220,6 +222,7 @@ export class UI {
       const finish = () => {
         cancelAnimationFrame(raf);
         this.pop(ctl);
+        window.removeEventListener('pointerdown', onAnyTap);
         box.remove();
         resolve();
       };
@@ -240,6 +243,13 @@ export class UI {
         e.stopPropagation();
         advance();
       });
+      // no celular, tocar em qualquer lugar da tela avança o texto
+      // (menos em botões e outras janelas, como o ☰ ou escolhas)
+      function onAnyTap(e) {
+        if (e.target.closest?.('button, .tbtn, .menu-close, .win:not(.dlg)')) return;
+        advance();
+      }
+      window.addEventListener('pointerdown', onAnyTap);
       this.push(ctl);
     });
   }

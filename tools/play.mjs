@@ -1,7 +1,8 @@
 // Robô de testes: executa uma sequência de passos no jogo e tira screenshots.
 // Uso: node tools/play.mjs roteiro.json   (ou JSON inline como argumento)
 // Passos: {"wait":ms} {"key":"Enter"} {"keys":["Enter",3]} {"hold":"ArrowUp","ms":800}
-//         {"tap":[x,y]} {"shot":"nome"} {"eval":"código"} {"until":"expr","timeout":ms}
+//         {"tap":[x,y]} {"shot":"nome"} {"eval":"código"}
+//         {"until":"expr","timeout":ms,"press":"Enter"|"tapAt":[x,y],"every":ms}
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 
@@ -45,7 +46,9 @@ for (const step of spec.steps) {
     await page.waitForTimeout(step.ms || 500);
     await page.keyboard.up(step.hold);
   }
-  if (step.tap) await page.mouse.click(step.tap[0], step.tap[1]);
+  // com "touch": true os toques são de tela sensível (como no celular)
+  const tap = (x, y) => (spec.touch ? page.touchscreen.tap(x, y) : page.mouse.click(x, y));
+  if (step.tap) await tap(step.tap[0], step.tap[1]);
   if (step.eval) {
     const r = await page.evaluate(step.eval);
     if (r !== undefined) console.log('eval →', JSON.stringify(r));
@@ -57,6 +60,7 @@ for (const step of spec.steps) {
       ok = await page.evaluate(step.until).catch(() => false);
       if (ok) break;
       if (step.press) await page.keyboard.press(step.press);
+      if (step.tapAt) await tap(step.tapAt[0], step.tapAt[1]);
       await page.waitForTimeout(step.every || 400);
     }
     // espera que expira não pode passar em silêncio: marca o teste como falho

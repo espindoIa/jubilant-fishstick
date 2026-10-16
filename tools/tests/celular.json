@@ -1,0 +1,62 @@
+{
+ "url": "/",
+ "width": 844,
+ "height": 390,
+ "touch": true,
+ "steps": [
+  {
+   "wait": 4000
+  },
+  {
+   "tap": [
+    422,
+    195
+   ]
+  },
+  {
+   "wait": 1500
+  },
+  {
+   "tap": [
+    422,
+    251
+   ]
+  },
+  {
+   "wait": 2500
+  },
+  {
+   "tap": [
+    422,
+    150
+   ]
+  },
+  {
+   "wait": 800
+  },
+  {
+   "tap": [
+    422,
+    150
+   ]
+  },
+  {
+   "wait": 1200
+  },
+  {
+   "until": "window.__game.mode==='field' && !window.__game.ui.busy",
+   "tapAt": [
+    422,
+    150
+   ],
+   "every": 700,
+   "timeout": 120000
+  },
+  {
+   "eval": "JSON.stringify({mode:window.__game.mode, flags:Object.keys(window.__game.state.flags)})"
+  },
+  {
+   "shot": "celular-campo"
+  }
+ ]
+}
