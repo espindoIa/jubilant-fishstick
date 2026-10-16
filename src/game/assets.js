@@ -51,6 +51,9 @@ export function fieldSheet(id) {
     if (!def) throw new Error('personagem desconhecido: ' + id);
     cache.fieldSheets[id] = makeSheet(buildFieldFrames(def));
     cache.fieldSheets[id].floats = !!def.floats;
+    cache.fieldSheets[id].scale = def.scale || 1;
+    // sombra de contato do tamanho do corpo (sprites FF6 são mais estreitos)
+    if (def.ink) cache.fieldSheets[id].blobSize = ((def.localW || 16) / 16) * (def.scale || 1);
   }
   return cache.fieldSheets[id];
 }
@@ -59,6 +62,8 @@ export function battleSheet(id) {
   if (!cache.battleSheets[id]) {
     const def = cache.charDefs[id];
     cache.battleSheets[id] = makeSheet(buildBattleFrames(def), 4);
+    cache.battleSheets[id].scale = def.scale || 1;
+    if (def.ink) cache.battleSheets[id].blobSize = ((def.localW || 16) / 16) * (def.scale || 1) * 1.1;
   }
   return cache.battleSheets[id];
 }

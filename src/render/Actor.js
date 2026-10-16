@@ -31,10 +31,10 @@ export function makeSheet(frames, cols = 6) {
 }
 
 const geoCache = new Map();
-function spriteGeometry(fw, fh, scaleY, tilt) {
-  const key = `${fw}x${fh}x${scaleY}x${tilt}`;
+function spriteGeometry(fw, fh, scaleY, tilt, scale = 1) {
+  const key = `${fw}x${fh}x${scaleY}x${tilt}x${scale}`;
   if (geoCache.has(key)) return geoCache.get(key);
-  const w = fw / PPU, h = (fh / PPU) * scaleY;
+  const w = (fw / PPU) * scale, h = (fh / PPU) * scaleY * scale;
   const g = new THREE.PlaneGeometry(w, h);
   g.translate(0, h / 2, 0);
   // normais apontando para cima/câmera: recebem a luz do céu como o cenário
@@ -52,7 +52,9 @@ export class Actor {
     tex.needsUpdate = true;
     tex.repeat.set(sheet.fw / sheet.W, sheet.fh / sheet.H);
     this.tex = tex;
-    const geo = spriteGeometry(sheet.fw, sheet.fh, opts.scaleY ?? SPRITE_SCALE_Y, 0);
+    // sheet.scale: sprites no estilo FF6 têm pixels um pouco maiores que o cenário
+    this.scale = sheet.scale || 1;
+    const geo = spriteGeometry(sheet.fw, sheet.fh, opts.scaleY ?? SPRITE_SCALE_Y, 0, this.scale);
     this.material = new THREE.MeshLambertMaterial({
       map: tex,
       alphaTest: 0.5,
@@ -67,7 +69,7 @@ export class Actor {
     this.group.add(this.mesh);
 
     if (opts.blob !== false) {
-      const bw = opts.blobSize || (sheet.fw / PPU) * 0.62;
+      const bw = opts.blobSize || sheet.blobSize || (sheet.fw / PPU) * this.scale * 0.62;
       const blob = new THREE.Mesh(
         new THREE.PlaneGeometry(bw, bw * 0.55),
         new THREE.MeshBasicMaterial({ map: getBlobTexture(), transparent: true, depthWrite: false, opacity: 0.9 })

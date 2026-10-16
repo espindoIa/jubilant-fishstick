@@ -25,7 +25,7 @@ function pad(rows, w) {
 export function buildFieldFrames(def) {
   const W = def.localW;
   const P = def.palette;
-  const opts = { w: FIELD_FRAME.w, h: FIELD_FRAME.h, localW: W, ...(def.fieldOpts || {}) };
+  const opts = { w: FIELD_FRAME.w, h: FIELD_FRAME.h, localW: W, ink: def.ink, ...(def.fieldOpts || {}) };
   const frames = {};
   const mk = (rows) => sprite(pad(rows, W), P, opts);
 
@@ -64,13 +64,18 @@ export function buildBattleFrames(def) {
   const P = def.palette;
   const frames = {};
   for (const [name, rows] of Object.entries(def.battle || {})) {
-    const lw = Math.max(...rows.map((r) => r.length));
+    // battleW fixa a grade (todas as poses alinhadas pela mesma âncora)
+    const lw = def.battleW || Math.max(...rows.map((r) => r.length));
+    const off = typeof def.battleOffX === 'number' ? def.battleOffX : def.battleOffX?.[name] || 0;
     frames[name] = sprite(pad(rows, lw), P, {
       w: BATTLE_FRAME.w,
       h: BATTLE_FRAME.h,
       localW: lw,
-      offX: def.battleOffX?.[name] || 0,
+      offX: off,
+      ink: def.ink,
     });
   }
+  // sem pose ajoelhada própria: usa a de dano (estilo antigo)
+  if (frames.hurt && !frames.kneel) frames.kneel = frames.hurt;
   return frames;
 }

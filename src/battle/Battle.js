@@ -189,7 +189,7 @@ export class Battle {
         return;
       }
       const top = c.actor.position.clone();
-      const fh = (c.actor.sheet.fh / 16) * 1.18 * (c.actor.group.scale.y || 1);
+      const fh = ((c.actor.sheet.fh * c.actor.scale) / 16) * 1.18 * (c.actor.group.scale.y || 1);
       top.y += fh + 0.25 + (c.data.floats ? 0.3 : 0);
       const p = this.project(top);
       // empurra para baixo tags que colidem com as anteriores
@@ -286,7 +286,7 @@ export class Battle {
         a.setFrame(Math.floor(c.alt * 2) % 2 ? 'alt' : 'idle');
       }
       if (c.side === 'hero' && !c.anim) {
-        a.setFrame(c.hp <= 0 ? 'ko' : c.hp < c.maxhp * 0.25 || c.status.sono ? 'hurt' : 'idle');
+        a.setFrame(c.hp <= 0 ? 'ko' : c.hp < c.maxhp * 0.25 || c.status.sono ? 'kneel' : 'idle');
       }
     }
     for (const u of this.W.updaters) u(dt, this.time);
@@ -565,7 +565,7 @@ export class Battle {
         if (!alive2) return false;
         const t = alive[idx];
         const pos = t.actor.position.clone();
-        pos.y += (t.actor.sheet.fh / 16) * 1.18 * (t.actor.group.scale.y || 1) + 1.1;
+        pos.y += ((t.actor.sheet.fh * t.actor.scale) / 16) * 1.18 * (t.actor.group.scale.y || 1) + 1.1;
         const p = this.project(pos);
         arrow.style.left = p.x + 'px';
         arrow.style.top = p.y + 'px';
@@ -715,7 +715,7 @@ export class Battle {
 
   // distância de parada do avanço: metade da largura visível do alvo + folga
   reach(c, t) {
-    const tw = (t.actor.sheet.fw / 16) * (t.actor.group.scale.x || 1);
+    const tw = ((t.actor.sheet.fw * t.actor.scale) / 16) * (t.actor.group.scale.x || 1);
     const visible = t.side === 'enemy' ? tw * 0.42 : 0.5;
     return visible + (c.side === 'hero' ? 1.0 : 0.9);
   }

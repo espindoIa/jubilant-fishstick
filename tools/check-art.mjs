@@ -20,10 +20,18 @@ const fail = (m) => {
 for (const d of [...HEROES, ...NPCS]) {
   const f = buildFieldFrames(d);
   for (const k of ['d0', 'd1', 'd2', 'u0', 'u1', 'u2', 'l0', 'l1', 'l2', 'r0', 'r1', 'r2']) if (!f[k]) fail(`${d.id}: frame ${k} ausente`);
+  // a cabeça não pode "pular" ao virar: mesma altura de cabeça em todas as direções
+  const hh = Object.values(d.dir).map((p) => p.head.length);
+  if (new Set(hh).size > 1) fail(`${d.id}: alturas de cabeça diferentes entre direções (${hh.join('/')})`);
+  // alturas iguais dentro do ciclo de caminhada
+  for (const [dir, p] of Object.entries(d.dir)) {
+    const ts = [...p.torso, ...(p.torsoB ? [p.torsoB] : [])].filter(Boolean).map((t) => t.length);
+    if (new Set(ts).size > 1) fail(`${d.id}/${dir}: torsos com alturas diferentes (${ts.join('/')})`);
+  }
 }
 for (const d of HEROES) {
   const b = buildBattleFrames(d);
-  for (const k of ['idle', 'windup', 'attack', 'cast', 'hurt', 'ko', 'win']) if (!b[k]) fail(`${d.id}: pose de batalha ${k} ausente`);
+  for (const k of ['idle', 'windup', 'attack', 'cast', 'hurt', 'kneel', 'ko', 'win']) if (!b[k]) fail(`${d.id}: pose de batalha ${k} ausente`);
   const hd = HERO_DATA[d.id];
   for (const lv of Object.keys(hd.learn)) for (const s of hd.learn[lv]) if (!SKILLS[s]) fail(`${d.id}: técnica ${s} inexistente`);
   for (const slot of ['weapon', 'armor']) if (!ITEMS[hd.equip[slot]]) fail(`${d.id}: equipamento ${hd.equip[slot]} inexistente`);
