@@ -2,6 +2,7 @@
 import { Bitmap } from '../art/bitmap.js';
 import { blob, selOutline } from '../art/sculpt.js';
 import { customSheet } from '../game/assets.js';
+import { enemyImages } from '../art/imageSprites.js';
 
 const artMods = import.meta.glob('../art/enemies_*.js', { eager: true });
 const ART = {};
@@ -169,19 +170,31 @@ export function enemyFrames(kind) {
   return r;
 }
 
-export function enemySheet(kind) {
-  return customSheet('enemy:' + kind, () => {
+// Inimigos em PNG (SpriteCook) substituem a arte em código quando existem.
+const framesCache = {};
+function framesFor(kind) {
+  if (!framesCache[kind]) {
     const r = enemyFrames(kind);
+    framesCache[kind] = enemyImages(ENEMIES[kind]?.art || kind, r.idle) || { ...r, scale: 1 };
+  }
+  return framesCache[kind];
+}
+
+export function enemySheet(kind) {
+  const sheet = customSheet('enemy:' + kind, () => {
+    const r = framesFor(kind);
     return { idle: r.idle, alt: r.alt || r.idle };
   }, 2);
+  sheet.scale = framesFor(kind).scale;
+  return sheet;
 }
 
 const glowCache = {};
 export function enemyGlowSheet(kind) {
-  if (glowCache[kind] === undefined) glowCache[kind] = !!enemyFrames(kind).glow;
+  if (glowCache[kind] === undefined) glowCache[kind] = !!framesFor(kind).glow;
   if (!glowCache[kind]) return null;
   return customSheet('enemyglow:' + kind, () => {
-    const r = enemyFrames(kind);
+    const r = framesFor(kind);
     const blank = new Bitmap(r.idle.w, r.idle.h);
     return { idle: r.glow || blank, alt: r.altGlow || r.glow || blank };
   }, 2);

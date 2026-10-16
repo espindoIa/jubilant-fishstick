@@ -66,7 +66,7 @@ export class Battle {
     this.center = new THREE.Vector3(M + ARENA_W / 2, W.groundHeight(M + ARENA_W / 2, M + 6) || 1, M + 6.2);
     this.stage.pitchOverride = THREE.MathUtils.degToRad(36);
     // chefes grandes: câmera mais afastada para caber o sprite inteiro
-    const bigBoss = this.formation.some((k) => (enemySheet(k).fh || 0) > 60);
+    const bigBoss = this.formation.some((k) => (enemySheet(k).fh || 0) * (enemySheet(k).scale || 1) > 60);
     this.stage.zoom = bigBoss ? 1.22 : 0.98;
     updateOcclusion(this.stage, null, false);
     this.stage.setCameraTarget(this.center.clone().add(new THREE.Vector3(0, bigBoss ? 1.6 : 0.8, 0.9)), true);
@@ -99,7 +99,7 @@ export class Battle {
     const slots = ENEMY_SLOTS[Math.min(4, n)];
     this.formation.forEach((kind, i) => {
       const e = ENEMIES[kind];
-      const a = new Actor(enemySheet(kind), { floats: e.floats, blobSize: Math.min(3, enemySheet(kind).fw / 16) * 0.7 });
+      const a = new Actor(enemySheet(kind), { floats: e.floats, blobSize: Math.min(3, (enemySheet(kind).fw * (enemySheet(kind).scale || 1)) / 16) * 0.7 });
       a.lockFrame = true;
       a.setFrame('idle');
       a.setGlow(enemyGlowSheet(kind), 1.6);

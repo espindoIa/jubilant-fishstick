@@ -169,7 +169,7 @@ export class Field {
   addEnemy(e) {
     const kind = ENEMIES[e.kind];
     const sheet = enemySheet(e.kind);
-    const a = new Actor(sheet, { scaleY: SPRITE_SCALE_Y, floats: kind?.floats, blobSize: Math.min(2, sheet.fw / 16) * 0.6 });
+    const a = new Actor(sheet, { scaleY: SPRITE_SCALE_Y, floats: kind?.floats, blobSize: Math.min(2, (sheet.fw * (sheet.scale || 1)) / 16) * 0.6 });
     a.group.scale.setScalar(e.scale || kind?.fieldScale || 0.8);
     a.lockFrame = true;
     a.setFrame('idle');
