@@ -205,8 +205,9 @@ export function buildHouse(spec, base) {
   west.rotation.y = -Math.PI / 2;
   west.position.set(x, base + wallH / 2, y + d / 2);
   g.add(west);
-  // fundo (para sombras)
-  const back = new THREE.Mesh(quad(w, wallH), sideMat);
+  // The rear has the width of the facade, not the depth of the side walls.
+  const rear = paintWall(w * PPU, wallH * PPU, wallKind, { seed: seed + 5 });
+  const back = new THREE.Mesh(quad(w, wallH), mat(rear.b));
   back.rotation.y = Math.PI;
   back.position.set(x + w / 2, base + wallH / 2, y);
   g.add(back);

@@ -39,7 +39,8 @@ export const ATMOSPHERES = {
     bg: '#120e26', fog: '#1e1640', fogNear: 22, fogFar: 52,
     sky: '#b4a4ff', ground: '#4a3466', ambient: 1.15,
     sun: '#c8b8ff', sunIntensity: 1.15, sunDir: [-0.3, 1, 0.4],
-    bloom: 1.7, bloomThreshold: 0.52, vignette: 0.6, saturation: 0.16, contrast: 0.1,
+    // Preserve dark floor detail without raising the crystal light sources.
+    bloom: 1.7, bloomThreshold: 0.52, vignette: 0.6, saturation: 0.16, contrast: 0,
     water: '#3a4ab0', waterLight: '#c0b0ff', waterAlpha: 0.55, night: true,
   },
   fort: {
