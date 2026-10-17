@@ -1,0 +1,167 @@
+{
+  "url": "/?q=low&speed=20&fast=1&start=vila&party=lio,sena,estela,brann&lv=8&flags=eco_despertou,intro_feita",
+  "width": 844,
+  "height": 390,
+  "touch": true,
+  "steps": [
+    {
+      "until": "window.__game?.mode==='title'",
+      "timeout": 60000
+    },
+    {
+      "tap": [
+        422,
+        195
+      ]
+    },
+    {
+      "wait": 300
+    },
+    {
+      "tapSelector": ".title-menu .opt:first-child"
+    },
+    {
+      "until": "__game.mode==='field'",
+      "timeout": 60000
+    },
+    {
+      "eval": "void __game.debug.battle(['tita'],{noFlee:true})"
+    },
+    {
+      "until": "__game.mode==='battle'",
+      "timeout": 60000
+    },
+    {
+      "eval": "(()=>{const b=__game.battleScene;b.speedOf=()=>-22;b.enemies.forEach(e=>{e.hp=e.maxhp=99999;e.atb=0});b.heroes.forEach(h=>{h.atb=0;h.waiting=false})})()"
+    },
+    {
+      "until": "!__game.battleScene.busy",
+      "timeout": 60000
+    },
+    {
+      "eval": "(()=>{const b=__game.battleScene;b.eco=100;b.heroes.forEach(h=>{h.atb=0;h.waiting=false});b.heroes.find(h=>h.id==='lio').atb=100;})()"
+    },
+    {
+      "until": "document.querySelector('.battle-cmd .opt')",
+      "timeout": 30000
+    },
+    {
+      "tapSelector": ".battle-cmd .opt:first-child"
+    },
+    {
+      "tapSelector": ".enemy-tag"
+    },
+    {
+      "until": "__game.battleScene.eco<100&&!__game.battleScene.busy",
+      "timeout": 60000
+    },
+    {
+      "shot": "touch-resonance-lio"
+    },
+    {
+      "eval": "(()=>{const b=__game.battleScene;b.eco=100;b.heroes.forEach(h=>{h.atb=0;h.waiting=false});b.heroes.find(h=>h.id==='sena').atb=100;})()"
+    },
+    {
+      "until": "document.querySelector('.battle-cmd .opt')",
+      "timeout": 30000
+    },
+    {
+      "tapSelector": ".battle-cmd .opt:first-child"
+    },
+    {
+      "until": "__game.battleScene.eco<100&&!__game.battleScene.busy",
+      "timeout": 60000
+    },
+    {
+      "shot": "touch-resonance-sena"
+    },
+    {
+      "eval": "(()=>{const b=__game.battleScene;b.eco=100;b.heroes.forEach(h=>{h.atb=0;h.waiting=false});b.heroes.find(h=>h.id==='estela').atb=100;})()"
+    },
+    {
+      "until": "document.querySelector('.battle-cmd .opt')",
+      "timeout": 30000
+    },
+    {
+      "tapSelector": ".battle-cmd .opt:first-child"
+    },
+    {
+      "until": "__game.battleScene.eco<100&&!__game.battleScene.busy",
+      "timeout": 60000
+    },
+    {
+      "shot": "touch-resonance-estela"
+    },
+    {
+      "eval": "(()=>{const b=__game.battleScene;b.eco=100;b.heroes.forEach(h=>{h.atb=0;h.waiting=false});b.heroes.find(h=>h.id==='brann').atb=100;})()"
+    },
+    {
+      "until": "document.querySelector('.battle-cmd .opt')",
+      "timeout": 30000
+    },
+    {
+      "tapSelector": ".battle-cmd .opt:first-child"
+    },
+    {
+      "until": "__game.battleScene.eco<100&&!__game.battleScene.busy",
+      "timeout": 60000
+    },
+    {
+      "shot": "touch-resonance-brann"
+    },
+    {
+      "eval": "(()=>{const b=__game.battleScene;b.heroes.forEach(h=>{h.atb=0;h.waiting=false});b.heroes[0].atb=100})()"
+    },
+    {
+      "until": "document.querySelector('.battle-cmd .opt')",
+      "timeout": 30000
+    },
+    {
+      "tapSelector": ".battle-cmd .opt:has-text(\"Atacar\")"
+    },
+    {
+      "tapSelector": ".enemy-tag"
+    },
+    {
+      "until": "__game.battleScene.lastAction.lio&&!__game.battleScene.busy&&!__game.battleScene.menuOpen&&__game.battleScene.heroes[0].atb===0&&__game.battleScene.actionQueue.length===0",
+      "timeout": 60000
+    },
+    {
+      "eval": "__game.battleScene.heroes[0].atb=100"
+    },
+    {
+      "until": "[...document.querySelectorAll('.battle-cmd .opt')].some(e=>e.textContent.includes('Repetir'))",
+      "timeout": 30000
+    },
+    {
+      "tapSelector": ".battle-cmd .opt:has-text(\"Repetir\")"
+    },
+    {
+      "until": "!__game.battleScene.busy&&!__game.battleScene.menuOpen",
+      "timeout": 60000
+    },
+    {
+      "shot": "touch-repeat"
+    },
+    {
+      "eval": "(()=>{const b=__game.battleScene;b.heroes.forEach(h=>{h.atb=0;h.waiting=false;h.mp=h.maxmp});b.heroes[1].atb=80;b.heroes[0].atb=100;window.__dualMP=b.heroes[0].mp+b.heroes[1].mp})()"
+    },
+    {
+      "until": "document.querySelector('.battle-cmd .opt')",
+      "timeout": 30000
+    },
+    {
+      "tapSelector": ".battle-cmd .opt:has-text(\"Duplas\")"
+    },
+    {
+      "tapSelector": ".battle-cmd .opt:has-text(\"Aurora\")"
+    },
+    {
+      "until": "!__game.battleScene.busy&&(__game.battleScene.heroes[0].mp+__game.battleScene.heroes[1].mp)<__dualMP",
+      "timeout": 60000
+    },
+    {
+      "shot": "touch-dual-aurora"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "url": "/?q=low&fast=1&start=vila&party=lio,sena,estela,brann&flags=intro_feita",
+  "width": 844,
+  "height": 390,
+  "touch": true,
+  "steps": [
+    {
+      "until": "window.__game?.mode==='title'",
+      "timeout": 60000
+    },
+    {
+      "tap": [
+        422,
+        195
+      ]
+    },
+    {
+      "wait": 300
+    },
+    {
+      "tapSelector": ".title-menu .opt:first-child"
+    },
+    {
+      "until": "__game.mode==='field'",
+      "timeout": 60000
+    },
+    {
+      "eval": "document.documentElement.style.setProperty('--safe-t','24px');document.documentElement.style.setProperty('--safe-b','20px');document.documentElement.style.setProperty('--safe-l','44px');document.documentElement.style.setProperty('--safe-r','12px');__game.state.addItem('espada_ferro',1);__game.state.heroes.lio.hp=10;"
+    },
+    {
+      "eval": "import('/src/data/items.js').then(({ITEMS})=>{for(const id of Object.keys(ITEMS))__game.state.addItem(id,20)})"
+    },
+    {
+      "tapSelector": ".tbtn-menu"
+    },
+    {
+      "tapSelector": ".menu-tabs .opt:has-text(\"Itens\")"
+    },
+    {
+      "eval": "document.body.style.touchAction='none';document.querySelector('.menu-main').scrollTop=0"
+    },
+    {
+      "swipe": [
+        400,
+        270,
+        400,
+        155
+      ]
+    },
+    {
+      "wait": 300
+    },
+    {
+      "eval": "window.__scrollBefore=document.querySelector('.menu-main').scrollTop;({scrollBefore:__scrollBefore})"
+    },
+    {
+      "shot": "batch4-scroll-before"
+    },
+    {
+      "assert": "__scrollBefore>0"
+    },
+    {
+      "eval": "document.body.style.touchAction='';document.querySelector('.menu-main').scrollTop=0"
+    },
+    {
+      "swipe": [
+        400,
+        270,
+        400,
+        155
+      ]
+    },
+    {
+      "wait": 300
+    },
+    {
+      "eval": "window.__scrollAfter=document.querySelector('.menu-main').scrollTop;({scrollAfter:__scrollAfter})"
+    },
+    {
+      "shot": "batch4-scroll-after"
+    },
+    {
+      "assert": "__scrollAfter>0"
+    }
+  ]
+}

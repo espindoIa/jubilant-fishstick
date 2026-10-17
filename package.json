@@ -1,0 +1,32 @@
+{
+  "name": "ecos-da-aurora",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "RPG HD-2D em pixel art para celular",
+  "scripts": {
+    "dev": "vite --host",
+    "build": "vite build",
+    "preview": "vite preview --host",
+    "art": "node tools/preview-art.mjs",
+    "test": "node tools/check-art.mjs",
+    "icons": "node tools/make-icons.mjs",
+    "build:single": "SINGLE=1 vite build",
+    "shot": "node tools/screenshot.mjs",
+    "play": "node tools/play.mjs",
+    "build:page": "SINGLE=1 vite build && node tools/make-page.mjs",
+    "test:story": "node tools/play.mjs tools/tests/historia.json",
+    "test:mobile": "node tools/play.mjs tools/tests/celular.json"
+  },
+  "dependencies": {
+    "@fontsource/dotgothic16": "^5.3.1",
+    "postprocessing": "^6.39.5",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.1",
+    "pngjs": "^7.0.0",
+    "vite": "^8.3.4",
+    "vite-plugin-singlefile": "^2.3.3"
+  }
+}

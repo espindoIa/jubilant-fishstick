@@ -1,0 +1,323 @@
+{
+  "url": "/?q=low&speed=20&fast=1&start=vila&party=lio,sena,estela,brann&flags=intro_feita,ataque_fim,cap2,brann_juntou,golem_derrotado,eco_despertou",
+  "width": 844,
+  "height": 390,
+  "touch": true,
+  "steps": [
+    {
+      "until": "window.__game?.mode==='title'",
+      "timeout": 90000
+    },
+    {
+      "tap": [
+        422,
+        195
+      ]
+    },
+    {
+      "wait": 300
+    },
+    {
+      "tapSelector": ".title-menu .opt:first-child"
+    },
+    {
+      "until": "__game.mode==='field'&&!__game.ui.busy",
+      "timeout": 90000
+    },
+    {
+      "eval": "void __game.changeMap('vila')"
+    },
+    {
+      "until": "__game.field.mapId==='vila'&&__game.mode==='field'&&!__game.ui.busy",
+      "timeout": 90000
+    },
+    {
+      "eval": "window.__savedMap=__game.field.mapId;window.__savedPos=__game.field.player.position.clone();if(!__game.saveGame())throw new Error('Save write failed');void __game.continueGame()"
+    },
+    {
+      "until": "__game.field.mapId==='vila'&&__game.mode==='field'&&!__game.ui.busy",
+      "timeout": 90000
+    },
+    {
+      "assert": "__game.field.player.position.distanceTo(__savedPos)<.15"
+    },
+    {
+      "shot": "batch1-save-vila"
+    },
+    {
+      "eval": "void __game.changeMap('bosque')"
+    },
+    {
+      "until": "__game.field.mapId==='bosque'&&__game.mode==='field'&&!__game.ui.busy",
+      "timeout": 90000
+    },
+    {
+      "eval": "window.__savedMap=__game.field.mapId;window.__savedPos=__game.field.player.position.clone();if(!__game.saveGame())throw new Error('Save write failed');void __game.continueGame()"
+    },
+    {
+      "until": "__game.field.mapId==='bosque'&&__game.mode==='field'&&!__game.ui.busy",
+      "timeout": 90000
+    },
+    {
+      "assert": "__game.field.player.position.distanceTo(__savedPos)<.15"
+    },
+    {
+      "shot": "batch1-save-bosque"
+    },
+    {
+      "eval": "void __game.changeMap('casa')"
+    },
+    {
+      "until": "__game.field.mapId==='casa'&&__game.mode==='field'&&!__game.ui.busy",
+      "timeout": 90000
+    },
+    {
+      "eval": "window.__savedMap=__game.field.mapId;window.__savedPos=__game.field.player.position.clone();if(!__game.saveGame())throw new Error('Save write failed');void __game.continueGame()"
+    },
+    {
+      "until": "__game.field.mapId==='casa'&&__game.mode==='field'&&!__game.ui.busy",
+      "timeout": 90000
+    },
+    {
+      "assert": "__game.field.player.position.distanceTo(__savedPos)<.15"
+    },
+    {
+      "shot": "batch1-save-casa"
+    },
+    {
+      "eval": "void __game.changeMap('caverna')"
+    },
+    {
+      "until": "__game.field.mapId==='caverna'&&__game.mode==='field'&&!__game.ui.busy",
+      "timeout": 90000
+    },
+    {
+      "eval": "window.__savedMap=__game.field.mapId;window.__savedPos=__game.field.player.position.clone();if(!__game.saveGame())throw new Error('Save write failed');void __game.continueGame()"
+    },
+    {
+      "until": "__game.field.mapId==='caverna'&&__game.mode==='field'&&!__game.ui.busy",
+      "timeout": 90000
+    },
+    {
+      "assert": "__game.field.player.position.distanceTo(__savedPos)<.15"
+    },
+    {
+      "shot": "batch1-save-caverna"
+    },
+    {
+      "eval": "void __game.changeMap('forte')"
+    },
+    {
+      "until": "__game.field.mapId==='forte'&&__game.mode==='field'&&!__game.ui.busy",
+      "timeout": 90000
+    },
+    {
+      "eval": "window.__savedMap=__game.field.mapId;window.__savedPos=__game.field.player.position.clone();if(!__game.saveGame())throw new Error('Save write failed');void __game.continueGame()"
+    },
+    {
+      "until": "__game.field.mapId==='forte'&&__game.mode==='field'&&!__game.ui.busy",
+      "timeout": 90000
+    },
+    {
+      "assert": "__game.field.player.position.distanceTo(__savedPos)<.15"
+    },
+    {
+      "shot": "batch1-save-forte"
+    },
+    {
+      "eval": "void import('/src/data/camp.js').then(({playCamp})=>__game.runScript(ctx=>playCamp(ctx)))"
+    },
+    {
+      "until": "document.querySelector('.choices .opt')",
+      "timeout": 20000
+    },
+    {
+      "tapSelector": ".choices .opt:first-child"
+    },
+    {
+      "until": "__game.mode==='field'&&!__game.ui.busy",
+      "tapAt": [
+        422,
+        190
+      ],
+      "every": 100,
+      "timeout": 90000
+    },
+    {
+      "eval": "void import('/src/data/camp.js').then(({playCamp})=>__game.runScript(ctx=>playCamp(ctx)))"
+    },
+    {
+      "until": "document.querySelector('.choices .opt')",
+      "timeout": 20000
+    },
+    {
+      "tapSelector": ".choices .opt:first-child"
+    },
+    {
+      "until": "__game.mode==='field'&&!__game.ui.busy",
+      "tapAt": [
+        422,
+        190
+      ],
+      "every": 100,
+      "timeout": 90000
+    },
+    {
+      "eval": "void import('/src/data/camp.js').then(({playCamp})=>__game.runScript(ctx=>playCamp(ctx)))"
+    },
+    {
+      "until": "document.querySelector('.choices .opt')",
+      "timeout": 20000
+    },
+    {
+      "tapSelector": ".choices .opt:first-child"
+    },
+    {
+      "until": "__game.mode==='field'&&!__game.ui.busy",
+      "tapAt": [
+        422,
+        190
+      ],
+      "every": 100,
+      "timeout": 90000
+    },
+    {
+      "eval": "void import('/src/data/camp.js').then(({playCamp})=>__game.runScript(ctx=>playCamp(ctx)))"
+    },
+    {
+      "until": "document.querySelector('.choices .opt')",
+      "timeout": 20000
+    },
+    {
+      "tapSelector": ".choices .opt:first-child"
+    },
+    {
+      "until": "__game.mode==='field'&&!__game.ui.busy",
+      "tapAt": [
+        422,
+        190
+      ],
+      "every": 100,
+      "timeout": 90000
+    },
+    {
+      "eval": "void import('/src/data/camp.js').then(({playCamp})=>__game.runScript(ctx=>playCamp(ctx)))"
+    },
+    {
+      "until": "document.querySelector('.choices .opt')",
+      "timeout": 20000
+    },
+    {
+      "tapSelector": ".choices .opt:first-child"
+    },
+    {
+      "until": "__game.mode==='field'&&!__game.ui.busy",
+      "tapAt": [
+        422,
+        190
+      ],
+      "every": 100,
+      "timeout": 90000
+    },
+    {
+      "eval": "void import('/src/data/camp.js').then(({playCamp})=>__game.runScript(ctx=>playCamp(ctx)))"
+    },
+    {
+      "until": "document.querySelector('.choices .opt')",
+      "timeout": 20000
+    },
+    {
+      "tapSelector": ".choices .opt:first-child"
+    },
+    {
+      "until": "__game.mode==='field'&&!__game.ui.busy",
+      "tapAt": [
+        422,
+        190
+      ],
+      "every": 100,
+      "timeout": 90000
+    },
+    {
+      "eval": "import('/src/data/camp.js').then(({CAMP_SCENES})=>{const flags=CAMP_SCENES.map(s=>'camp_'+s.id);if(!flags.every(f=>__game.state.flag(f)))throw new Error('Camp coverage');return flags})"
+    },
+    {
+      "eval": "void __game.runScript('shard_vila1')"
+    },
+    {
+      "until": "__game.mode==='field'&&!__game.ui.busy",
+      "tapAt": [
+        422,
+        190
+      ],
+      "every": 100,
+      "timeout": 90000
+    },
+    {
+      "eval": "void __game.runScript('shard_bosque1')"
+    },
+    {
+      "until": "__game.mode==='field'&&!__game.ui.busy",
+      "tapAt": [
+        422,
+        190
+      ],
+      "every": 100,
+      "timeout": 90000
+    },
+    {
+      "eval": "void __game.runScript('shard_bosque2')"
+    },
+    {
+      "until": "__game.mode==='field'&&!__game.ui.busy",
+      "tapAt": [
+        422,
+        190
+      ],
+      "every": 100,
+      "timeout": 90000
+    },
+    {
+      "eval": "void __game.runScript('shard_caverna1')"
+    },
+    {
+      "until": "__game.mode==='field'&&!__game.ui.busy",
+      "tapAt": [
+        422,
+        190
+      ],
+      "every": 100,
+      "timeout": 90000
+    },
+    {
+      "eval": "void __game.runScript('shard_caverna2')"
+    },
+    {
+      "until": "__game.mode==='field'&&!__game.ui.busy",
+      "tapAt": [
+        422,
+        190
+      ],
+      "every": 100,
+      "timeout": 90000
+    },
+    {
+      "eval": "void __game.runScript('shard_forte1')"
+    },
+    {
+      "until": "__game.mode==='field'&&!__game.ui.busy",
+      "tapAt": [
+        422,
+        190
+      ],
+      "every": 100,
+      "timeout": 90000
+    },
+    {
+      "assert": "__game.state.inventory.colar_aurora===1"
+    },
+    {
+      "shot": "batch1-memories-complete"
+    }
+  ]
+}

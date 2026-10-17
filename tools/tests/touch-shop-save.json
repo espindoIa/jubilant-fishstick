@@ -1,0 +1,96 @@
+{
+  "url": "/?q=low&speed=20&fast=1&start=vila&party=lio,sena&flags=intro_feita",
+  "width": 844,
+  "height": 390,
+  "touch": true,
+  "steps": [
+    {
+      "until": "window.__game?.mode==='title'",
+      "timeout": 60000
+    },
+    {
+      "tap": [
+        422,
+        195
+      ]
+    },
+    {
+      "wait": 300
+    },
+    {
+      "tapSelector": ".title-menu .opt:first-child"
+    },
+    {
+      "until": "__game.mode==='field'",
+      "timeout": 60000
+    },
+    {
+      "eval": "void __game.runScript('loja_vila')"
+    },
+    {
+      "until": "document.querySelector('.menu-tabs .opt')",
+      "tapAt": [
+        422,
+        190
+      ],
+      "every": 100,
+      "timeout": 60000
+    },
+    {
+      "tapSelector": ".menu-tabs .opt:has-text(\"Comprar\")"
+    },
+    {
+      "tapSelector": ".menu-main .opt:first-child"
+    },
+    {
+      "assert": "__game.state.gold===30&&__game.state.inventory.pocao===4"
+    },
+    {
+      "shot": "touch-shop-bought"
+    },
+    {
+      "tapSelector": ".menu-close"
+    },
+    {
+      "tapSelector": ".menu-tabs .opt:has-text(\"Sair\")"
+    },
+    {
+      "until": "__game.mode==='field'&&!__game.ui.busy",
+      "tapAt": [
+        422,
+        190
+      ],
+      "every": 100,
+      "timeout": 60000
+    },
+    {
+      "eval": "const f=__game.field;f.player.position.set(16.5,f.hAt(16.5,21.2),21.2);f.player.facing='up'"
+    },
+    {
+      "tapSelector": ".tbtn-a"
+    },
+    {
+      "until": "document.querySelector('.choices .opt')",
+      "tapAt": [
+        422,
+        190
+      ],
+      "every": 100,
+      "timeout": 60000
+    },
+    {
+      "tapSelector": ".choices .opt:first-child"
+    },
+    {
+      "until": "document.querySelector('.dlg .text')?.textContent.includes('Progresso salvo')",
+      "every": 100,
+      "timeout": 60000
+    },
+    {
+      "shot": "touch-save-confirmed"
+    },
+    {
+      "eval": "import('/src/game/state.js').then(({GameState})=>{if(GameState.load()?.mapId!=='vila')throw new Error('Save missing')})"
+    }
+  ]
+}
