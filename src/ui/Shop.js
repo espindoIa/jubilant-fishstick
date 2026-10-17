@@ -20,7 +20,7 @@ export class Shop {
     const main = h('div', 'win menu-main');
     const info = h('div', 'win menu-info');
     root.append(top, main, info);
-    const back = h('div', 'menu-close', '✕');
+    const back = h('button', 'menu-close', '✕');
     back.addEventListener('click', (e) => {
       e.stopPropagation();
       this.ui.dispatch('cancel');

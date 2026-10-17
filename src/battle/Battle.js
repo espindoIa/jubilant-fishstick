@@ -13,6 +13,7 @@ import { Effects } from './effects.js';
 import { h, ListCtl, wait, TIME } from '../ui/UI.js';
 import { portraitURL } from '../ui/portraits.js';
 import { updateOcclusion } from '../render/occlusion.js';
+import { placeFloating } from '../ui/layout.js';
 import { Barks } from './barks.js';
 import { RESONANCE, doResonance } from './resonance.js';
 import { bondRank, BOND_DUAL_BONUS } from '../data/camp.js';
@@ -215,6 +216,18 @@ export class Battle {
       r.querySelector('.st').textContent = Object.keys(c.status).map((s) => STATUS_ICONS[s] || '').join('');
       r.querySelector('.hpn').style.color = c.hp <= 0 ? 'var(--danger)' : c.hp < c.maxhp * 0.25 ? '#ffb84a' : '';
     });
+    const viewport = innerWidth + 'x' + innerHeight;
+    const refreshLayout = full || this._hudDirty || viewport !== this._tagViewport || this._tagCommand !== this.cmdWin;
+    if (refreshLayout) {
+      const css = getComputedStyle(document.documentElement);
+      const inset = k => parseFloat(css.getPropertyValue('--safe-' + k)) || 0;
+      this._tagBounds = {left:8+inset('l'),right:innerWidth-8-inset('r'),top:8+inset('t'),bottom:innerHeight-8-inset('b')};
+      this._tagReserved = [this.partyWin, this.cmdWin, this.ecoWin, this.helpWin].filter(el => el && !el.classList.contains('hidden')).map(el => {
+        const r = el.getBoundingClientRect();return {x:r.x-4,y:r.y-4,w:r.width+8,h:r.height+8};
+      });
+      this._tagViewport=viewport;this._tagCommand=this.cmdWin;
+    }
+    const placedTags = [];
     this.enemies.forEach((c, i) => {
       const t = this.enemyTags[i];
       if (c.hp <= 0) {
@@ -225,21 +238,17 @@ export class Battle {
       const fh = ((c.actor.sheet.fh * c.actor.scale) / 16) * 1.18 * (c.actor.group.scale.y || 1);
       top.y += fh + 0.25 + (c.data.floats ? 0.3 : 0);
       const p = this.project(top);
-      // empurra para baixo tags que colidem com as anteriores
-      let py = p.y;
-      for (let j = 0; j < i; j++) {
-        const o = this._tagPos?.[j];
-        if (o && Math.abs(o.x - p.x) < 150 && Math.abs(o.y - py) < 46) py = o.y + 48;
-      }
-      py = Math.max(64, py);
-      (this._tagPos ||= [])[i] = { x: p.x, y: py };
-      t.style.left = p.x + 'px';
-      t.style.top = py + 'px';
+      t.style.display = '';
       if (full || this._hudDirty) {
         const weak = c.weak.map((w) => (c.revealed.has(w) ? `<span title="${(ELEMENTS[w] || WEAPON_TYPES[w]).name}">${(ELEMENTS[w] || WEAPON_TYPES[w]).icon}</span>` : '<span>?</span>')).join('');
         t.innerHTML = `<div class="nm">${c.name}</div><div><span class="shield${c.broken ? ' broken' : ''}">${c.broken ? '✖' : c.shield}</span><span class="weak">${weak}</span></div><div class="hpbar"><i style="width:${(100 * c.hp) / c.maxhp}%"></i></div>`;
         t.classList.toggle('targetable', !!this.targeting && this.targeting.includes(c));
       }
+      if (refreshLayout || !t._size) t._size = {w:t.offsetWidth,h:t.offsetHeight};
+      const box = placeFloating(p, t._size, this._tagBounds, [...this._tagReserved, ...placedTags]);
+      placedTags.push({x:box.x-3,y:box.y-3,w:box.w+6,h:box.h+6});
+      t.style.left = (box.x + box.w/2) + 'px';
+      t.style.top = (box.y + box.h) + 'px';
     });
     this._hudDirty = false;
   }
@@ -463,7 +472,7 @@ export class Battle {
       const win = h('div', 'win battle-cmd');
       win.appendChild(h('div', 'title', title));
       if (!opts.noCancel) {
-        const back = h('div', 'menu-close', '↩');
+        const back = h('button', 'menu-close', '↩');
         back.title = 'Voltar';
         back.addEventListener('click', (e) => {
           e.stopPropagation();
@@ -697,7 +706,7 @@ export class Battle {
         if (best && bd < 140) this.onEnemyTap?.(best);
       };
       this.game.canvas.addEventListener('pointerdown', onCanvas, { once: true });
-      const cancelBtn = h('div', 'win thin', '✕ Voltar');
+      const cancelBtn = h('button', 'win thin battle-cancel', '✕ Voltar');
       cancelBtn.style.cssText = 'left:max(10px,var(--safe-l));bottom:calc(10px + var(--safe-b));cursor:pointer;pointer-events:auto';
       cancelBtn.addEventListener('click', () => {
         this.game.canvas.removeEventListener('pointerdown', onCanvas);
@@ -1303,13 +1312,23 @@ export class Battle {
         handle: (a) => {
           if ((a === 'confirm' || a === 'cancel') && performance.now() - t0 > minMs * TIME.scale) {
             this.ui.pop(ctl);
-            window.removeEventListener('pointerdown', onTap);
+            window.removeEventListener('pointerdown', onDown);
+            window.removeEventListener('pointerup', onUp);
+            window.removeEventListener('pointercancel', onCancel);
             resolve();
           }
         },
       };
-      const onTap = () => ctl.handle('confirm');
-      window.addEventListener('pointerdown', onTap);
+      let start = null;
+      const onDown = e => { start = {x:e.clientX,y:e.clientY,id:e.pointerId}; };
+      const onCancel = () => { start = null; };
+      const onUp = e => {
+        if (start?.id === e.pointerId && Math.hypot(e.clientX-start.x,e.clientY-start.y)<10) ctl.handle('confirm');
+        start = null;
+      };
+      window.addEventListener('pointerdown', onDown);
+      window.addEventListener('pointerup', onUp);
+      window.addEventListener('pointercancel', onCancel);
       this.ui.push(ctl);
     });
   }

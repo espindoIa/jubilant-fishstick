@@ -16,6 +16,23 @@ for(const [w,h] of [[844,390],[390,844]])for(const q of ['low','high']){
  {key:'Escape'},{eval:"void __game.ui.say({name:'Lio',portrait:'lio'},'A luz da aurora ilumina o caminho. Vamos explorar o mundo juntos.')"},{wait:300},{shot:name+'-dialogue'},
  {key:'Enter'},{key:'Enter'},{eval:"__game.state.set('eco_despertou');void __game.debug.battle(['goticula','cogumelo'],{canRun:true})"},
  {until:"__game.mode==='battle'&&!__game.battleScene.busy",timeout:90000},{wait:300},{shot:name+'-battle'}];
+ if(label==='batch4') {
+   steps.splice(1,0,{shot:name+'-title'});
+   const menuShot = steps.findIndex(s=>s.shot===name+'-menu');
+   steps.splice(menuShot+1,0,
+     {tapSelector:'.menu-tabs .opt:has-text("Crônica")'},{wait:200},{shot:name+'-chronicle'},{tapSelector:'.menu-close'},
+     {tapSelector:'.menu-tabs .opt:has-text("Opções")'},{wait:200},{shot:name+'-options'},{tapSelector:'.menu-main .opt:has-text("Voltar")'},
+     {tapSelector:'.menu-tabs .opt:has-text("Status")'},{tapSelector:'.menu-main .opt:has(.nm:text-is("Lio"))'},{wait:200},{shot:name+'-status'},{tapSelector:'.menu-close'}
+   );
+   steps.push(
+     {eval:"const b=__game.battleScene;b.enemies.forEach(e=>e.hp=0);b.checkEnd()"},
+     {until:"document.querySelector('.results')",timeout:60000},{shot:name+'-results'},
+     {key:'Enter'},{until:"__game.mode==='field'",timeout:60000},
+     {eval:"void __game.runScript('loja_vila')"},
+     {until:"document.querySelector('.menu-tabs .opt')",tapAt:[w/2,h/2],every:200,timeout:60000},
+     {tapSelector:'.menu-tabs .opt:has-text("Comprar")'},{shot:name+'-shop'}
+   );
+ }
  const spec={url:`/?q=${q}&fast=1&start=vila&party=lio,sena,estela,brann&flags=intro_feita`,width:w,height:h,touch:true,steps};
  const f=`${out}/${name}.json`;fs.writeFileSync(f,JSON.stringify(spec));
  const p=spawnSync(process.execPath,['tools/play.mjs',f],{encoding:'utf8',env:process.env,timeout:240000,maxBuffer:4e6});

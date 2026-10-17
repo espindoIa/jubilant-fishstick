@@ -33,11 +33,15 @@ export class ListCtl {
       const n = h('div', 'opt' + (it.disabled ? ' disabled' : '') + (i === this.index ? ' sel' : ''));
       if (this.opts.renderItem) n.innerHTML = this.opts.renderItem(it, i);
       else n.innerHTML = `<span>${it.label}</span>${it.right !== undefined ? `<span class="r">${it.right}</span>` : ''}`;
+      n.setAttribute('role', 'button');
+      n.setAttribute('aria-disabled', String(!!it.disabled));
+      n.tabIndex = 0;
       n.addEventListener('pointerdown', (e) => {
         e.stopPropagation();
       });
       n.addEventListener('click', (e) => {
         e.stopPropagation();
+        if (this.opts.canSelect && !this.opts.canSelect()) return;
         if (this.index === i || this.opts.tapSelects !== false) {
           this.index = i;
           this.refreshSel();
@@ -239,10 +243,17 @@ export class UI {
         finish();
       };
       const ctl = { handle: (a) => (a === 'confirm' || a === 'cancel') && advance() };
+      let touchStart = null;
       box.addEventListener('pointerdown', (e) => {
         e.stopPropagation();
-        advance();
+        touchStart = {x:e.clientX,y:e.clientY,id:e.pointerId};
       });
+      box.addEventListener('pointerup', (e) => {
+        e.stopPropagation();
+        if (touchStart?.id === e.pointerId && Math.hypot(e.clientX-touchStart.x,e.clientY-touchStart.y)<10) advance();
+        touchStart = null;
+      });
+      box.addEventListener('pointercancel', () => { touchStart = null; });
       // no celular, tocar em qualquer lugar da tela avança o texto
       // (menos em botões e outras janelas, como o ☰ ou escolhas)
       function onAnyTap(e) {

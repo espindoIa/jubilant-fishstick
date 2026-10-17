@@ -50,7 +50,7 @@ export class Menu {
       this.main = h('div', 'win menu-main');
       root.append(this.tabsWin, this.main, this.infoWin);
       // ✕ funciona como "voltar": cancela o submenu ativo (ou fecha o menu)
-      const close = h('div', 'menu-close', '✕');
+      const close = h('button', 'menu-close', '✕');
       close.addEventListener('click', (e) => {
         e.stopPropagation();
         this.ui.dispatch('cancel');
@@ -68,8 +68,9 @@ export class Menu {
         { label: 'Fechar', v: 'close' },
       ];
       this.tabs = new ListCtl(this.tabsWin, tabs, {
+        canSelect: () => this.ui.focus.at(-1) === this.tabs,
         sound: this.sound,
-        onChange: (it) => this.preview(it.v),
+        onChange: (it) => { if (!this.tabs || this.ui.focus.at(-1) === this.tabs) this.preview(it.v); },
         onSelect: (it) => this.open(it.v),
         onCancel: () => this.close(),
       });
@@ -139,6 +140,7 @@ export class Menu {
   }
 
   async open(v) {
+    if (this.ui.focus.at(-1) !== this.tabs) return;
     if (v === 'close') return this.close();
     if (v === 'party') return this.openParty();
     if (v === 'items') return this.openItems();
@@ -291,6 +293,7 @@ export class Menu {
         }).join('');
       };
       renderStats(null);
+      this.main.append(desc, statBox);
       const slot = await new Promise((resolve) => {
         const ctl = new ListCtl(this.main, slots, {
           sound: this.sound,
@@ -306,7 +309,6 @@ export class Menu {
         });
         this.ui.push(ctl);
       });
-      this.main.append(desc, statBox);
       if (!slot) break;
       // lista de itens compatíveis
       this.clearMain();

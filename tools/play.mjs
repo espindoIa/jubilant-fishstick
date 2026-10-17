@@ -53,6 +53,13 @@ for (const [stepIndex, step] of spec.steps.entries()) {
   // com "touch": true os toques são de tela sensível (como no celular)
   const tap = (x, y) => (spec.touch ? page.touchscreen.tap(x, y) : page.mouse.click(x, y));
   if (step.tap) await tap(step.tap[0], step.tap[1]);
+  if (step.swipe) {
+    const [x1,y1,x2,y2] = step.swipe;
+    const cdp = await ctx.newCDPSession(page);
+    await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:x1,y:y1}]});
+    for(let i=1;i<=12;i++) { await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:x1+(x2-x1)*i/12,y:y1+(y2-y1)*i/12}]});await page.waitForTimeout(20); }
+    await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await cdp.detach();
+  }
   if (step.tapSelector) await page.locator(step.tapSelector).tap();
   if (step.assert) { const ok = await page.evaluate(step.assert); if (!ok) throw new Error('ASSERT: ' + step.assert); }
   if (step.eval) {

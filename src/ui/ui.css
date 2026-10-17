@@ -1284,3 +1284,22 @@ body {
   bottom: var(--safe-b);
 }
 .enemy-tag { min-width: 44px; min-height: 44px; }
+
+/* Readability over bright scenery, and native scrolling for long lists. */
+:root { --win-top: #202c65; --win-bot: #101631; --muted: #c0c7e5; --disabled: #aeb7d0; --fs-small: clamp(12px, 0.95vw + 0.9vh, 17px); }
+#game, .stick-zone, .tbtn { touch-action: none; }
+.opt.disabled { color: var(--disabled); }
+.title-hint { color: #fff; background: #101631; border-radius: 6px; padding: 8px 12px; }
+.enemy-tag { max-width: min(180px, 42vw); white-space: normal; }
+.enemy-tag .nm { background: #101629; padding: 3px 6px; border-radius: 4px; color: #fff; }
+.dlg { max-height: calc(100dvh - 24px - var(--safe-t) - var(--safe-b)); overflow-y: auto; touch-action: pan-y; }
+.choices { max-width: calc(100vw - 24px - var(--safe-l) - var(--safe-r)); }
+.battle-help { max-width: calc(100vw - 24px - var(--safe-l) - var(--safe-r)); white-space: normal; text-align: center; }
+@media (max-aspect-ratio: 1/1) { .battle-help { top: calc(34px + var(--safe-t)); } }
+@media (prefers-reduced-motion: reduce) { .win, .menu-root, .opt.sel::before { animation: none !important; } }
+.menu-close { border: 0; background: transparent; font: inherit; }
+.battle-cancel { min-width: 88px; min-height: 44px; color: #fff; font: inherit; }
+.enemy-tag .shield { background: #263455; color: #fff; text-shadow: none; }
+.enemy-tag .shield.broken { background: #7a273c; }
+.eco-gauge { background: #101629; padding: 4px 6px; border-radius: 4px; }
+.results { max-height: calc(100dvh - 24px - var(--safe-t) - var(--safe-b)); overflow-y: auto; touch-action: pan-y; }

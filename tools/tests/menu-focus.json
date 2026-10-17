@@ -1,0 +1,49 @@
+{
+  "url": "/?q=low&fast=1&start=vila&party=lio,sena,estela,brann&flags=intro_feita",
+  "width": 844,
+  "height": 390,
+  "touch": true,
+  "steps": [
+    {
+      "until": "window.__game?.mode==='title'",
+      "timeout": 60000
+    },
+    {
+      "tap": [
+        422,
+        195
+      ]
+    },
+    {
+      "wait": 300
+    },
+    {
+      "tapSelector": ".title-menu .opt:first-child"
+    },
+    {
+      "until": "__game.mode==='field'",
+      "timeout": 60000
+    },
+    {
+      "eval": "document.documentElement.style.setProperty('--safe-t','24px');document.documentElement.style.setProperty('--safe-b','20px');document.documentElement.style.setProperty('--safe-l','44px');document.documentElement.style.setProperty('--safe-r','12px');__game.state.addItem('espada_ferro',1);__game.state.heroes.lio.hp=10;"
+    },
+    {
+      "tapSelector": ".tbtn-menu"
+    },
+    {
+      "tapSelector": ".menu-tabs .opt:has-text(\"Itens\")"
+    },
+    {
+      "eval": "window.__tabsRect=document.querySelector('.menu-tabs .opt:nth-child(4)').getBoundingClientRect().toJSON();({stack:__game.ui.focus.length})"
+    },
+    {
+      "eval": "document.querySelector('.menu-tabs .opt:nth-child(4)').click();({stack:__game.ui.focus.length})"
+    },
+    {
+      "assert": "__game.ui.focus.length<=2"
+    },
+    {
+      "shot": "batch4-menu-focus"
+    }
+  ]
+}
