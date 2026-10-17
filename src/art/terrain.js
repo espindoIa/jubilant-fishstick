@@ -9,17 +9,17 @@ const C = (h) => hexToRgb(h);
 
 // Paletas de materiais (claro → escuro)
 export const MAT = {
-  grass: ['#9ad866', '#74c050', '#56a444', '#3f863e', '#2d6634'],
-  forest: ['#a0d066', '#72b44e', '#4e9446', '#367440', '#245438'],
+  grass: ['#e5e4a6', '#b9d583', '#7e9e4c', '#293e35', '#172635'],
+  forest: ['#e4dfa1', '#b8cd79', '#738c43', '#23382f', '#172637'],
   dirt: ['#e2bc84', '#c99c62', '#a97c4a', '#865e38', '#5e4028'],
-  path: ['#e4dccb', '#c9bfac', '#a89e8c', '#827a6c', '#5c5650'],
-  plaza: ['#e8d6b8', '#d2bc98', '#b49e7c', '#8c7a60', '#625646'],
+  path: ['#eee4c7', '#d5c8a7', '#a89e8c', '#625b51', '#302d35'],
+  plaza: ['#f4dfb2', '#dfc193', '#b49e7c', '#695640', '#352d33'],
   sand: ['#fbecc0', '#f0d9a0', '#dcc082', '#bea066', '#8e744c'],
   plank: ['#e0a868', '#c48848', '#a06a38', '#784c28', '#4c2e18'],
   cave: ['#d6cdea', '#aea4d2', '#8479b0', '#5f5690', '#3b3468'],
   crystal: ['#c8b0ff', '#9a80ee', '#7058cc', '#4e3aa0', '#2e2470'],
-  metal: ['#d0d6e2', '#a2adc4', '#7b87a2', '#566182', '#323a58'],
-  rock: ['#b4aca0', '#958c80', '#776e64', '#5a524a', '#3c3630'],
+  metal: ['#e2e5e9', '#bdc6d7', '#7b87a2', '#444e6c', '#252a42'],
+  rock: ['#ded5bd', '#b5a68f', '#8c8170', '#48434b', '#242535'],
   snow: ['#ffffff', '#e8eefc', '#ccd6f0', '#a8b4d8', '#7c88b0'],
 };
 

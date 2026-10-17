@@ -57,30 +57,35 @@ export function occlude(material) {
           d.y *= 0.8;
           float r = length(d);
           if (r < 1.0) {
-            float keep = smoothstep(0.55, 1.0, r);
-            if (occBayer(gl_FragCoord.xy * 0.5) > keep * 0.95 + 0.05) discard;
+            float keep = smoothstep(0.8, 1.0, r);
+            if (occBayer(gl_FragCoord.xy) > keep * 0.95 + 0.05) discard;
           }
         }`
       );
   };
-  material.customProgramCacheKey = () => 'occ1';
+  material.customProgramCacheKey = () => 'occ2';
   material.needsUpdate = true;
   return material;
 }
 
 // atualiza a posição do jogador na tela (em pixels do drawing buffer)
 const v = new THREE.Vector3();
+const edge = new THREE.Vector3();
+const size = new THREE.Vector2();
 export function updateOcclusion(stage, worldPos, enabled = true) {
   if (!enabled) {
     OCC.uOccEnable.value = 0;
     return;
   }
   const r = stage.renderer;
-  const size = r.getDrawingBufferSize(new THREE.Vector2());
+  r.getDrawingBufferSize(size);
   v.set(worldPos.x, worldPos.y + 1.0, worldPos.z).project(stage.camera);
   OCC.uPlayerScreen.value.set(((v.x + 1) / 2) * size.x, ((v.y + 1) / 2) * size.y);
   OCC.uPlayerZ.value = worldPos.z;
   OCC.uPlayerY.value = worldPos.y;
-  OCC.uOccRadius.value = size.y * 0.25;
+  // Project a one-unit horizontal clearance around the torso. This follows
+  // zoom, perspective, viewport and internal resolution together.
+  edge.set(worldPos.x + 1.0, worldPos.y + 1.0, worldPos.z).project(stage.camera);
+  OCC.uOccRadius.value = Math.max(8, Math.abs(edge.x - v.x) * size.x * 0.5);
   OCC.uOccEnable.value = 1;
 }

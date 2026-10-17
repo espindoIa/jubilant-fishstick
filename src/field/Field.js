@@ -10,7 +10,6 @@ import { cellMat, cellH } from '../art/terrain.js';
 import { groundHeight } from '../render/TerrainMesh.js';
 import { enemySheet, ENEMIES } from '../data/enemies.js';
 import { SPRITE_SCALE_Y } from '../render/Actor.js';
-import { updateOcclusion } from '../render/occlusion.js';
 
 const DIRS = { down: [0, 1], up: [0, -1], left: [-1, 0], right: [1, 0] };
 const R = 0.26; // raio do jogador
@@ -321,7 +320,6 @@ export class Field {
     this.updateActors(dt);
     if (!this.cameraLocked) this.stage.setCameraTarget(this.focusPoint());
     for (const u of this.world.updaters) u(dt, this.time);
-    updateOcclusion(this.stage, this.player.position, this.game.mode !== 'battle');
     this.updateHint();
   }
 

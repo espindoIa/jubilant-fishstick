@@ -1,6 +1,7 @@
 // Orquestrador: modos (título, campo, batalha, menu), loop principal,
 // troca de mapas, scripts, áudio e save.
 import * as THREE from 'three';
+import { updateOcclusion } from '../render/occlusion.js';
 import { Stage, detectQuality } from '../render/Stage.js';
 import { Input, TouchControls } from '../core/input.js';
 import { UI, wait, TIME } from '../ui/UI.js';
@@ -160,6 +161,9 @@ export class Game {
     // ?speed=N: N subpassos de lógica por quadro (sem passos gigantes na colisão)
     for (let i = 0; i < TIME.speed; i++) this.step(dt);
     this.stage.update(dt * TIME.speed, this.time);
+    this.stage.camera.updateMatrixWorld();
+    if (this.field?.player) updateOcclusion(this.stage, this.field.player.position,
+      ['field', 'menu', 'script'].includes(this.mode));
     this.stage.render(dt);
     this.input.endFrame();
     requestAnimationFrame((t) => this.frame(t));
